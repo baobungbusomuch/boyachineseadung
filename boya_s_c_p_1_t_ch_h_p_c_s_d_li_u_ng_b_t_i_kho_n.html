@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boya Sơ Cấp 1 - Ôn Tập & Ngữ Pháp Bài 1-10</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        chinese: ['"Noto Sans SC"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#e11d48',
+                        secondary: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .animate-shake { animation: shake 0.3s ease-in-out; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-rose-500 selection:text-white">
+
+    <!-- Header & Thanh Tiến Độ -->
+    <header class="bg-white shadow-sm sticky top-0 z-30 border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 flex items-center justify-center text-white font-chinese font-bold text-xl shadow-md shadow-rose-200">
+                    博
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-slate-900">Boya Sơ Cấp 1 <span class="text-xs font-semibold bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full ml-1">Bài 1 - 10</span></h1>
+                    <p class="text-xs text-slate-500">Từ vựng chuẩn giáo trình & Luyện đặt câu ngữ pháp</p>
+                </div>
+            </div>
+
+            <!-- Thao tác & Thống kê tiến độ -->
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+                <!-- Nút Tài Khoản & Đồng Bộ Đám Mây -->
+                <button onclick="openAccountModal()" id="btn-account-pill" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+                    <i class="fa-solid fa-circle-user text-amber-600 text-sm"></i>
+                    <span id="header-account-name">Tài khoản: Đang nạp...</span>
+                    <span id="cloud-status-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Đã kết nối đám mây"></span>
+                </button>
+                <!-- Nút Trợ lý Gemini AI Tự Động Sinh Bài -->
+                <button onclick="openGeminiModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Gemini AI Tạo Bài
+                </button>
+                <button onclick="openUpdateModal()" class="px-3 py-1.5 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 text-xs font-semibold flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-cloud-arrow-down"></i> Cập nhật / Tải thêm bài
+                </button>
+                <div class="flex items-center gap-3 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200/60">
+                    <span class="text-xs font-medium text-slate-600"><strong id="mastered-count" class="text-emerald-600 text-sm">0</strong>/<span id="total-count">0</span> từ</span>
+                    <div class="w-20 sm:w-28 h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 w-0 transition-all duration-500"></div>
+                    </div>
+                    <button onclick="resetProgress()" title="Đặt lại tiến độ" class="text-slate-400 hover:text-rose-600 transition text-xs">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bộ lọc bài học từ 1 -> 10 -->
+        <div class="bg-slate-100/70 border-t border-slate-200/60">
+            <div class="max-w-6xl mx-auto px-4 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-1 shrink-0"><i class="fa-solid fa-book-open mr-1"></i>Bài:</span>
+                <button onclick="filterLesson('all')" id="btn-lesson-all" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-rose-600 text-white shadow-sm transition">Tất cả (1-10)</button>
+                <button onclick="filterLesson(1)" id="btn-lesson-1" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B1: 你好</button>
+                <button onclick="filterLesson(2)" id="btn-lesson-2" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B2: 你是哪国人</button>
+                <button onclick="filterLesson(3)" id="btn-lesson-3" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B3: 那是谁的书</button>
+                <button onclick="filterLesson(4)" id="btn-lesson-4" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B4: 图书馆在哪儿</button>
+                <button onclick="filterLesson(5)" id="btn-lesson-5" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B5: 在北大东边</button>
+                <button onclick="filterLesson(6)" id="btn-lesson-6" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B6: 现在几点</button>
+                <button onclick="filterLesson(7)" id="btn-lesson-7" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B7: 明天你有课吗</button>
+                <button onclick="filterLesson(8)" id="btn-lesson-8" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B8: 电话号码是多少</button>
+                <button onclick="filterLesson(9)" id="btn-lesson-9" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B9: 多少钱一瓶</button>
+                <button onclick="filterLesson(10)" id="btn-lesson-10" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition">B10: 你家有几口人</button>
+                <button onclick="filterLesson('unmastered')" id="btn-lesson-unmastered" class="lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200 transition"><i class="fa-solid fa-star-half-stroke mr-1"></i>Từ chưa thuộc</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thanh Điều Hướng Chế Độ Học (Navigation Tabs) -->
+    <div class="max-w-6xl mx-auto px-4 pt-4 w-full">
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200/80">
+            <button onclick="switchTab('flashcard')" id="tab-flashcard" class="tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold bg-rose-600 text-white shadow-sm transition">
+                <i class="fa-solid fa-clone"></i> <span>1. Flashcard</span>
+            </button>
+            <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+                <i class="fa-solid fa-shapes text-rose-500"></i> <span>2. Ngữ pháp & Đặt câu</span>
+            </button>
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+                <i class="fa-solid fa-bolt"></i> <span>3. Trắc nghiệm</span>
+            </button>
+            <button onclick="switchTab('match')" id="tab-match" class="tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+                <i class="fa-solid fa-puzzle-piece"></i> <span>4. Ghép thẻ</span>
+            </button>
+            <button onclick="switchTab('typing')" id="tab-typing" class="tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+                <i class="fa-solid fa-keyboard"></i> <span>5. Luyện gõ</span>
+            </button>
+            <button onclick="switchTab('list')" id="tab-list" class="tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+                <i class="fa-solid fa-list-check"></i> <span>6. Toàn bộ từ</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- KHU VỰC NỘI DUNG CHÍNH -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full flex flex-col">
+
+        <!-- ==================== CHẾ ĐỘ 1: FLASHCARD ==================== -->
+        <section id="section-flashcard" class="mode-section flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full">
+            <div class="w-full flex items-center justify-between mb-3 px-1">
+                <span class="text-xs font-medium text-slate-500">Thẻ <strong id="fc-current-index" class="text-slate-800">1</strong> / <span id="fc-total">0</span></span>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleAutoPlayAudio()" id="btn-autoplay" class="text-xs px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-volume-high"></i> Tự phát âm: Bật
+                    </button>
+                    <button onclick="shuffleFlashcards()" class="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 font-medium flex items-center gap-1 transition">
+                        <i class="fa-solid fa-shuffle"></i> Trộn thẻ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Thẻ Flashcard 3D -->
+            <div class="w-full h-80 sm:h-96 perspective-1000 cursor-pointer select-none mb-5" onclick="flipCard()">
+                <div id="flashcard-inner" class="relative w-full h-full transform-style-3d rounded-3xl shadow-lg border border-slate-200/80 bg-white">
+                    
+                    <!-- Mặt trước -->
+                    <div class="absolute inset-0 backface-hidden flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-white to-slate-50/50">
+                        <div class="flex items-center justify-between">
+                            <span id="fc-lesson-badge" class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600">Bài 1</span>
+                            <div class="flex items-center gap-2">
+                                <span id="fc-status-badge" class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-200">Đang học</span>
+                                <button onclick="event.stopPropagation(); speakCurrentWord()" class="w-9 h-9 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white flex items-center justify-center transition shadow-sm" title="Nghe phát âm">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-center my-auto">
+                            <div id="fc-hanzi" class="font-chinese text-6xl sm:text-7xl font-bold text-slate-800 tracking-wide mb-4">你好</div>
+                            <p class="text-xs text-slate-400 flex items-center justify-center gap-1.5">
+                                <i class="fa-regular fa-hand-pointer animate-bounce"></i> Chạm hoặc phím Cách (Space) để xem nghĩa & mẹo nhớ
+                            </p>
+                        </div>
+
+                        <div class="text-center">
+                            <span id="fc-pos-front" class="text-xs font-medium text-slate-400 uppercase tracking-widest">Từ loại</span>
+                        </div>
+                    </div>
+
+                    <!-- Mặt sau -->
+                    <div class="absolute inset-0 backface-hidden rotate-y-180 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-rose-50/40 via-white to-amber-50/30 border-2 border-rose-100">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <div class="flex items-baseline gap-3">
+                                <span id="fc-hanzi-back" class="font-chinese text-2xl font-bold text-slate-800">你好</span>
+                                <span id="fc-pinyin" class="text-xl font-bold text-rose-600">nǐ hǎo</span>
+                                <span id="fc-hanviet" class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 uppercase">Nễ Hảo</span>
+                            </div>
+                            <button onclick="event.stopPropagation(); speakCurrentWord()" class="w-9 h-9 rounded-full bg-rose-600 text-white hover:bg-rose-700 flex items-center justify-center transition shadow-sm">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+
+                        <div class="my-auto space-y-3 text-left">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Nghĩa (<span id="fc-pos"></span>):</span>
+                                <p id="fc-meaning" class="text-xl sm:text-2xl font-bold text-slate-900"></p>
+                            </div>
+
+                            <div class="bg-amber-50/80 border border-amber-200/70 rounded-xl p-3">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1 mb-0.5">
+                                    <i class="fa-solid fa-lightbulb text-amber-500"></i> Mẹo nhớ & Triết tự:
+                                </span>
+                                <p id="fc-tip" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+                            </div>
+
+                            <div class="bg-slate-50 border border-slate-200/60 rounded-xl p-3 flex items-center justify-between gap-2">
+                                <div>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Ví dụ Boya:</span>
+                                    <p id="fc-example" class="text-xs sm:text-sm font-chinese font-medium text-slate-800"></p>
+                                </div>
+                                <button onclick="event.stopPropagation(); speakExample()" class="shrink-0 w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-rose-600 flex items-center justify-center text-xs transition">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-center text-[11px] text-slate-400">
+                            Đánh dấu mức độ nhớ bên dưới
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Các nút điều khiển Flashcard -->
+            <div class="w-full grid grid-cols-4 gap-2.5">
+                <button onclick="prevCard()" class="col-span-1 py-3 px-4 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold text-sm flex items-center justify-center gap-1.5 shadow-sm transition">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">Trước</span>
+                </button>
+                <button onclick="markWord(false)" class="col-span-1 py-3 px-3 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 hover:bg-amber-100 font-semibold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 shadow-sm transition">
+                    <i class="fa-solid fa-rotate-left"></i> <span>Chưa thuộc</span>
+                </button>
+                <button onclick="markWord(true)" class="col-span-1 py-3 px-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 font-semibold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 shadow-sm transition">
+                    <i class="fa-solid fa-check"></i> <span>Đã thuộc</span>
+                </button>
+                <button onclick="nextCard()" class="col-span-1 py-3 px-4 rounded-2xl bg-slate-900 text-white hover:bg-slate-800 font-semibold text-sm flex items-center justify-center gap-1.5 shadow-sm transition">
+                    <span class="hidden sm:inline">Tiếp</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== CHẾ ĐỘ 2: NGỮ PHÁP & ĐẶT CÂU (GRAMMAR STUDIO) ==================== -->
+        <section id="section-grammar" class="mode-section hidden flex-1 flex flex-col w-full space-y-6">
+            
+            <!-- Phần giải thích trọng tâm ngữ pháp câu hỏi vị trí & phương vị -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-5">
+                    <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800">Cấu Trúc Ngữ Pháp: Hỏi & Miêu Tả Vị Trí Phương Hướng</h2>
+                        <p class="text-xs text-slate-500">Trọng điểm ngữ pháp Bài 4 & Bài 5 trong Giáo trình Hán ngữ Boya Sơ Cấp</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <!-- Công thức 1: Hỏi ở đâu -->
+                    <div class="bg-rose-50/50 border border-rose-100 p-4 rounded-2xl">
+                        <span class="text-xs font-bold text-rose-700 uppercase tracking-wide block mb-1">1. Hỏi ai/cái gì ở đâu?</span>
+                        <div class="bg-white px-3 py-2 rounded-xl text-rose-600 font-mono text-sm font-semibold mb-2 border border-rose-200">
+                            [Đối tượng] + 在 + 哪儿？
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                            Dùng để hỏi vị trí của người hoặc địa điểm, cuối câu <strong>không</strong> dùng 吗.
+                        </p>
+                        <div class="text-xs bg-rose-100/60 p-2 rounded-lg text-slate-700">
+                            <strong>VD:</strong> 图书馆在哪儿？ (Thư viện ở đâu?)
+                        </div>
+                    </div>
+
+                    <!-- Công thức 2: Câu chữ 在 biểu thị phương vị -->
+                    <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl">
+                        <span class="text-xs font-bold text-amber-700 uppercase tracking-wide block mb-1">2. Ở phía nào của cái gì?</span>
+                        <div class="bg-white px-3 py-2 rounded-xl text-amber-700 font-mono text-sm font-semibold mb-2 border border-amber-200">
+                            [Địa điểm A] + 在 + [Địa điểm B] + 的 + [Phương vị]
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                            Tiếng Việt: "A ở phía [Bắc] của B" ➔ Tiếng Trung phải đặt B trước Phương vị!
+                        </p>
+                        <div class="text-xs bg-amber-100/60 p-2 rounded-lg text-slate-700">
+                            <strong>VD:</strong> 图书馆在宿舍楼的北边。<br>(Thư viện ở phía bắc ký túc xá.)
+                        </div>
+                    </div>
+
+                    <!-- Công thức 3: Câu chữ 是 chỉ sự tồn tại -->
+                    <div class="bg-indigo-50/50 border border-indigo-100 p-4 rounded-2xl">
+                        <span class="text-xs font-bold text-indigo-700 uppercase tracking-wide block mb-1">3. Phía nào là cái gì?</span>
+                        <div class="bg-white px-3 py-2 rounded-xl text-indigo-700 font-mono text-sm font-semibold mb-2 border border-indigo-200">
+                            [Phương vị / Nơi chốn] + 是 + [Đối tượng]
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                            Dùng khi chỉ phương hướng trước mắt để xác định công trình đó là gì.
+                        </p>
+                        <div class="text-xs bg-indigo-100/60 p-2 rounded-lg text-slate-700">
+                            <strong>VD:</strong> 宿舍楼的北边是图书馆。<br>(Phía bắc của ký túc xá là thư viện.)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Từ vựng phương hướng trọng điểm -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-6">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-wider block mb-2">4 Hướng & 4 Vị trí cơ bản (Boya 1-5):</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">东边 (dōngbian)</strong>: Phía Đông</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">南边 (nánbian)</strong>: Phía Nam</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">西边 (xībian)</strong>: Phía Tây</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">北边 (běibian)</strong>: Phía Bắc</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">左边 (zuǒbian)</strong>: Bên trái</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">右边 (yòubian)</strong>: Bên phải</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">旁边 (pángbiān)</strong>: Bên cạnh</div>
+                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">东南边 (dōngnánbian)</strong>: Đông Nam</div>
+                    </div>
+                </div>
+
+                <!-- KHU VỰC THỰC HÀNH GHÉP CÂU TƯƠNG TÁC -->
+                <div class="border-t border-slate-100 pt-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-puzzle-piece text-rose-500"></i> Phòng Luyện Ghép Câu Chuẩn Ngữ Pháp
+                        </h3>
+                        <span class="text-xs text-slate-500">Bấm các mảnh từ để tạo câu hoàn chỉnh</span>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-rose-600 uppercase tracking-wide">Yêu cầu đặt câu:</span>
+                            <button onclick="nextGrammarExercise()" class="text-xs text-slate-500 hover:text-rose-600 font-medium">Đổi câu khác ➔</button>
+                        </div>
+                        <p id="grammar-prompt" class="text-base sm:text-lg font-bold text-slate-900 mb-4">
+                            "Thư viện ở phía bắc ký túc xá."
+                        </p>
+
+                        <!-- Vùng thả câu của người học -->
+                        <div class="min-h-14 p-2 bg-white rounded-xl border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center" id="sentence-dropzone">
+                            <!-- Từ đã chọn -->
+                        </div>
+                    </div>
+
+                    <!-- Ngân hàng từ khóa để chọn -->
+                    <div class="mb-4">
+                        <span class="text-xs font-semibold text-slate-500 block mb-2">Chọn từ để ghép vào ô trên:</span>
+                        <div id="sentence-wordbank" class="flex flex-wrap gap-2">
+                            <!-- Các từ gợi ý -->
+                        </div>
+                    </div>
+
+                    <!-- Nút bấm kiểm tra câu -->
+                    <div class="flex items-center gap-3">
+                        <button onclick="checkSentence()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition">
+                            Kiểm tra kết quả
+                        </button>
+                        <button onclick="clearSentence()" class="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-600 font-semibold text-xs sm:text-sm hover:bg-slate-100 transition">
+                            Làm lại
+                        </button>
+                        <button onclick="showSentenceHint()" class="px-4 py-2.5 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 font-semibold text-xs sm:text-sm hover:bg-amber-100 transition">
+                            Gợi ý cấu trúc
+                        </button>
+                    </div>
+
+                    <div id="sentence-feedback" class="mt-4 p-3 rounded-xl hidden text-xs sm:text-sm"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================== CHẾ ĐỘ 3: TRẮC NGHIỆM PHẢN XẠ ==================== -->
+        <section id="section-quiz" class="mode-section hidden flex-1 flex flex-col max-w-xl mx-auto w-full">
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Chế độ hỏi:</span>
+                            <select id="quiz-type-select" onchange="initQuizQuestion()" class="text-xs font-semibold bg-slate-100 text-slate-700 rounded-lg px-2.5 py-1.5 border-none focus:ring-2 focus:ring-rose-500 outline-none">
+                                <option value="hanzi-to-meaning">Chữ Hán ➔ Chọn Nghĩa</option>
+                                <option value="meaning-to-hanzi">Nghĩa ➔ Chọn Chữ Hán</option>
+                                <option value="audio-to-meaning">Nghe Phát Âm ➔ Chọn Từ</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold text-slate-500">Chuỗi: <strong id="quiz-streak" class="text-amber-500 text-sm">0 🔥</strong></span>
+                            <span class="text-xs font-semibold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg">Điểm: <strong id="quiz-score">0</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="text-center py-6 bg-slate-50 rounded-2xl border border-slate-100 mb-6 relative">
+                        <button onclick="speakQuizWord()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-rose-600 shadow-sm hover:bg-rose-50 flex items-center justify-center transition" title="Nghe phát âm">
+                            <i class="fa-solid fa-volume-high text-sm"></i>
+                        </button>
+                        <span id="quiz-prompt-label" class="text-xs font-medium text-slate-400 block mb-2"></span>
+                        <div id="quiz-question-display" class="font-chinese text-5xl font-bold text-slate-800 my-2"></div>
+                        <div id="quiz-question-sub" class="text-sm font-medium text-rose-600 h-5"></div>
+                    </div>
+
+                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                </div>
+
+                <div id="quiz-feedback" class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between hidden">
+                    <div id="quiz-feedback-text" class="text-sm font-medium"></div>
+                    <button onclick="initQuizQuestion()" class="px-5 py-2.5 rounded-xl bg-rose-600 text-white font-semibold text-sm hover:bg-rose-700 transition shadow-sm flex items-center gap-1.5">
+                        Câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CHẾ ĐỘ 4: TRÒ CHƠI GHÉP THẺ ==================== -->
+        <section id="section-match" class="mode-section hidden flex-1 flex flex-col max-w-3xl mx-auto w-full">
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-5 sm:p-6 flex-1 flex flex-col">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-100">
+                    <div>
+                        <h2 class="font-bold text-slate-800 text-base">Nối Cặp Từ Vựng Boya</h2>
+                        <p class="text-xs text-slate-500">Chọn 1 thẻ Chữ Hán và 1 thẻ Nghĩa tương ứng để triệt tiêu cặp từ.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-semibold bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl">
+                            <i class="fa-regular fa-clock mr-1 text-rose-500"></i> Thời gian: <strong id="match-timer">00:00</strong>
+                        </span>
+                        <button onclick="initMatchGame()" class="text-xs font-semibold bg-rose-600 text-white px-3.5 py-1.5 rounded-xl hover:bg-rose-700 transition shadow-sm">
+                            <i class="fa-solid fa-rotate mr-1"></i> Chơi ván mới
+                        </button>
+                    </div>
+                </div>
+
+                <div id="match-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5 sm:gap-3 flex-1 my-auto"></div>
+            </div>
+        </section>
+
+        <!-- ==================== CHẾ ĐỘ 5: LUYỆN GÕ PHẢN XẠ ==================== -->
+        <section id="section-typing" class="mode-section hidden flex-1 flex flex-col max-w-xl mx-auto w-full">
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <div>
+                            <h2 class="font-bold text-slate-800 text-base">Luyện Gõ & Ghi Nhớ Mặt Chữ</h2>
+                            <p class="text-xs text-slate-500">Gõ <strong>Chữ Hán</strong> hoặc <strong>Pinyin không dấu</strong></p>
+                        </div>
+                        <button onclick="showTypingHint()" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 transition">
+                            <i class="fa-regular fa-lightbulb mr-1"></i> Gợi ý
+                        </button>
+                    </div>
+
+                    <div class="text-center py-6 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
+                        <span id="typing-lesson" class="text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white px-2.5 py-0.5 rounded-full border border-slate-200"></span>
+                        <p id="typing-meaning" class="text-2xl sm:text-3xl font-bold text-slate-800 mt-3 mb-1"></p>
+                        <p id="typing-pos" class="text-xs text-slate-500 italic"></p>
+                        
+                        <div id="typing-hint-box" class="mt-4 hidden">
+                            <span class="text-xs font-medium text-amber-700 bg-amber-100/80 px-3 py-1 rounded-lg" id="typing-hint-text"></span>
+                        </div>
+                    </div>
+
+                    <form onsubmit="checkTypingAnswer(event)" class="space-y-3">
+                        <div class="relative">
+                            <input type="text" id="typing-input" autocomplete="off" placeholder="Gõ chữ Hán hoặc Pinyin không dấu..." 
+                                class="w-full px-4 py-3.5 rounded-2xl border-2 border-slate-200 focus:border-rose-500 focus:ring-4 focus:ring-rose-500/10 outline-none text-center text-lg font-medium transition">
+                            <button type="button" onclick="speakTypingWord()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-slate-100 text-slate-600 hover:text-rose-600 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-slate-900 text-white font-semibold text-sm hover:bg-slate-800 transition shadow-sm">
+                            Kiểm tra kết quả (Enter)
+                        </button>
+                    </form>
+
+                    <div id="typing-result" class="mt-5 p-4 rounded-2xl hidden text-center"></div>
+                </div>
+
+                <div class="text-center pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
+                    <span>Mẹo: Bạn có thể nhập <code>nihao</code> hoặc <code>你好</code> đều được</span>
+                    <button onclick="initTypingQuestion()" class="text-slate-600 hover:text-rose-600 font-semibold">Bỏ qua từ này ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CHẾ ĐỘ 6: TOÀN BỘ DANH SÁCH TỪ VỰNG ==================== -->
+        <section id="section-list" class="mode-section hidden flex-1 flex flex-col w-full space-y-5">
+            <div class="flex flex-col sm:flex-row gap-3 justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-200/80">
+                <div class="relative w-full sm:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="search-input" oninput="renderWordList()" placeholder="Tìm chữ Hán, pinyin, nghĩa..." 
+                        class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-sm focus:border-rose-500 outline-none">
+                </div>
+                <div class="text-xs text-slate-500 font-medium">
+                    Hiển thị <strong id="list-count" class="text-slate-800">0</strong> từ trong danh sách
+                </div>
+            </div>
+
+            <div id="vocab-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </section>
+
+    </main>
+
+    <!-- MODAL CẬP NHẬT / THÊM BÀI MỚI (UPDATE MODAL) -->
+    <div id="update-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Cập Nhật Giáo Trình & Thêm Bài Mới</h3>
+                </div>
+                <button onclick="closeUpdateModal()" class="text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="py-4 space-y-4 overflow-y-auto flex-1 text-xs text-slate-600">
+                <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-2xl flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-sm mt-0.5"></i>
+                    <div>
+                        <strong class="text-emerald-800 block text-xs">Hiện tại đã tích hợp hoàn tất Bài 1 - Bài 10!</strong>
+                        Bao gồm toàn bộ từ vựng, âm Hán Việt, phiên âm, bộ thủ, câu ví dụ và mẫu ngữ pháp từ sách Boya Sơ Cấp 1 chính thức.
+                    </div>
+                </div>
+
+                <div>
+                    <span class="font-bold text-slate-700 block mb-1">Thao tác dữ liệu:</span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="reloadDefaultData()" class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-rose-50 hover:border-rose-200 text-left transition">
+                            <strong class="text-slate-800 block mb-0.5">Nạp lại Bài 1 - 10 gốc</strong>
+                            Khôi phục đầy đủ dữ liệu chuẩn theo sách.
+                        </button>
+                        <button onclick="exportDataJSON()" class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-rose-50 hover:border-rose-200 text-left transition">
+                            <strong class="text-slate-800 block mb-0.5">Sao lưu từ vựng (JSON)</strong>
+                            Lưu từ vựng và tiến độ học về máy.
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-100 pt-3">
+                    <span class="font-bold text-slate-700 block mb-1">Thêm từ vựng nhanh (Tùy chọn):</span>
+                    <p class="text-[11px] text-slate-400 mb-2">Bạn có thể dán danh sách từ mới (Bài 11, 12... hoặc từ bạn tự soạn) dạng JSON vào đây:</p>
+                    <textarea id="custom-json-input" rows="4" placeholder='[{"lesson": 11, "hanzi": "天气", "pinyin": "tiānqì", "pinyinClean": "tianqi", "hanviet": "Thiên khí", "meaning": "Thời tiết", "pos": "Danh từ", "tip": "Trời sinh ra khí hậu", "example": "今天天气很好。"}]' class="w-full p-2.5 rounded-xl border border-slate-200 font-mono text-[11px] focus:border-rose-500 outline-none"></textarea>
+                    <button onclick="importCustomJSON()" class="mt-2 w-full py-2 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition">
+                        Nạp thêm từ này vào ứng dụng
+                    </button>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 text-right">
+                <button onclick="closeUpdateModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium text-xs transition">
+                    Đóng cửa sổ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL QUẢN LÝ TÀI KHOẢN & ĐỒNG BỘ ĐA THIẾT BỊ -->
+    <div id="account-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Tài Khoản & Lưu Trữ Đám Mây</h3>
+                </div>
+                <button onclick="closeAccountModal()" class="text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="py-4 space-y-4 overflow-y-auto flex-1 text-xs text-slate-600">
+                <!-- Trạng thái kết nối đám mây -->
+                <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl flex items-start gap-2.5">
+                    <i class="fa-solid fa-cloud-arrow-up text-emerald-600 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-emerald-800 block text-xs">Cơ sở dữ liệu đang hoạt động trực tuyến</strong>
+                        Tiến độ học (các từ đã thuộc) được tự động lưu lên đám mây ngay khi bạn bấm, không bao giờ mất khi F5 hoặc tắt trình duyệt.
+                    </div>
+                </div>
+
+                <!-- Tài khoản hiện tại -->
+                <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-500 font-medium">Mã tài khoản hiện tại:</span>
+                        <span id="modal-active-account" class="font-bold text-rose-600 text-sm">HocVien_Chinh</span>
+                    </div>
+                    <div class="flex justify-between items-center text-[11px] text-slate-400 pt-1 border-t border-slate-200/60">
+                        <span>Mã định danh thiết bị:</span>
+                        <div class="flex items-center gap-1.5">
+                            <span id="modal-user-id" class="font-mono text-slate-600 truncate max-w-[150px]">Đang kết nối...</span>
+                            <button onclick="copyCloudUserId()" class="text-rose-600 hover:underline font-semibold" title="Sao chép">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Đổi hoặc Đăng nhập tài khoản khác -->
+                <div class="border-t border-slate-100 pt-3 space-y-2">
+                    <label class="font-bold text-slate-800 block">Đăng nhập tài khoản khác hoặc máy khác:</label>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        Bạn chỉ cần nhập tên tài khoản (ví dụ: <code class="bg-slate-100 px-1 py-0.5 rounded text-rose-600">Minh_Boya</code> hoặc <code class="bg-slate-100 px-1 py-0.5 rounded text-rose-600">HocVien01</code>). Khi mở máy tính khác hoặc điện thoại, nhập đúng tên này để tải lại toàn bộ từ đã thuộc!
+                    </p>
+                    <div class="flex gap-2 pt-1">
+                        <input type="text" id="input-account-name" placeholder="Nhập tên tài khoản..." 
+                            class="flex-1 px-3 py-2 rounded-xl border border-slate-200 font-medium text-xs focus:border-rose-500 outline-none">
+                        <button onclick="switchAccount()" class="px-4 py-2 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition shadow-sm">
+                            Đăng nhập
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 text-right">
+                <button onclick="closeAccountModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium text-xs transition">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL GEMINI AI TỰ ĐỘNG SOẠN BÀI HỌC & TỪ MỚI -->
+    <div id="gemini-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-sm">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-base">Gemini AI Soạn Bài Tự Động</h3>
+                        <p class="text-[11px] text-slate-500">Tự động sinh từ vựng, phiên âm, mẹo nhớ & nạp vào app</p>
+                    </div>
+                </div>
+                <button onclick="closeGeminiModal()" class="text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="py-4 space-y-4 overflow-y-auto flex-1 text-xs text-slate-600">
+                <div class="bg-purple-50/70 border border-purple-200/80 p-3 rounded-2xl flex items-start gap-2.5">
+                    <i class="fa-solid fa-robot text-purple-600 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-purple-900 block text-xs">Cập nhật tức thì không cần sửa code!</strong>
+                        Nhập chủ đề bạn muốn học (VD: Bài 11 Mua sắm, Đổi tiền ngân hàng, Đi du lịch...), mô hình Gemini sẽ tự động tạo từ vựng đúng chuẩn giáo trình Boya và lưu ngay vào tài khoản của bạn.
+                    </div>
+                </div>
+
+                <div>
+                    <label class="font-bold text-slate-700 block mb-1.5">Nhập yêu cầu bài học:</label>
+                    <textarea id="gemini-prompt-input" rows="3" placeholder="Ví dụ: Tạo cho tôi 8 từ vựng Bài 11 chủ đề Đi thư viện mượn sách và hỏi đường..." 
+                        class="w-full p-3 rounded-xl border border-slate-200 text-xs focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"></textarea>
+                </div>
+
+                <!-- Gợi ý mẫu nhanh -->
+                <div>
+                    <span class="text-[11px] font-semibold text-slate-400 block mb-1.5">Gợi ý chủ đề nhanh:</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="setQuickGeminiPrompt('Tạo 8 từ vựng Boya Bài 11: Chủ đề Mua sắm trái cây và mặc cả ở chợ')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-purple-50 text-slate-700 hover:text-purple-700 text-[11px] transition">
+                            🍎 Bài 11: Mua sắm & Mặc cả
+                        </button>
+                        <button onclick="setQuickGeminiPrompt('Tạo 8 từ vựng Boya Bài 12: Chủ đề Đổi tiền tại ngân hàng Trung Quốc')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-purple-50 text-slate-700 hover:text-purple-700 text-[11px] transition">
+                            🏦 Bài 12: Đổi tiền ngân hàng
+                        </button>
+                        <button onclick="setQuickGeminiPrompt('Tạo 8 từ vựng Boya Bài 13: Chủ đề Đi bệnh viện khám bệnh và mua thuốc')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-purple-50 text-slate-700 hover:text-purple-700 text-[11px] transition">
+                            🏥 Bài 13: Đi bệnh viện khám bệnh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hiệu ứng đang tạo từ vựng -->
+                <div id="gemini-loading" class="hidden p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-2">
+                    <div class="inline-block w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+                    <p class="text-xs font-semibold text-purple-700">Gemini đang phân tích và tạo từ vựng chuẩn Boya...</p>
+                    <p class="text-[11px] text-slate-400">Đang tạo chữ Hán, Pinyin có dấu, âm Hán Việt, mẹo nhớ & câu ví dụ...</p>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <button onclick="closeGeminiModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium text-xs transition">
+                    Hủy bỏ
+                </button>
+                <button id="btn-gemini-generate" onclick="generateLessonWithGemini()" class="px-5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-xl font-semibold text-xs shadow-md transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Tạo & Cập nhật ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-medium border border-slate-700">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+            <span id="toast-message">Thông báo</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT CHÍNH & DỮ LIỆU BÀI 1 ĐẾN 10 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // =========================================================================
+        // DỮ LIỆU TỪ VỰNG CHUẨN TỪ SÁCH GIÁO TRÌNH BOYA SƠ CẤP 1 (BÀI 1 - BÀI 10)
+        // =========================================================================
+        const DEFAULT_BOYA_DATA = [
+            // --- BÀI 1: 你好 ---
+            { id: 101, lesson: 1, hanzi: "你", pinyin: "nǐ", pinyinClean: "ni", hanviet: "Nễ", meaning: "Bạn, anh, chị (ngôi 2)", pos: "Đại từ", tip: "Bộ Nhân đứng (亻- người) + chữ Nhĩ (尔).", example: "你好！(Xin chào bạn!)" },
+            { id: 102, lesson: 1, hanzi: "好", pinyin: "hǎo", pinyinClean: "hao", hanviet: "Hảo", meaning: "Tốt, khỏe, hay, đẹp", pos: "Tính từ", tip: "Bộ Nữ (女) + Tử (子). Người phụ nữ có con là điều tốt đẹp.", example: "你好吗？(Bạn có khỏe không?)" },
+            { id: 103, lesson: 1, hanzi: "是", pinyin: "shì", pinyinClean: "shi", hanviet: "Thị", meaning: "Là, đúng, phải", pos: "Động từ", tip: "Trên là Nhật (日), dưới là Chính (正).", example: "我是学生。(Tôi là học sinh.)" },
+            { id: 104, lesson: 1, hanzi: "老师", pinyin: "lǎoshī", pinyinClean: "laoshi", hanviet: "Lão sư", meaning: "Thầy giáo, cô giáo", pos: "Danh từ", tip: "Lão (老 - người lớn tuổi giàu kinh nghiệm) + Sư (师 - người thầy).", example: "她是老师。(Cô ấy là giáo viên.)" },
+            { id: 105, lesson: 1, hanzi: "吗", pinyin: "ma", pinyinClean: "ma", hanviet: "Ma", meaning: "Không? Phải không? (trợ từ nghi vấn)", pos: "Trợ từ", tip: "Bộ Khẩu (口) + chữ Mã (马 mượn âm).", example: "你是老师吗？(Bạn là giáo viên à?)" },
+            { id: 106, lesson: 1, hanzi: "不", pinyin: "bù", pinyinClean: "bu", hanviet: "Bất", meaning: "Không (phó từ phủ định)", pos: "Phó từ", tip: "Chim bay lên trời không chịu đậu xuống.", example: "我不是老师。(Tôi không phải giáo viên.)" },
+            { id: 107, lesson: 1, hanzi: "我", pinyin: "wǒ", pinyinClean: "wo", hanviet: "Ngã", meaning: "Tôi, tớ, mình (ngôi 1)", pos: "Đại từ", tip: "Tay (手) cầm vũ khí (戈) bảo vệ bản ngã.", example: "我叫大卫。(Tôi tên là David.)" },
+            { id: 108, lesson: 1, hanzi: "学生", pinyin: "xuésheng", pinyinClean: "xuesheng", hanviet: "Học sinh", meaning: "Học sinh, sinh viên", pos: "Danh từ", tip: "Học (学) + Sinh (生 - sinh ra, thế hệ trẻ).", example: "我是学生。(Tôi là sinh viên.)" },
+            { id: 109, lesson: 1, hanzi: "她", pinyin: "tā", pinyinClean: "ta", hanviet: "Tha", meaning: "Cô ấy, bà ấy, chị ấy", pos: "Đại từ", tip: "Bộ Nữ (女) đứng trước chỉ phái nữ.", example: "她是老师。(Cô ấy là giáo viên.)" },
+            { id: 110, lesson: 1, hanzi: "谢谢", pinyin: "xièxie", pinyinClean: "xiexie", hanviet: "Tạ tạ", meaning: "Cảm ơn", pos: "Động từ", tip: "Bộ Ngôn (讠) + Thân (身) + Thốn (寸). Lời nói bày tỏ lòng biết ơn khiêm nhường.", example: "谢谢！ (Cảm ơn!)" },
+            { id: 111, lesson: 1, hanzi: "不客气", pinyin: "bú kèqi", pinyinClean: "bukeqi", hanviet: "Bất khách khí", meaning: "Đừng khách sáo, không có chi", pos: "Cụm từ", tip: "Bất (không) + Khách khí (giữ kẽ như khách).", example: "不客气！ (Không có gì đâu!)" },
+            { id: 112, lesson: 1, hanzi: "您", pinyin: "nín", pinyinClean: "nin", hanviet: "Nẫm", meaning: "Ngài, ông, bà (kính trọng của 你)", pos: "Đại từ", tip: "Chữ 你 đặt trên bộ Tâm (心 - trái tim tôn kính).", example: "老师，您好！(Em chào thầy ạ!)" },
+            { id: 113, lesson: 1, hanzi: "留学生", pinyin: "liúxuéshēng", pinyinClean: "liuxuesheng", hanviet: "Lưu học sinh", meaning: "Du học sinh", pos: "Danh từ", tip: "Lưu (留 - ở lại nước ngoài) + Học sinh.", example: "我是留学生。(Tôi là du học sinh.)" },
+            { id: 114, lesson: 1, hanzi: "叫", pinyin: "jiào", pinyinClean: "jiao", hanviet: "Khiếu", meaning: "Tên là, gọi là", pos: "Động từ", tip: "Bộ Khẩu (口) dùng miệng xưng tên.", example: "你叫什么名字？(Bạn tên là gì?)" },
+            { id: 115, lesson: 1, hanzi: "什么", pinyin: "shénme", pinyinClean: "shenme", hanviet: "Thập ma", meaning: "Gì, cái gì", pos: "Đại từ", tip: "Đại từ nghi vấn hỏi về đồ vật, tên gọi.", example: "这是什么？(Đây là cái gì?)" },
+            { id: 116, lesson: 1, hanzi: "名字", pinyin: "míngzi", pinyinClean: "mingzi", hanviet: "Danh tự", meaning: "Tên, họ tên", pos: "Danh từ", tip: "Danh (名 - tên tuổi) + Tự (字 - chữ viết).", example: "我的名字叫大卫。(Tên tôi là David.)" },
+
+            // --- BÀI 2: 你是哪国人 ---
+            { id: 201, lesson: 2, hanzi: "同学", pinyin: "tóngxué", pinyinClean: "tongxue", hanviet: "Đồng học", meaning: "Bạn học, các em học sinh", pos: "Danh từ", tip: "Đồng (同 - cùng) + Học (学 - học tập).", example: "同学们好！(Chào các bạn học sinh!)" },
+            { id: 202, lesson: 2, hanzi: "们", pinyin: "men", pinyinClean: "men", hanviet: "Môn", meaning: "Các, chúng (hậu tố số nhiều)", pos: "Hậu tố", tip: "Đứng sau đại từ hoặc danh từ chỉ người (我们, 老师们).", example: "你们好！(Chào các bạn!)" },
+            { id: 203, lesson: 2, hanzi: "介绍", pinyin: "jièshào", pinyinClean: "jieshao", hanviet: "Giới thiệu", meaning: "Giới thiệu", pos: "Động từ", tip: "Bộ Mịch (纟) + Thiệu (绍 - nối tiếp duyên cớ).", example: "我来介绍一下儿。(Để tôi giới thiệu một chút.)" },
+            { id: 204, lesson: 2, hanzi: "一下儿", pinyin: "yíxiàr", pinyinClean: "yixiar", hanviet: "Nhất hạ nhi", meaning: "Một chút, một lát", pos: "Số lượng", tip: "Đứng sau động từ làm giảm nhẹ ngữ khí.", example: "你看一下儿。(Bạn xem một chút đi.)" },
+            { id: 205, lesson: 2, hanzi: "姓", pinyin: "xìng", pinyinClean: "xing", hanviet: "Tính", meaning: "Mang họ, họ", pos: "Động từ", tip: "Bộ Nữ (女) + Sinh (生 - đứa trẻ sinh ra mang họ mẹ ngày xưa).", example: "我姓刘。(Tôi mang họ Lưu.)" },
+            { id: 206, lesson: 2, hanzi: "哪", pinyin: "nǎ", pinyinClean: "na", hanviet: "Na", meaning: "Nào (đại từ nghi vấn)", pos: "Đại từ", tip: "Có bộ Khẩu (口) bên trái để hỏi (khác với chữ 那).", example: "你是哪国人？(Bạn là người nước nào?)" },
+            { id: 207, lesson: 2, hanzi: "国", pinyin: "guó", pinyinClean: "guo", hanviet: "Quốc", meaning: "Nước, quốc gia", pos: "Danh từ", tip: "Bộ Vi (囗 - biên cương) bọc lấy viên Ngọc (玉 - của báu).", example: "中国 (Trung Quốc), 美国 (Nước Mỹ)" },
+            { id: 208, lesson: 2, hanzi: "人", pinyin: "rén", pinyinClean: "ren", hanviet: "Nhân", meaning: "Người", pos: "Danh từ", tip: "Hình dáng hai chân người đang sải bước.", example: "我是中国人。(Tôi là người Trung Quốc.)" },
+            { id: 209, lesson: 2, hanzi: "他", pinyin: "tā", pinyinClean: "ta", hanviet: "Tha", meaning: "Anh ấy, ông ấy (ngôi 3 nam)", pos: "Đại từ", tip: "Bộ Nhân đứng (亻) chỉ người nam giới.", example: "他是李军。(Cậu ấy là Lý Quân.)" },
+            { id: 210, lesson: 2, hanzi: "认识", pinyin: "rènshi", pinyinClean: "renshi", hanviet: "Nhận thức", meaning: "Quen biết, nhận biết", pos: "Động từ", tip: "Cả 2 chữ đều có bộ Ngôn (讠- lời trò chuyện làm quen).", example: "认识你很高兴。(Rất vui được quen biết bạn.)" },
+            { id: 211, lesson: 2, hanzi: "很", pinyin: "hěn", pinyinClean: "hen", hanviet: "Ngận", meaning: "Rất", pos: "Phó từ", tip: "Đứng trước tính từ.", example: "我很好。(Tôi rất khỏe.)" },
+            { id: 212, lesson: 2, hanzi: "高兴", pinyin: "gāoxìng", pinyinClean: "gaoxing", hanviet: "Cao hứng", meaning: "Vui mừng, hạnh phúc", pos: "Tính từ", tip: "Cao (高) + Hứng (兴 - hứng thú).", example: "我也很高兴。(Tôi cũng rất vui.)" },
+            { id: 213, lesson: 2, hanzi: "也", pinyin: "yě", pinyinClean: "ye", hanviet: "Dã", meaning: "Cũng", pos: "Phó từ", tip: "Đứng sau chủ ngữ, trước động từ hoặc tính từ.", example: "我也是学生。(Tôi cũng là sinh viên.)" },
+            { id: 214, lesson: 2, hanzi: "呢", pinyin: "ne", pinyinClean: "ne", hanviet: "Ni", meaning: "Thế còn...? (trợ từ nghi vấn)", pos: "Trợ từ", tip: "Dùng để hỏi ngược lại mà không cần nhắc lại cả câu.", example: "我是美国人，你呢？(Tôi là người Mỹ, còn bạn thì sao?)" },
+
+            // --- BÀI 3: 那是谁的书 ---
+            { id: 301, lesson: 3, hanzi: "那", pinyin: "nà", pinyinClean: "na", hanviet: "Na", meaning: "Kia, đó (vật ở xa)", pos: "Đại từ", tip: "Không có bộ Khẩu (chỉ xa, đối lập với 这).", example: "那是谁的书？(Kia là sách của ai?)" },
+            { id: 302, lesson: 3, hanzi: "谁", pinyin: "shéi / shuí", pinyinClean: "shei", hanviet: "Thùy", meaning: "Ai, người nào", pos: "Đại từ", tip: "Bộ Ngôn (讠) + Chuy (隹 - con chim đuôi ngắn).", example: "他是谁？(Cậu ấy là ai?)" },
+            { id: 303, lesson: 3, hanzi: "书", pinyin: "shū", pinyinClean: "shu", hanviet: "Thư", meaning: "Sách", pos: "Danh từ", tip: "Các cuốn sách tri thức xếp chồng lên nhau.", example: "这是我的书。(Đây là sách của tôi.)" },
+            { id: 304, lesson: 3, hanzi: "同屋", pinyin: "tóngwū", pinyinClean: "tongwu", hanviet: "Đồng ốc", meaning: "Bạn cùng phòng", pos: "Danh từ", tip: "Đồng (同 - cùng) + Ốc (屋 - gian phòng).", example: "她是我同屋。(Cô ấy là bạn cùng phòng của tôi.)" },
+            { id: 305, lesson: 3, hanzi: "汉语", pinyin: "Hànyǔ", pinyinClean: "hanyu", hanviet: "Hán ngữ", meaning: "Tiếng Hán, tiếng Trung", pos: "Danh từ", tip: "Hán (汉) + Ngữ (语 - ngôn ngữ).", example: "汉语课本 (Giáo trình tiếng Hán)" },
+            { id: 306, lesson: 3, hanzi: "课本", pinyin: "kèběn", pinyinClean: "keben", hanviet: "Khóa bản", meaning: "Sách giáo khoa, giáo trình", pos: "Danh từ", tip: "Khóa (课 - bài học) + Bản (本 - quyển vở).", example: "这是课本。(Đây là sách giáo khoa.)" },
+            { id: 307, lesson: 3, hanzi: "词典", pinyin: "cídiǎn", pinyinClean: "cidian", hanviet: "Từ điển", meaning: "Từ điển", pos: "Danh từ", tip: "Từ (词) + Điển (典 - sách quy chuẩn).", example: "《汉日词典》(Từ điển Hán-Nhật)" },
+            { id: 308, lesson: 3, hanzi: "就是", pinyin: "jiù shì", pinyinClean: "jiushi", hanviet: "Tựu thị", meaning: "Chính là, tức là", pos: "Liên từ", tip: "Dùng để giải thích chi tiết hơn cho vế trước.", example: "《汉日词典》就是汉语、日语词典。" },
+            { id: 309, lesson: 3, hanzi: "这", pinyin: "zhè", pinyinClean: "zhe", hanviet: "Giá", meaning: "Đây, này (vật ở gần)", pos: "Đại từ", tip: "Bộ Sước (辶 - bước đi lại gần).", example: "这是什么杂志？(Đây là tạp chí gì?)" },
+            { id: 310, lesson: 3, hanzi: "杂志", pinyin: "zázhì", pinyinClean: "zazhi", hanviet: "Tạp chí", meaning: "Tạp chí", pos: "Danh từ", tip: "Tạp (杂 - tổng hợp nhiều nội dung) + Chí (志 - ghi chép).", example: "音乐杂志 (Tạp chí âm nhạc)" },
+            { id: 311, lesson: 3, hanzi: "音乐", pinyin: "yīnyuè", pinyinClean: "yinyue", hanviet: "Âm nhạc", meaning: "Âm nhạc", pos: "Danh từ", tip: "Âm (音 - thanh âm) + Nhạc (乐 - vui vẻ).", example: "中国音乐 (Âm nhạc Trung Quốc)" },
+            { id: 312, lesson: 3, hanzi: "朋友", pinyin: "péngyou", pinyinClean: "pengyou", hanviet: "Bằng hữu", meaning: "Bạn bè, bạn", pos: "Danh từ", tip: "Hai vầng trăng 月 sánh bước cùng nhau.", example: "他是我朋友。(Anh ấy là bạn tôi.)" },
+
+            // --- BÀI 4: 图书馆在哪儿 ---
+            { id: 401, lesson: 4, hanzi: "请问", pinyin: "qǐngwèn", pinyinClean: "qingwen", hanviet: "Thỉnh vấn", meaning: "Xin hỏi (lịch sự)", pos: "Động từ", tip: "Thỉnh (请 - xin mời) + Vấn (问 - mở miệng hỏi).", example: "请问，图书馆在哪儿？(Xin hỏi, thư viện ở đâu?)" },
+            { id: 402, lesson: 4, hanzi: "图书馆", pinyin: "túshūguǎn", pinyinClean: "tushuguan", hanviet: "Đồ thư quán", meaning: "Thư viện", pos: "Danh từ", tip: "Đồ (tranh vẽ) + Thư (sách) + Quán (tòa nhà).", example: "图书馆在北边。(Thư viện ở phía bắc.)" },
+            { id: 403, lesson: 4, hanzi: "在", pinyin: "zài", pinyinClean: "zai", hanviet: "Tại", meaning: "Ở, tại", pos: "Động từ", tip: "Bên trong có Thổ (土 - đất đai vị trí).", example: "玛丽在哪儿？(Mary ở đâu?)" },
+            { id: 404, lesson: 4, hanzi: "哪儿", pinyin: "nǎr", pinyinClean: "nar", hanviet: "Na nhi", meaning: "Ở đâu, chỗ nào", pos: "Đại từ", tip: "Từ để hỏi địa điểm.", example: "你在哪儿？(Cậu đang ở đâu?)" },
+            { id: 405, lesson: 4, hanzi: "学校", pinyin: "xuéxiào", pinyinClean: "xuexiao", hanviet: "Học hiệu", meaning: "Trường học", pos: "Danh từ", tip: "Học (学) + Hiệu (校 - trường ốc).", example: "这个学校很大。(Trường học này rất lớn.)" },
+            { id: 406, lesson: 4, hanzi: "知道", pinyin: "zhīdào", pinyinClean: "zhidao", hanviet: "Tri đạo", meaning: "Biết", pos: "Động từ", tip: "Tri (知 - hiểu biết) + Đạo (道 - đường lối).", example: "我不知道。(Tôi không biết.)" },
+            { id: 407, lesson: 4, hanzi: "没关系", pinyin: "méi guānxi", pinyinClean: "meiguanxi", hanviet: "Một quan hệ", meaning: "Không sao, không hề gì", pos: "Cụm từ", tip: "Đáp lại khi người khác nói '对不起'.", example: "对不起！ - 没关系。(Xin lỗi! - Không sao.)" },
+            { id: 408, lesson: 4, hanzi: "这儿", pinyin: "zhèr", pinyinClean: "zher", hanviet: "Giá nhi", meaning: "Chỗ này, ở đây", pos: "Đại từ", tip: "Nơi chốn ở gần người nói.", example: "这儿是教学楼。(Chỗ này là tòa nhà giảng đường.)" },
+            { id: 409, lesson: 4, hanzi: "教学楼", pinyin: "jiàoxuélóu", pinyinClean: "jiaoxuelou", hanviet: "Giáo học lâu", meaning: "Tòa nhà giảng đường", pos: "Danh từ", tip: "Giáo học (dạy và học) + Lâu (tòa nhà nhiều tầng).", example: "那是教学楼。(Kia là khu giảng đường.)" },
+            { id: 410, lesson: 4, hanzi: "那儿", pinyin: "nàr", pinyinClean: "nar", hanviet: "Na nhi", meaning: "Chỗ kia, ở đằng kia", pos: "Đại từ", tip: "Chỉ vị trí ở xa.", example: "图书馆在那儿。(Thư viện ở đằng kia.)" },
+            { id: 411, lesson: 4, hanzi: "宿舍楼", pinyin: "sùshèlóu", pinyinClean: "sushelou", hanviet: "Túc xá lâu", meaning: "Tòa nhà ký túc xá", pos: "Danh từ", tip: "Túc xá (phòng trọ) + Lâu (tòa nhà).", example: "这是宿舍楼。(Đây là tòa ký túc xá.)" },
+            { id: 412, lesson: 4, hanzi: "北边", pinyin: "běibiān", pinyinClean: "beibian", hanviet: "Bắc biên", meaning: "Phía bắc", pos: "Danh từ", tip: "Bắc (北) + Biên (边 - phía).", example: "宿舍楼的北边 (Phía bắc ký túc xá)" },
+            { id: 413, lesson: 4, hanzi: "左边", pinyin: "zuǒbian", pinyinClean: "zuobian", hanviet: "Tả biên", meaning: "Bên trái", pos: "Danh từ", tip: "Tả (左) + Biên (边).", example: "左边的楼 (Tòa nhà bên trái)" },
+            { id: 414, lesson: 4, hanzi: "右边", pinyin: "yòubian", pinyinClean: "youbian", hanviet: "Hữu biên", meaning: "Bên phải", pos: "Danh từ", tip: "Hữu (右) + Biên (边).", example: "右边的楼是图书馆。(Tòa nhà bên phải là thư viện.)" },
+            { id: 415, lesson: 4, hanzi: "不用谢", pinyin: "búyòng xiè", pinyinClean: "buyongxie", hanviet: "Bất dụng tạ", meaning: "Không cần cảm ơn, không có gì", pos: "Cụm từ", tip: "Dùng để đáp lại lời cảm ơn.", example: "谢谢！ - 不用谢！" },
+
+            // --- BÀI 5: 在北京大学的东边 ---
+            { id: 501, lesson: 5, hanzi: "专业", pinyin: "zhuānyè", pinyinClean: "zhuanye", hanviet: "Chuyên nghiệp", meaning: "Chuyên ngành", pos: "Danh từ", tip: "Chuyên (专 - tập trung) + Nghiệp (业 - ngành nghề).", example: "你的专业是什么？(Chuyên ngành của bạn là gì?)" },
+            { id: 502, lesson: 5, hanzi: "国际", pinyin: "guójì", pinyinClean: "guoji", hanviet: "Quốc tế", meaning: "Quốc tế", pos: "Tính từ", tip: "Giữa các quốc gia với nhau.", example: "国际关系 (Quan hệ quốc tế)" },
+            { id: 503, lesson: 5, hanzi: "系", pinyin: "xì", pinyinClean: "xi", hanviet: "Hệ", meaning: "Khoa, hệ (đại học)", pos: "Danh từ", tip: "中文系 (Khoa tiếng Trung)", example: "我是中文系的学生。(Tôi là sinh viên khoa Trung văn.)" },
+            { id: 504, lesson: 5, hanzi: "研究生", pinyin: "yánjiūshēng", pinyinClean: "yanjiusheng", hanviet: "Nghiên cứu sinh", meaning: "Nghiên cứu sinh, học viên cao học", pos: "Danh từ", tip: "Học sau đại học.", example: "她是研究生。(Cô ấy là học viên cao học.)" },
+            { id: 505, lesson: 5, hanzi: "东边", pinyin: "dōngbian", pinyinClean: "dongbian", hanviet: "Đông biên", meaning: "Phía đông", pos: "Danh từ", tip: "Mặt trời mọc ở hướng Đông.", example: "清华大学在北大的东边。(Đại học Thanh Hoa ở phía đông của ĐH Bắc Kinh.)" },
+            { id: 506, lesson: 5, hanzi: "空儿", pinyin: "kòngr", pinyinClean: "kongr", hanviet: "Không nhi", meaning: "Thời gian rảnh rỗi", pos: "Danh từ", tip: "Lưu ý đọc thanh 4 (kòngr).", example: "有空儿的时候来玩儿。(Lúc có thời gian rảnh qua chơi nhé.)" },
+            { id: 507, lesson: 5, hanzi: "时候", pinyin: "shíhou", pinyinClean: "shihou", hanviet: "Thời hậu", meaning: "Khi, lúc", pos: "Danh từ", tip: "……的时候 (Lúc / Khi ……)", example: "什么时候？(Khi nào?)" },
+            { id: 508, lesson: 5, hanzi: "欢迎", pinyin: "huānyíng", pinyinClean: "huanying", hanviet: "Hoan nghênh", meaning: "Chào mừng, hoan nghênh", pos: "Động từ", tip: "Hoan (vui mừng) + Nghênh (đón chào).", example: "欢迎你去玩儿！(Hoan nghênh bạn tới chơi!)" },
+            { id: 509, lesson: 5, hanzi: "玩儿", pinyin: "wánr", pinyinClean: "wanr", hanviet: "Ngoạn nhi", meaning: "Chơi, đi chơi", pos: "Động từ", tip: "Bên trái có bộ Ngọc (王/玉).", example: "来我家玩儿吧！(Tới nhà tớ chơi đi!)" },
+            { id: 510, lesson: 5, hanzi: "卫生间", pinyin: "wèishēngjiān", pinyinClean: "weishengjian", hanviet: "Vệ sinh gian", meaning: "Nhà vệ sinh", pos: "Danh từ", tip: "Phòng giữ gìn vệ sinh.", example: "请问，卫生间在哪儿？(Xin hỏi nhà vệ sinh ở đâu?)" },
+            { id: 511, lesson: 5, hanzi: "教室", pinyin: "jiàoshì", pinyinClean: "jiaoshi", hanviet: "Giáo thất", meaning: "Phòng học, lớp học", pos: "Danh từ", tip: "Giáo (dạy) + Thất (căn phòng).", example: "他在教室里。(Cậu ấy đang ở trong lớp.)" },
+            { id: 512, lesson: 5, hanzi: "旁边", pinyin: "pángbiān", pinyinClean: "pangbian", hanviet: "Bàng biên", meaning: "Bên cạnh", pos: "Danh từ", tip: "Vị trí nằm ngay sát bên.", example: "教室的旁边是卫生间。(Bên cạnh phòng học là WC.)" },
+            { id: 513, lesson: 5, hanzi: "西边", pinyin: "xībian", pinyinClean: "xibian", hanviet: "Tây biên", meaning: "Phía tây", pos: "Danh từ", tip: "Phía mặt trời lặn.", example: "西边的教室 (Lớp học ở phía tây)" },
+
+            // --- BÀI 6: 现在几点 ---
+            { id: 601, lesson: 6, hanzi: "现在", pinyin: "xiànzài", pinyinClean: "xianzai", hanviet: "Hiện tại", meaning: "Bây giờ, hiện tại", pos: "Danh từ", tip: "Hiện (hiện diện) + Tại (tồn tại).", example: "现在几点？(Bây giờ là mấy giờ?)" },
+            { id: 602, lesson: 6, hanzi: "点", pinyin: "diǎn", pinyinClean: "dian", hanviet: "Điểm", meaning: "Giờ (trên đồng hồ)", pos: "Lượng từ", tip: "Bát điểm (八点 = 8 giờ).", example: "现在八点。(Bây giờ là 8 giờ.)" },
+            { id: 603, lesson: 6, hanzi: "分", pinyin: "fēn", pinyinClean: "fen", hanviet: "Phân", meaning: "Phút", pos: "Lượng từ", tip: "Chỉ số phút trên đồng hồ.", example: "八点五十分 (8 giờ 50 phút)" },
+            { id: 604, lesson: 6, hanzi: "早上", pinyin: "zǎoshang", pinyinClean: "zaoshang", hanviet: "Tảo thượng", meaning: "Buổi sáng sớm", pos: "Danh từ", tip: "Khoảng thời gian từ sáng sớm tới 8-9h.", example: "早上好！(Chào buổi sáng!)" },
+            { id: 605, lesson: 6, hanzi: "上课", pinyin: "shàng kè", pinyinClean: "shangke", hanviet: "Thượng khóa", meaning: "Vào học, lên lớp", pos: "Động từ", tip: "Trái nghĩa với 下课 (tan học).", example: "几点上课？(Mấy giờ vào lớp?)" },
+            { id: 606, lesson: 6, hanzi: "下课", pinyin: "xià kè", pinyinClean: "xiake", hanviet: "Hạ khóa", meaning: "Tan học, kết thúc tiết", pos: "Động từ", tip: "Xuống lớp, hết giờ học.", example: "十点半下课。(10 rưỡi tan học.)" },
+            { id: 607, lesson: 6, hanzi: "半", pinyin: "bàn", pinyinClean: "ban", hanviet: "Bán", meaning: "Rưỡi, một nửa (30 phút)", pos: "Số từ", tip: "Tám rưỡi = 八点半.", example: "十点半 (10 rưỡi)" },
+            { id: 608, lesson: 6, hanzi: "刻", pinyin: "kè", pinyinClean: "ke", hanviet: "Khắc", meaning: "15 phút (1 khắc)", pos: "Lượng từ", tip: "一刻 = 15 phút, 三刻 = 45 phút.", example: "差一刻六点 (6 giờ kém 15)" },
+            { id: 609, lesson: 6, hanzi: "差", pinyin: "chà", pinyinClean: "cha", hanviet: "Sai", meaning: "Kém, thiếu", pos: "Động từ", tip: "差……点…… (Kém …… phút đến …… giờ).", example: "差五分九点 (9 giờ kém 5)" },
+            { id: 610, lesson: 6, hanzi: "太……了", pinyin: "tài... le", pinyinClean: "tai...le", hanviet: "Thái... liễu", meaning: "Quá... lắm...", pos: "Cấu trúc", tip: "Biểu thị mức độ rất cao.", example: "太早了！(Sớm quá rồi!)" },
+            { id: 611, lesson: 6, hanzi: "讲座", pinyin: "jiǎngzuò", pinyinClean: "jiangzuo", hanviet: "Giảng tọa", meaning: "Buổi tọa đàm, chuyên đề", pos: "Danh từ", tip: "Giảng (thuyết giảng) + Tọa (chỗ ngồi nghe).", example: "讲座几点开始？(Tọa đàm mấy giờ bắt đầu?)" },
+            { id: 612, lesson: 6, hanzi: "开始", pinyin: "kāishǐ", pinyinClean: "kaishi", hanviet: "Khai thủy", meaning: "Bắt đầu", pos: "Động từ", tip: "Khai (mở ra) + Thủy (khởi đầu).", example: "六点开始。(6 giờ bắt đầu.)" },
+
+            // --- BÀI 7: 明天你有课吗 ---
+            { id: 701, lesson: 7, hanzi: "明天", pinyin: "míngtiān", pinyinClean: "mingtian", hanviet: "Minh thiên", meaning: "Ngày mai", pos: "Danh từ", tip: "Minh (明 - sáng sủa, ngày sau) + Thiên (天 - ngày).", example: "明天见！(Ngày mai gặp lại nhé!)" },
+            { id: 702, lesson: 7, hanzi: "上午", pinyin: "shàngwǔ", pinyinClean: "shangwu", hanviet: "Thượng ngọ", meaning: "Buổi sáng (trước 12h trưa)", pos: "Danh từ", tip: "Thượng + Ngọ (khoảng từ 8h đến 12h).", example: "我上午有课。(Buổi sáng tôi có tiết học.)" },
+            { id: 703, lesson: 7, hanzi: "下午", pinyin: "xiàwǔ", pinyinClean: "xiawu", hanviet: "Hạ ngọ", meaning: "Buổi chiều (sau 12h trưa)", pos: "Danh từ", tip: "Khoảng thời gian từ 13h đến 18h.", example: "下午没有课。(Buổi chiều không có tiết.)" },
+            { id: 704, lesson: 7, hanzi: "有", pinyin: "yǒu", pinyinClean: "you", hanviet: "Hữu", meaning: "Có", pos: "Động từ", tip: "Biểu thị sở hữu hoặc tồn tại.", example: "你有自行车吗？(Bạn có xe đạp không?)" },
+            { id: 705, lesson: 7, hanzi: "没有", pinyin: "méiyǒu", pinyinClean: "meiyou", hanviet: "Một hữu", meaning: "Không có", pos: "Động từ", tip: "Phủ định của '有' là '没有', KHÔNG ĐƯỢC dùng '不有'.", example: "我没有自行车。(Tôi không có xe đạp.)" },
+            { id: 706, lesson: 7, hanzi: "自行车", pinyin: "zìxíngchē", pinyinClean: "zixingche", hanviet: "Tự hành xa", meaning: "Xe đạp", pos: "Danh từ", tip: "Tự mình đi bằng xe bánh lăn.", example: "骑自行车 (Đi xe đạp)" },
+            { id: 707, lesson: 7, hanzi: "吧", pinyin: "ba", pinyinClean: "ba", hanviet: "Ba", meaning: "Nhé, đi, chứ... (trợ từ ngữ khí)", pos: "Trợ từ", tip: "Hỏi để xác nhận hoặc đề xuất gợi ý.", example: "你有自行车吧？(Bạn có xe đạp đúng không?)" },
+            { id: 708, lesson: 7, hanzi: "事", pinyin: "shì", pinyinClean: "shi", hanviet: "Sự", meaning: "Việc, sự việc", pos: "Danh từ", tip: "什么事？(Có chuyện gì thế? Có việc gì vậy?)", example: "你有事吗？(Cậu có việc bận gì không?)" },
+            { id: 709, lesson: 7, hanzi: "可是", pinyin: "kěshì", pinyinClean: "keshi", hanviet: "Khả thị", meaning: "Nhưng, tuy nhiên", pos: "Liên từ", tip: "Biểu thị chuyển ý đối lập.", example: "可是我没有时间。(Nhưng tôi lại không có thời gian.)" },
+            { id: 710, lesson: 7, hanzi: "钥匙", pinyin: "yàoshi", pinyinClean: "yaoshi", hanviet: "Thược thi", meaning: "Chìa khóa", pos: "Danh từ", tip: "Bên trái có bộ Kim (钅) chỉ kim loại.", example: "这是钥匙。(Đây là chìa khóa.)" },
+            { id: 711, lesson: 7, hanzi: "车棚", pinyin: "chēpéng", pinyinClean: "chepeng", hanviet: "Xa bằng", meaning: "Nhà để xe, lán xe", pos: "Danh từ", tip: "Bằng (棚 - mái che có lợp tre gỗ).", example: "车在楼下车棚里。(Xe ở trong lán xe dưới chân tòa nhà.)" },
+            { id: 712, lesson: 7, hanzi: "后边", pinyin: "hòubian", pinyinClean: "houbian", hanviet: "Hậu biên", meaning: "Đằng sau, phía sau", pos: "Danh từ", tip: "Trái ngược với 前边 (phía trước).", example: "宿舍楼后边 (Phía sau ký túc xá)" },
+            { id: 713, lesson: 7, hanzi: "今天", pinyin: "jīntiān", pinyinClean: "jintian", hanviet: "Kim thiên", meaning: "Hôm nay", pos: "Danh từ", tip: "Kim (今 - ngày hiện tại).", example: "今天晚上 (Tối hôm nay)" },
+            { id: 714, lesson: 7, hanzi: "晚上", pinyin: "wǎnshang", pinyinClean: "wanshang", hanviet: "Vãn thượng", meaning: "Buổi tối", pos: "Danh từ", tip: "Vãn (buổi chiều tối tối tăm).", example: "晚上好！(Chào buổi tối!)" },
+            { id: 715, lesson: 7, hanzi: "电影院", pinyin: "diànyǐngyuàn", pinyinClean: "dianyingyuan", hanviet: "Điện ảnh viện", meaning: "Rạp chiếu phim", pos: "Danh từ", tip: "Viện chiếu phim điện ảnh.", example: "学校电影院 (Rạp chiếu phim của trường)" },
+            { id: 716, lesson: 7, hanzi: "当然", pinyin: "dāngrán", pinyinClean: "dangran", hanviet: "Đương nhiên", meaning: "Đương nhiên, tất nhiên", pos: "Phó từ", tip: "Khẳng định điều hiển nhiên.", example: "我当然去！(Tôi đương nhiên sẽ đi rồi!)" },
+
+            // --- BÀI 8: 你的电话号码是多少 ---
+            { id: 801, lesson: 8, hanzi: "周末", pinyin: "zhōumò", pinyinClean: "zhoumo", hanviet: "Chu mạt", meaning: "Cuối tuần", pos: "Danh từ", tip: "Chu (tuần) + Mạt (cuối cùng).", example: "周末你有空儿吗？(Cuối tuần cậu có rảnh không?)" },
+            { id: 802, lesson: 8, hanzi: "怎么", pinyin: "zěnme", pinyinClean: "zenme", hanviet: "Chẩm ma", meaning: "Như thế nào, bằng cách nào", pos: "Đại từ", tip: "Dùng để hỏi cách thức, phương thức di chuyển.", example: "去你们学校怎么走？(Đi đến trường bạn thì đi thế nào?)" },
+            { id: 803, lesson: 8, hanzi: "走", pinyin: "zǒu", pinyinClean: "zou", hanviet: "Tẩu", meaning: "Đi, đi lại", pos: "Động từ", tip: "Hình người đang bước chân tẩu thoát.", example: "走吧！(Đi thôi nào!)" },
+            { id: 804, lesson: 8, hanzi: "公共汽车", pinyin: "gōnggòng qìchē", pinyinClean: "gonggong qiche", hanviet: "Công cộng khí xa", meaning: "Xe buýt", pos: "Danh từ", tip: "Phương tiện xe hơi dùng chung công cộng.", example: "坐公共汽车 (Đi xe buýt)" },
+            { id: 805, lesson: 8, hanzi: "都", pinyin: "dōu", pinyinClean: "dou", hanviet: "Đô", meaning: "Đều", pos: "Phó từ", tip: "Đứng sau các đối tượng số nhiều và trước động từ.", example: "21路和106路都到。(Tuyến 21 và tuyến 106 đều đến nơi.)" },
+            { id: 806, lesson: 8, hanzi: "到", pinyin: "dào", pinyinClean: "dao", hanviet: "Đáo", meaning: "Đến, tới nơi", pos: "Động từ", tip: "Có bộ Đao (刂) ở bên phải.", example: "十五分钟就到。(15 phút là tới ngay.)" },
+            { id: 807, lesson: 8, hanzi: "骑", pinyin: "qí", pinyinClean: "qi", hanviet: "Kị", meaning: "Đi, cưỡi (xe đạp, ngựa)", pos: "Động từ", tip: "Bộ Mã (马 - ngựa) + Kì (奇). Ngồi cưỡi lưng ngựa.", example: "骑自行车很快。(Đi xe đạp rất nhanh.)" },
+            { id: 808, lesson: 8, hanzi: "快", pinyin: "kuài", pinyinClean: "kuai", hanviet: "Khoái", meaning: "Nhanh", pos: "Tính từ", tip: "Bộ Tâm đứng (忄) + Quyết (夬).", example: "很快 (Rất nhanh)" },
+            { id: 809, lesson: 8, hanzi: "分钟", pinyin: "fēnzhōng", pinyinClean: "fenzhong", hanviet: "Phân chung", meaning: "Phút (khoảng thời gian)", pos: "Lượng từ", tip: "Dùng khi nói khoảng thời gian (VD: 15分钟), khác với lúc nói giờ (点…分).", example: "十五分钟 (15 phút)" },
+            { id: 810, lesson: 8, hanzi: "就", pinyin: "jiù", pinyinClean: "jiu", hanviet: "Tựu", meaning: "Thì, là (chỉ sự nhanh chóng)", pos: "Phó từ", tip: "Nhấn mạnh thời gian ngắn, diễn ra nhanh chóng.", example: "五分钟就到。(Chỉ 5 phút là tới nơi.)" },
+            { id: 811, lesson: 8, hanzi: "房间", pinyin: "fángjiān", pinyinClean: "fangjian", hanviet: "Phòng gian", meaning: "Căn phòng, phòng", pos: "Danh từ", tip: "Phòng (房) + Gian (间).", example: "你的房间号是多少？(Số phòng bạn là bao nhiêu?)" },
+            { id: 812, lesson: 8, hanzi: "多少", pinyin: "duōshao", pinyinClean: "duoshao", hanviet: "Đa thiếu", meaning: "Bao nhiêu", pos: "Đại từ", tip: "Đa (nhiều) + Thiếu (ít). Dùng hỏi số lượng lớn hoặc số điện thoại.", example: "号码是多少？(Mã số là bao nhiêu?)" },
+            { id: 813, lesson: 8, hanzi: "电话", pinyin: "diànhuà", pinyinClean: "dianhua", hanviet: "Điện thoại", meaning: "Điện thoại", pos: "Danh từ", tip: "Điện (điện lực) + Thoại (lời nói).", example: "电话号码 (Số điện thoại)" },
+            { id: 814, lesson: 8, hanzi: "号码", pinyin: "hàomǎ", pinyinClean: "haoma", hanviet: "Hiệu mã", meaning: "Mã số, số", pos: "Danh từ", tip: "Khi đọc chuỗi số, số 1 đọc thành 'yāo'.", example: "房间号码 (Số phòng)" },
+            { id: 815, lesson: 8, hanzi: "手机", pinyin: "shǒujī", pinyinClean: "shouji", hanviet: "Thủ cơ", meaning: "Điện thoại di động", pos: "Danh từ", tip: "Máy móc cầm trên tay (Thủ 手).", example: "你有手机吗？(Bạn có điện thoại di động không?)" },
+            { id: 816, lesson: 8, hanzi: "等", pinyin: "děng", pinyinClean: "deng", hanviet: "Đẳng", meaning: "Đợi, chờ", pos: "Động từ", tip: "Có bộ Trúc (竹) ở trên.", example: "我等你！(Tôi đợi bạn nhé!)" },
+
+            // --- BÀI 9: 多少钱一瓶 ---
+            { id: 901, lesson: 9, hanzi: "买", pinyin: "mǎi", pinyinClean: "mai", hanviet: "Mãi", meaning: "Mua", pos: "Động từ", tip: "Mãi là mua, Bán là bán (卖).", example: "我买啤酒。(Tôi mua bia.)" },
+            { id: 902, lesson: 9, hanzi: "啤酒", pinyin: "píjiǔ", pinyinClean: "pijiu", hanviet: "Tỳ tửu", meaning: "Bia", pos: "Danh từ", tip: "Tửu (酒) có 3 chấm thủy chỉ đồ uống lên men.", example: "两瓶啤酒 (Hai chai bia)" },
+            { id: 903, lesson: 9, hanzi: "售货员", pinyin: "shòuhuòyuán", pinyinClean: "shouhuoyuan", hanviet: "Thụ hóa viên", meaning: "Nhân viên bán hàng", pos: "Danh từ", tip: "Người làm công việc bán hàng hóa.", example: "售货员在商店里。(Người bán hàng đang ở trong tiệm.)" },
+            { id: 904, lesson: 9, hanzi: "瓶", pinyin: "píng", pinyinClean: "ping", hanviet: "Bình", meaning: "Chai, lọ, bình", pos: "Lượng từ", tip: "Lượng từ cho nước, bia, rượu dạng chai.", example: "三瓶水 (3 chai nước)" },
+            { id: 905, lesson: 9, hanzi: "钱", pinyin: "qián", pinyinClean: "qian", hanviet: "Tiền", meaning: "Tiền", pos: "Danh từ", tip: "Bộ Kim (钅) chỉ tiền tệ kim loại thời xưa.", example: "多少钱一瓶？(Bao nhiêu tiền một chai?)" },
+            { id: 906, lesson: 9, hanzi: "块", pinyin: "kuài", pinyinClean: "kuai", hanviet: "Khối", meaning: "Đồng (tệ - khẩu ngữ của 元)", pos: "Lượng từ", tip: "Đơn vị tiền tệ chính trong văn nói Trung Quốc.", example: "三块五 (3 tệ 5 hào)" },
+            { id: 907, lesson: 9, hanzi: "两", pinyin: "liǎng", pinyinClean: "liang", hanviet: "Lưỡng", meaning: "Hai (dùng trước lượng từ)", pos: "Số từ", tip: "Trước lượng từ PHẢI dùng 两 (两瓶水, 两个人), KHÔNG dùng 二.", example: "两瓶 (Hai chai)" },
+            { id: 908, lesson: 9, hanzi: "水", pinyin: "shuǐ", pinyinClean: "shui", hanviet: "Thủy", meaning: "Nước", pos: "Danh từ", tip: "Nước uống sinh hoạt.", example: "喝水 (Uống nước)" },
+            { id: 909, lesson: 9, hanzi: "一共", pinyin: "yígòng", pinyinClean: "yigong", hanviet: "Nhất cộng", meaning: "Tổng cộng, tất cả", pos: "Phó từ", tip: "Cộng gộp tất cả các khoản lại.", example: "一共多少钱？(Tổng cộng hết bao nhiêu tiền?)" },
+            { id: 910, lesson: 9, hanzi: "毛", pinyin: "máo", pinyinClean: "mao", hanviet: "Mao", meaning: "Hào (khẩu ngữ của 角 - 1/10 tệ)", pos: "Lượng từ", tip: "1 块 = 10 毛.", example: "九块四毛 (9 tệ 4 hào)" },
+            { id: 911, lesson: 9, hanzi: "给", pinyin: "gěi", pinyinClean: "gei", hanviet: "Cấp", meaning: "Đưa cho, cho", pos: "Động từ", tip: "Có bộ Mịch (纟).", example: "给你钱。(Gửi tiền cho bạn này.)" },
+            { id: 912, lesson: 9, hanzi: "本", pinyin: "běn", pinyinClean: "ben", hanviet: "Bản", meaning: "Quyển, cuốn", pos: "Lượng từ", tip: "Lượng từ riêng của sách vở, từ điển.", example: "一本书 (Một cuốn sách)" },
+            { id: 913, lesson: 9, hanzi: "零钱", pinyin: "língqián", pinyinClean: "lingqian", hanviet: "Linh tiền", meaning: "Tiền lẻ", pos: "Danh từ", tip: "Tiền xu hoặc tiền mệnh giá nhỏ.", example: "我没有零钱。(Tôi không có tiền lẻ.)" },
+
+            // --- BÀI 10: 你家有几口人 ---
+            { id: 1001, lesson: 10, hanzi: "照片", pinyin: "zhàopiàn", pinyinClean: "zhaopian", hanviet: "Chiếu phiến", meaning: "Bức ảnh, tấm hình", pos: "Danh từ", tip: "Chiếu (ánh sáng chụp) + Phiến (tấm mỏng).", example: "这是我家的照片。(Đây là bức ảnh gia đình tôi.)" },
+            { id: 1002, lesson: 10, hanzi: "家", pinyin: "jiā", pinyinClean: "jia", hanviet: "Gia", meaning: "Nhà, gia đình", pos: "Danh từ", tip: "Mái nhà (宀) che chở cho con lợn gia súc (豕) bên dưới.", example: "你家在哪儿？(Nhà bạn ở đâu?)" },
+            { id: 1003, lesson: 10, hanzi: "口", pinyin: "kǒu", pinyinClean: "kou", hanviet: "Khẩu", meaning: "Người (lượng từ nhân khẩu gia đình)", pos: "Lượng từ", tip: "Chuyên đếm nhân khẩu trong nhà (五口人).", example: "你家有几口人？(Gia đình bạn có mấy người?)" },
+            { id: 1004, lesson: 10, hanzi: "爷爷", pinyin: "yéye", pinyinClean: "yeye", hanviet: "Gia gia", meaning: "Ông nội", pos: "Danh từ", tip: "Có bộ Phụ (父 - cha) ở trên.", example: "我爷爷 (Ông nội tôi)" },
+            { id: 1005, lesson: 10, hanzi: "奶奶", pinyin: "nǎinai", pinyinClean: "nainai", hanviet: "Nãi nãi", meaning: "Bà nội", pos: "Danh từ", tip: "Có bộ Nữ (女) ở bên trái.", example: "我奶奶 (Bà nội tôi)" },
+            { id: 1006, lesson: 10, hanzi: "爸爸", pinyin: "bàba", pinyinClean: "baba", hanviet: "Bá bá", meaning: "Bố, cha", pos: "Danh từ", tip: "Bộ Phụ (父) ở trên đầu chữ.", example: "我爸爸 (Bố tôi)" },
+            { id: 1007, lesson: 10, hanzi: "妈妈", pinyin: "māma", pinyinClean: "mama", hanviet: "Ma ma", meaning: "Mẹ", pos: "Danh từ", tip: "Bộ Nữ (女) ghép với chữ Mã (马).", example: "我妈妈 (Mẹ tôi)" },
+            { id: 1008, lesson: 10, hanzi: "哥哥", pinyin: "gēge", pinyinClean: "gege", hanviet: "Ca ca", meaning: "Anh trai", pos: "Danh từ", tip: "Hai bộ Khả 可 xếp chồng lên nhau.", example: "我有一个哥哥。(Tôi có một người anh trai.)" },
+            { id: 1009, lesson: 10, hanzi: "姐姐", pinyin: "jiějie", pinyinClean: "jiejie", hanviet: "Tỷ tỷ", meaning: "Chị gái", pos: "Danh từ", tip: "Bộ Nữ (女) + Thả (且).", example: "我没有姐姐。(Tôi không có chị gái.)" },
+            { id: 1010, lesson: 10, hanzi: "弟弟", pinyin: "dìdi", pinyinClean: "didi", hanviet: "Đệ đệ", meaning: "Em trai", pos: "Danh từ", tip: "Em trai ruột.", example: "一个弟弟 (Một em trai)" },
+            { id: 1011, lesson: 10, hanzi: "妹妹", pinyin: "mèimei", pinyinClean: "meimei", hanviet: "Muội muội", meaning: "Em gái", pos: "Danh từ", tip: "Bộ Nữ (女) + Mùi (未 - còn nhỏ tuổi).", example: "一个妹妹 (Một em gái)" },
+            { id: 1012, lesson: 10, hanzi: "家庭", pinyin: "jiātíng", pinyinClean: "jiating", hanviet: "Gia đình", meaning: "Gia đình", pos: "Danh từ", tip: "Gia (nhà) + Đình (sân đình quây quần).", example: "中国家庭 (Gia đình Trung Quốc)" },
+            { id: 1013, lesson: 10, hanzi: "一般", pinyin: "yìbān", pinyinClean: "yiban", hanviet: "Nhất ban", meaning: "Bình thường, thông thường", pos: "Tính từ", tip: "Thường thấy theo thói quen.", example: "一般只有一个孩子。(Thường chỉ có một đứa con.)" },
+            { id: 1014, lesson: 10, hanzi: "只", pinyin: "zhǐ", pinyinClean: "zhi", hanviet: "Chỉ", meaning: "Chỉ (phó từ giới hạn)", pos: "Phó từ", tip: "Lưu ý đọc thanh 3 khi làm phó từ.", example: "只有 (Chỉ có)" },
+            { id: 1015, lesson: 10, hanzi: "孩子", pinyin: "háizi", pinyinClean: "haizi", hanviet: "Hài tử", meaning: "Đứa con, trẻ con", pos: "Danh từ", tip: "Con cái trong nhà.", example: "一个孩子 (Một đứa con)" },
+            { id: 1016, lesson: 10, hanzi: "还", pinyin: "hái", pinyinClean: "hai", hanviet: "Hoàn", meaning: "Còn, vẫn còn", pos: "Phó từ", tip: "Biểu thị sự bổ sung thêm.", example: "还有一条狗。(Còn có thêm một chú chó.)" },
+            { id: 1017, lesson: 10, hanzi: "条", pinyin: "tiáo", pinyinClean: "tiao", hanviet: "Điều", meaning: "Con (lượng từ vật dài hoặc thú cưng)", pos: "Lượng từ", tip: "Lượng từ của chó (狗), cá (鱼), đường xá (路).", example: "一条狗 (Một con chó)" },
+            { id: 1018, lesson: 10, hanzi: "狗", pinyin: "gǒu", pinyinClean: "gou", hanviet: "Cẩu", meaning: "Con chó", pos: "Danh từ", tip: "Bộ Khuyển (犭- thú 4 chân) + Câu (句).", example: "我家有一条狗。(Nhà tôi có một chú chó.)" }
+        ];
+
+        // =========================================================================
+        // NGÂN HÀNG BÀI TẬP GHÉP CÂU NGỮ PHÁP (GRAMMAR EXERCISES)
+        // =========================================================================
+        const GRAMMAR_EXERCISES = [
+            {
+                prompt: 'Ghép câu: "Thư viện ở đâu?"',
+                target: "图书馆 在 哪儿 ？",
+                words: ["图书馆", "在", "哪儿", "？", "是", "那儿", "的"],
+                explanation: "Cấu trúc hỏi địa điểm: [Nơi chốn] + 在 + 哪儿？ (Lưu ý: Không dùng 吗 ở cuối câu nghi vấn với 哪儿)."
+            },
+            {
+                prompt: 'Ghép câu: "Thư viện ở phía bắc ký túc xá."',
+                target: "图书馆 在 宿舍楼 的 北边 。",
+                words: ["图书馆", "在", "宿舍楼", "的", "北边", "。", "是", "东边", "教学楼"],
+                explanation: "Cấu trúc: Địa điểm A (图书馆) + 在 + Địa điểm B (宿舍楼) + 的 + Phương vị (北边)."
+            },
+            {
+                prompt: 'Ghép câu: "Đại học Thanh Hoa ở phía đông của Đại học Bắc Kinh."',
+                target: "清华大学 在 北京大学 的 东边 。",
+                words: ["清华大学", "在", "北京大学", "的", "东边", "。", "西边", "北边", "是"],
+                explanation: "Tiếng Hán đặt điểm mốc (Bắc Đại) trước rồi mới đến phương vị (phía đông 東邊)."
+            },
+            {
+                prompt: 'Ghép câu: "Phía bắc của ký túc xá là thư viện."',
+                target: "宿舍楼 的 北边 是 图书馆 。",
+                words: ["宿舍楼", "的", "北边", "是", "图书馆", "。", "在", "教学楼"],
+                explanation: "Cấu trúc câu chữ 是 chỉ sự tồn tại: [Phương vị / Vị trí] + 是 + [Sự vật]."
+            },
+            {
+                prompt: 'Ghép câu: "Nhà vệ sinh ở bên cạnh lớp học."',
+                target: "卫生间 在 教室 的 旁边 。",
+                words: ["卫生间", "在", "教室", "的", "旁边", "。", "哪儿", "是"],
+                explanation: "旁边 (pángbiān) là danh từ phương vị chỉ 'bên cạnh'."
+            },
+            {
+                prompt: 'Ghép câu: "Nhà bạn có mấy người?"',
+                target: "你家 有 几 口 人 ？",
+                words: ["你家", "有", "几", "口", "人", "？", "多少", "个", "吗"],
+                explanation: "Hỏi số nhân khẩu trong gia đình dùng lượng từ 口 (kǒu), dưới 10 người dùng 几."
+            }
+        ];
+
+        let currentGrammarIndex = 0;
+        let selectedSentenceTokens = [];
+
+        // =========================================================================
+        // HỆ THỐNG LƯU TRỮ AN TOÀN (SAFE STORAGE CHO MÔI TRƯỜNG IFRAME / MOBILE)
+        // =========================================================================
+        const memoryStorage = {};
+        function safeGetItem(key) {
+            try {
+                if (typeof window !== 'undefined' && window.localStorage) {
+                    return window.localStorage.getItem(key);
+                }
+            } catch (e) {
+                console.warn('Bộ nhớ cục bộ bị giới hạn, sử dụng bộ nhớ tạm.');
+            }
+            return memoryStorage[key] || null;
+        }
+
+        function safeSetItem(key, value) {
+            try {
+                if (typeof window !== 'undefined' && window.localStorage) {
+                    window.localStorage.setItem(key, value);
+                    return;
+                }
+            } catch (e) {
+                console.warn('Bộ nhớ cục bộ bị giới hạn, sử dụng bộ nhớ tạm.');
+            }
+            memoryStorage[key] = value;
+        }
+
+        function safeRemoveItem(key) {
+            try {
+                if (typeof window !== 'undefined' && window.localStorage) {
+                    window.localStorage.removeItem(key);
+                }
+            } catch (e) {}
+            delete memoryStorage[key];
+        }
+
+        // =========================================================================
+        // KHỞI TẠO CƠ SỞ DỮ LIỆU ĐÁM MÂY & ĐỒNG BỘ ĐA TÀI KHOẢN
+        // =========================================================================
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'boya-vocab-app';
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        let unsubscribeCloudSync = null;
+
+        let currentAccountId = safeGetItem('boya_active_account_id') || 'HocVien_01';
+
+        // Khởi tạo kết nối đám mây an toàn
+        async function setupCloudDatabase() {
+            try {
+                if (typeof __firebase_config !== 'undefined') {
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
+
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    currentUser = auth.currentUser;
+
+                    const userIdEl = document.getElementById('modal-user-id');
+                    if (userIdEl && currentUser) {
+                        userIdEl.innerText = currentUser.uid;
+                        userIdEl.title = currentUser.uid;
+                    }
+
+                    // Bắt đầu lắng nghe và đồng bộ dữ liệu tài khoản
+                    connectAccountListener(currentAccountId);
+                } else {
+                    console.log("Môi trường không có cấu hình đám mây, sử dụng bộ nhớ tạm.");
+                    setCloudDotStatus(false);
+                }
+            } catch (err) {
+                console.error("Lỗi xác thực đám mây:", err);
+                try {
+                    if (auth) {
+                        await signInAnonymously(auth);
+                        currentUser = auth.currentUser;
+                        connectAccountListener(currentAccountId);
+                    }
+                } catch (e) {
+                    setCloudDotStatus(false);
+                }
+            }
+        }
+
+        function setCloudDotStatus(isConnected) {
+            const dot = document.getElementById('cloud-status-dot');
+            if (dot) {
+                dot.className = isConnected 
+                    ? "w-2 h-2 rounded-full bg-emerald-500 animate-pulse" 
+                    : "w-2 h-2 rounded-full bg-slate-300";
+            }
+        }
+
+        function updateAccountDisplayUI() {
+            const headerAccount = document.getElementById('header-account-name');
+            const modalAccount = document.getElementById('modal-active-account');
+            if (headerAccount) headerAccount.innerText = currentAccountId;
+            if (modalAccount) modalAccount.innerText = currentAccountId;
+        }
+
+        // Lắng nghe dữ liệu thời gian thực cho tài khoản đang chọn
+        function connectAccountListener(accountId) {
+            currentAccountId = accountId.trim().replace(/[^a-zA-Z0-9_-]/g, '_') || 'HocVien_01';
+            safeSetItem('boya_active_account_id', currentAccountId);
+            updateAccountDisplayUI();
+
+            if (!db || !currentUser) return;
+
+            if (unsubscribeCloudSync) {
+                unsubscribeCloudSync();
+            }
+
+            const accountDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'user_accounts', currentAccountId);
+
+            unsubscribeCloudSync = onSnapshot(accountDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (Array.isArray(data.masteredIds)) {
+                        masteredIds = data.masteredIds;
+                        updateMasteredProgress();
+                        refreshCurrentActiveTab();
+                    }
+                } else {
+                    // Nếu tài khoản mới chưa có trên đám mây, khởi tạo với tiến độ hiện tại
+                    saveProgressToCloud();
+                }
+                setCloudDotStatus(true);
+            }, (error) => {
+                console.error("Lỗi đồng bộ dữ liệu tài khoản:", error);
+                setCloudDotStatus(false);
+            });
+        }
+
+        // Lưu tiến độ học vào cơ sở dữ liệu đám mây
+        async function saveProgressToCloud() {
+            if (!db || !currentUser) return;
+            try {
+                const accountDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'user_accounts', currentAccountId);
+                await setDoc(accountDocRef, {
+                    accountId: currentAccountId,
+                    masteredIds: masteredIds,
+                    lastDeviceId: currentUser.uid,
+                    updatedAt: new Date().toISOString()
+                }, { merge: true });
+            } catch (err) {
+                console.error("Lỗi khi ghi dữ liệu lên đám mây:", err);
+            }
+        }
+
+        function switchAccount() {
+            const input = document.getElementById('input-account-name');
+            const newName = input.value.trim();
+            if (!newName) {
+                showToast("Vui lòng nhập tên tài khoản!", "warning");
+                return;
+            }
+
+            connectAccountListener(newName);
+            input.value = '';
+            closeAccountModal();
+            showToast(`Đã chuyển sang tài khoản: "${newName}"`, "success");
+        }
+
+        function openAccountModal() {
+            document.getElementById('account-modal').classList.remove('hidden');
+            updateAccountDisplayUI();
+            if (currentUser) {
+                const userIdEl = document.getElementById('modal-user-id');
+                if (userIdEl) userIdEl.innerText = currentUser.uid;
+            }
+        }
+
+        function closeAccountModal() {
+            document.getElementById('account-modal').classList.add('hidden');
+        }
+
+        function copyCloudUserId() {
+            if (currentUser && currentUser.uid) {
+                const textArea = document.createElement("textarea");
+                textArea.value = currentUser.uid;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast("Đã sao chép mã định danh thiết bị!", "success");
+                } catch (e) {
+                    showToast("Không thể sao chép tự động", "warning");
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // =========================================================================
+        // TRỢ LÝ GEMINI AI: TỰ ĐỘNG SOẠN BÀI & CẬP NHẬT TRỰC TIẾP VÀO DATABASE
+        // =========================================================================
+        function openGeminiModal() {
+            document.getElementById('gemini-modal').classList.remove('hidden');
+        }
+
+        function closeGeminiModal() {
+            document.getElementById('gemini-modal').classList.add('hidden');
+        }
+
+        function setQuickGeminiPrompt(promptText) {
+            const input = document.getElementById('gemini-prompt-input');
+            if (input) input.value = promptText;
+        }
+
+        async function generateLessonWithGemini() {
+            const promptInput = document.getElementById('gemini-prompt-input');
+            const userRequest = promptInput ? promptInput.value.trim() : '';
+            if (!userRequest) {
+                showToast("Vui lòng nhập yêu cầu bài học cho Gemini!", "warning");
+                return;
+            }
+
+            const loadingEl = document.getElementById('gemini-loading');
+            const btnGen = document.getElementById('btn-gemini-generate');
+            if (loadingEl) loadingEl.classList.remove('hidden');
+            if (btnGen) btnGen.disabled = true;
+
+            try {
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                const systemPrompt = `Bạn là chuyên gia biên soạn giáo trình Hán ngữ Boya Sơ Cấp. Nhiệm vụ của bạn là tạo danh sách từ vựng chuẩn Hán ngữ theo yêu cầu của học viên dưới dạng JSON Array. Mỗi đối tượng từ vựng bắt buộc có đủ:
+- lesson: số nguyên biểu thị số thứ tự bài học (ví dụ: 11, 12,...)
+- hanzi: chữ Hán giản thể chuẩn
+- pinyin: phiên âm pinyin chuẩn có dấu thanh điệu (ví dụ: píngguǒ)
+- pinyinClean: pinyin viết liền không dấu, chữ thường (ví dụ: pingguo)
+- hanviet: âm Hán Việt chuẩn
+- meaning: nghĩa tiếng Việt súc tích
+- pos: từ loại (Danh từ, Động từ, Tính từ, Lượng từ, v.v.)
+- tip: mẹo ghi nhớ chữ Hán hoặc triết tự bộ thủ ngắn gọn
+- example: một câu ví dụ tiếng Hán kèm dịch tiếng Việt trong dấu ngoặc đơn.`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: `Hãy tạo bài học từ vựng Boya theo yêu cầu sau: ${userRequest}` }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    lesson: { type: "INTEGER" },
+                                    hanzi: { type: "STRING" },
+                                    pinyin: { type: "STRING" },
+                                    pinyinClean: { type: "STRING" },
+                                    hanviet: { type: "STRING" },
+                                    meaning: { type: "STRING" },
+                                    pos: { type: "STRING" },
+                                    tip: { type: "STRING" },
+                                    example: { type: "STRING" }
+                                },
+                                required: ["lesson", "hanzi", "pinyin", "pinyinClean", "hanviet", "meaning", "pos", "tip", "example"]
+                            }
+                        }
+                    }
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (text) {
+                    const newWords = JSON.parse(text);
+                    if (Array.isArray(newWords) && newWords.length > 0) {
+                        const maxId = VOCAB_DATA.reduce((max, w) => Math.max(max, w.id || 0), 1000);
+                        newWords.forEach((item, index) => {
+                            item.id = maxId + index + 1;
+                        });
+
+                        VOCAB_DATA = [...VOCAB_DATA, ...newWords];
+                        safeSetItem('boya_vocab_custom_data', JSON.stringify(VOCAB_DATA));
+                        
+                        filterLesson(newWords[0].lesson || 'all');
+                        updateMasteredProgress();
+                        closeGeminiModal();
+                        showToast(`Gemini đã tạo & thêm ${newWords.length} từ vựng mới thành công!`, "success");
+                    } else {
+                        showToast("Gemini không tạo được định dạng từ hợp lệ, vui lòng thử lại!", "warning");
+                    }
+                } else {
+                    showToast("Không nhận được nội dung từ Gemini, vui lòng thử lại!", "warning");
+                }
+            } catch (err) {
+                console.error("Lỗi gọi Gemini AI:", err);
+                showToast("Đã xảy ra lỗi khi tạo bài học tự động!", "warning");
+            } finally {
+                if (loadingEl) loadingEl.classList.add('hidden');
+                if (btnGen) btnGen.disabled = false;
+            }
+        }
+
+        // =========================================================================
+        // STATE VÀ DỮ LIỆU ĐANG CHẠY
+        // =========================================================================
+        let VOCAB_DATA = [];
+        try {
+            const savedData = safeGetItem('boya_vocab_custom_data');
+            VOCAB_DATA = savedData ? JSON.parse(savedData) : [...DEFAULT_BOYA_DATA];
+        } catch(e) {
+            VOCAB_DATA = [...DEFAULT_BOYA_DATA];
+        }
+
+        let masteredIds = [];
+        try {
+            const savedMastered = safeGetItem('boya_mastered_ids_v2');
+            masteredIds = savedMastered ? JSON.parse(savedMastered) : [];
+        } catch(e) {
+            masteredIds = [];
+        }
+
+        let currentLessonFilter = 'all';
+        let activeVocabList = [...VOCAB_DATA];
+
+        let fcIndex = 0;
+        let isCardFlipped = false;
+        let autoPlayAudio = true;
+
+        let currentQuizWord = null;
+        let quizScore = 0;
+        let quizStreak = 0;
+        let isQuizAnswered = false;
+
+        let matchCards = [];
+        let selectedMatchCards = [];
+        let matchedPairsCount = 0;
+        let matchTimerInterval = null;
+        let matchSeconds = 0;
+
+        let currentTypingWord = null;
+
+        // Khởi động an toàn
+        function initializeAppLogic() {
+            try {
+                updateAccountDisplayUI();
+                updateMasteredProgress();
+                filterLesson('all');
+                initGrammarExercise();
+                setupCloudDatabase();
+            } catch (err) {
+                console.error("Lỗi khởi tạo:", err);
+            }
+
+            document.addEventListener('keydown', function(e) {
+                try {
+                    const fcSection = document.getElementById('section-flashcard');
+                    if (fcSection && !fcSection.classList.contains('hidden')) {
+                        if (e.code === 'Space') {
+                            e.preventDefault();
+                            flipCard();
+                        } else if (e.code === 'ArrowRight') {
+                            nextCard();
+                        } else if (e.code === 'ArrowLeft') {
+                            prevCard();
+                        }
+                    }
+                } catch(e) {}
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeAppLogic);
+        } else {
+            initializeAppLogic();
+        }
+
+        // =========================================================================
+        // PHÁT ÂM (WEB SPEECH API)
+        // =========================================================================
+        function speakChinese(text) {
+            try {
+                if (!('speechSynthesis' in window)) return;
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.85;
+                window.speechSynthesis.speak(utterance);
+            } catch (e) {
+                console.log('Phát âm không được hỗ trợ trên thiết bị này');
+            }
+        }
+
+        function speakCurrentWord() {
+            if (!activeVocabList || activeVocabList.length === 0) return;
+            speakChinese(activeVocabList[fcIndex].hanzi);
+        }
+
+        function speakExample() {
+            if (!activeVocabList || activeVocabList.length === 0) return;
+            const rawEx = activeVocabList[fcIndex].example;
+            const chinesePart = rawEx.split('(')[0].trim();
+            speakChinese(chinesePart);
+        }
+
+        function toggleAutoPlayAudio() {
+            autoPlayAudio = !autoPlayAudio;
+            const btn = document.getElementById('btn-autoplay');
+            if (!btn) return;
+            if (autoPlayAudio) {
+                btn.className = "text-xs px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium flex items-center gap-1.5 transition";
+                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i> Tự phát âm: Bật';
+            } else {
+                btn.className = "text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200 font-medium flex items-center gap-1.5 transition";
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Tự phát âm: Tắt';
+            }
+        }
+
+        // =========================================================================
+        // TIẾN ĐỘ & BỘ LỌC BÀI
+        // =========================================================================
+        function filterLesson(lesson) {
+            currentLessonFilter = lesson;
+            document.querySelectorAll('.lesson-btn').forEach(btn => {
+                btn.className = "lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-600 hover:bg-rose-50 border border-slate-200 transition";
+            });
+            const activeBtn = document.getElementById(`btn-lesson-${lesson}`);
+            if (activeBtn) {
+                activeBtn.className = "lesson-btn shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-rose-600 text-white shadow-sm transition";
+            }
+
+            if (lesson === 'all') {
+                activeVocabList = [...VOCAB_DATA];
+            } else if (lesson === 'unmastered') {
+                activeVocabList = VOCAB_DATA.filter(w => !masteredIds.includes(w.id));
+                if (activeVocabList.length === 0) {
+                    showToast("Bạn đã thuộc tất cả các từ trong mục này!", "success");
+                    activeVocabList = [...VOCAB_DATA];
+                }
+            } else {
+                activeVocabList = VOCAB_DATA.filter(w => w.lesson === parseInt(lesson));
+            }
+
+            fcIndex = 0;
+            refreshCurrentActiveTab();
+        }
+
+        function updateMasteredProgress() {
+            const total = VOCAB_DATA.length;
+            const count = masteredIds.length;
+            const masteredEl = document.getElementById('mastered-count');
+            const totalEl = document.getElementById('total-count');
+            const progressEl = document.getElementById('progress-bar');
+            
+            if (masteredEl) masteredEl.innerText = count;
+            if (totalEl) totalEl.innerText = total;
+            const percent = total > 0 ? Math.round((count / total) * 100) : 0;
+            if (progressEl) progressEl.style.width = `${percent}%`;
+            
+            safeSetItem('boya_mastered_ids_v2', JSON.stringify(masteredIds));
+        }
+
+        function resetProgress() {
+            masteredIds = [];
+            updateMasteredProgress();
+            saveProgressToCloud();
+            renderFlashcard();
+            renderWordList();
+            showToast("Đã đặt lại tiến độ ghi nhớ trên đám mây!", "info");
+        }
+
+        // =========================================================================
+        // ĐIỀU HƯỚNG TAB
+        // =========================================================================
+        function switchTab(tabName) {
+            document.querySelectorAll('.mode-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(`section-${tabName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-100 transition";
+            });
+            const activeTab = document.getElementById(`tab-${tabName}`);
+            activeTab.className = "tab-btn flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs sm:text-sm font-semibold bg-rose-600 text-white shadow-sm transition";
+
+            if (tabName !== 'match' && matchTimerInterval) clearInterval(matchTimerInterval);
+            refreshCurrentActiveTab(tabName);
+        }
+
+        function refreshCurrentActiveTab(tabName) {
+            if (!tabName) {
+                const visibleSec = document.querySelector('.mode-section:not(.hidden)');
+                tabName = visibleSec ? visibleSec.id.replace('section-', '') : 'flashcard';
+            }
+            if (tabName === 'flashcard') renderFlashcard();
+            if (tabName === 'grammar') renderGrammarExerciseUI();
+            if (tabName === 'quiz') initQuizQuestion();
+            if (tabName === 'match') initMatchGame();
+            if (tabName === 'typing') initTypingQuestion();
+            if (tabName === 'list') renderWordList();
+        }
+
+        // =========================================================================
+        // CHẾ ĐỘ 1: FLASHCARD
+        // =========================================================================
+        function renderFlashcard() {
+            if (activeVocabList.length === 0) return;
+            isCardFlipped = false;
+            document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+            const word = activeVocabList[fcIndex];
+            document.getElementById('fc-current-index').innerText = fcIndex + 1;
+            document.getElementById('fc-total').innerText = activeVocabList.length;
+
+            document.getElementById('fc-lesson-badge').innerText = `Bài ${word.lesson}`;
+            document.getElementById('fc-hanzi').innerText = word.hanzi;
+            document.getElementById('fc-pos-front').innerText = word.pos;
+
+            const isMastered = masteredIds.includes(word.id);
+            const statusBadge = document.getElementById('fc-status-badge');
+            if (isMastered) {
+                statusBadge.className = "text-xs font-medium px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200";
+                statusBadge.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã thuộc';
+            } else {
+                statusBadge.className = "text-xs font-medium px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-200";
+                statusBadge.innerText = "Đang học";
+            }
+
+            document.getElementById('fc-hanzi-back').innerText = word.hanzi;
+            document.getElementById('fc-pinyin').innerText = word.pinyin;
+            document.getElementById('fc-hanviet').innerText = word.hanviet;
+            document.getElementById('fc-pos').innerText = word.pos;
+            document.getElementById('fc-meaning').innerText = word.meaning;
+            document.getElementById('fc-tip').innerText = word.tip;
+            document.getElementById('fc-example').innerText = word.example;
+
+            if (autoPlayAudio) speakChinese(word.hanzi);
+        }
+
+        function flipCard() {
+            isCardFlipped = !isCardFlipped;
+            const cardInner = document.getElementById('flashcard-inner');
+            if (isCardFlipped) {
+                cardInner.classList.add('rotate-y-180');
+                if (autoPlayAudio) speakCurrentWord();
+            } else {
+                cardInner.classList.remove('rotate-y-180');
+            }
+        }
+
+        function nextCard() {
+            fcIndex = (fcIndex + 1) % activeVocabList.length;
+            renderFlashcard();
+        }
+
+        function prevCard() {
+            fcIndex = (fcIndex - 1 + activeVocabList.length) % activeVocabList.length;
+            renderFlashcard();
+        }
+
+        function markWord(isMastered) {
+            const word = activeVocabList[fcIndex];
+            if (isMastered) {
+                if (!masteredIds.includes(word.id)) masteredIds.push(word.id);
+                showToast(`Đã lưu "${word.hanzi}" vào đám mây!`, "success");
+            } else {
+                masteredIds = masteredIds.filter(id => id !== word.id);
+                showToast(`Đã lưu "${word.hanzi}" vào danh sách ôn lại`, "info");
+            }
+            updateMasteredProgress();
+            saveProgressToCloud();
+            nextCard();
+        }
+
+        function shuffleFlashcards() {
+            activeVocabList.sort(() => Math.random() - 0.5);
+            fcIndex = 0;
+            renderFlashcard();
+            showToast("Đã trộn thẻ ngẫu nhiên!", "info");
+        }
+
+        // =========================================================================
+        // CHẾ ĐỘ 2: NGỮ PHÁP & ĐẶT CÂU TƯƠNG TÁC
+        // =========================================================================
+        function initGrammarExercise() {
+            selectedSentenceTokens = [];
+            document.getElementById('sentence-feedback').classList.add('hidden');
+            renderGrammarExerciseUI();
+        }
+
+        function renderGrammarExerciseUI() {
+            const currentEx = GRAMMAR_EXERCISES[currentGrammarIndex];
+            document.getElementById('grammar-prompt').innerText = currentEx.prompt;
+
+            const dropzone = document.getElementById('sentence-dropzone');
+            dropzone.innerHTML = '';
+            if (selectedSentenceTokens.length === 0) {
+                dropzone.innerHTML = '<span class="text-xs text-slate-400 italic py-1 px-2 select-none">Mời chạm các từ bên dưới để ghép thành câu đúng thứ tự...</span>';
+            } else {
+                selectedSentenceTokens.forEach((token, idx) => {
+                    const chip = document.createElement('button');
+                    chip.className = "px-3 py-1.5 rounded-xl bg-rose-600 text-white font-chinese font-bold text-base shadow-sm flex items-center gap-1.5 transition hover:bg-rose-700";
+                    chip.innerHTML = `${token} <i class="fa-solid fa-xmark text-xs opacity-70"></i>`;
+                    chip.onclick = () => removeTokenFromSentence(idx);
+                    dropzone.appendChild(chip);
+                });
+            }
+
+            const wordbank = document.getElementById('sentence-wordbank');
+            wordbank.innerHTML = '';
+            currentEx.words.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = "px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-chinese text-base font-semibold hover:border-rose-400 hover:bg-rose-50 shadow-sm transition active:scale-95";
+                btn.innerText = word;
+                btn.onclick = () => addTokenToSentence(word);
+                wordbank.appendChild(btn);
+            });
+        }
+
+        function addTokenToSentence(word) {
+            selectedSentenceTokens.push(word);
+            speakChinese(word);
+            renderGrammarExerciseUI();
+        }
+
+        function removeTokenFromSentence(index) {
+            selectedSentenceTokens.splice(index, 1);
+            renderGrammarExerciseUI();
+        }
+
+        function clearSentence() {
+            selectedSentenceTokens = [];
+            document.getElementById('sentence-feedback').classList.add('hidden');
+            renderGrammarExerciseUI();
+        }
+
+        function checkSentence() {
+            const currentEx = GRAMMAR_EXERCISES[currentGrammarIndex];
+            const userString = selectedSentenceTokens.join(' ').trim();
+            const targetString = currentEx.target.trim();
+            const feedback = document.getElementById('sentence-feedback');
+            feedback.classList.remove('hidden');
+
+            if (userString === targetString) {
+                feedback.className = "mt-4 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800";
+                feedback.innerHTML = `
+                    <div class="font-bold flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i> Xuất sắc! Bạn đã đặt câu hoàn toàn chuẩn xác:
+                    </div>
+                    <div class="font-chinese text-lg font-bold text-slate-800 mb-1">${currentEx.target.replace(/\s+/g, '')}</div>
+                    <div class="text-xs text-slate-600">${currentEx.explanation}</div>
+                `;
+                speakChinese(currentEx.target.replace(/\s+/g, ''));
+            } else {
+                feedback.className = "mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 animate-shake";
+                feedback.innerHTML = `
+                    <div class="font-bold flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-circle-xmark text-rose-600"></i> Thứ tự từ chưa đúng, hãy thử sắp xếp lại nhé!
+                    </div>
+                    <div class="text-xs text-slate-600">Gợi ý: ${currentEx.explanation}</div>
+                `;
+            }
+        }
+
+        function showSentenceHint() {
+            const currentEx = GRAMMAR_EXERCISES[currentGrammarIndex];
+            const feedback = document.getElementById('sentence-feedback');
+            feedback.className = "mt-4 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800";
+            feedback.innerHTML = `<strong>Gợi ý ngữ pháp:</strong> ${currentEx.explanation}`;
+            feedback.classList.remove('hidden');
+        }
+
+        function nextGrammarExercise() {
+            currentGrammarIndex = (currentGrammarIndex + 1) % GRAMMAR_EXERCISES.length;
+            initGrammarExercise();
+        }
+
+        // =========================================================================
+        // CHẾ ĐỘ 3: TRẮC NGHIỆM PHẢN XẠ (QUIZ)
+        // =========================================================================
+        function initQuizQuestion() {
+            isQuizAnswered = false;
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            const quizType = document.getElementById('quiz-type-select').value;
+            currentQuizWord = activeVocabList[Math.floor(Math.random() * activeVocabList.length)];
+
+            const distractors = VOCAB_DATA
+                .filter(w => w.id !== currentQuizWord.id)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3);
+            const options = [currentQuizWord, ...distractors].sort(() => Math.random() - 0.5);
+
+            const qDisplay = document.getElementById('quiz-question-display');
+            const qSub = document.getElementById('quiz-question-sub');
+            const qLabel = document.getElementById('quiz-prompt-label');
+
+            if (quizType === 'hanzi-to-meaning') {
+                qLabel.innerText = `Bài ${currentQuizWord.lesson} • Chọn nghĩa đúng:`;
+                qDisplay.className = "font-chinese text-5xl font-bold text-slate-800 my-2";
+                qDisplay.innerText = currentQuizWord.hanzi;
+                qSub.innerText = "";
+            } else if (quizType === 'meaning-to-hanzi') {
+                qLabel.innerText = `Bài ${currentQuizWord.lesson} • Chọn chữ Hán tương ứng:`;
+                qDisplay.className = "text-2xl sm:text-3xl font-bold text-slate-800 my-2 px-4";
+                qDisplay.innerText = currentQuizWord.meaning;
+                qSub.innerText = `(${currentQuizWord.pos} • ${currentQuizWord.hanviet})`;
+            } else {
+                qLabel.innerText = `Bài ${currentQuizWord.lesson} • Nghe phát âm và chọn:`;
+                qDisplay.className = "text-4xl text-rose-600 my-3 cursor-pointer";
+                qDisplay.innerHTML = `<i class="fa-solid fa-circle-play"></i> <span class="text-sm font-sans font-semibold">Nghe lại âm</span>`;
+                qDisplay.onclick = () => speakChinese(currentQuizWord.hanzi);
+                qSub.innerText = "";
+                speakChinese(currentQuizWord.hanzi);
+            }
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "p-4 rounded-2xl border-2 border-slate-200/80 bg-white hover:border-rose-300 hover:bg-rose-50/30 text-left transition flex flex-col justify-center";
+                
+                if (quizType === 'hanzi-to-meaning') {
+                    btn.innerHTML = `<span class="font-bold text-slate-800 text-sm sm:text-base">${opt.meaning}</span><span class="text-xs text-slate-400 mt-0.5">${opt.pinyin}</span>`;
+                } else if (quizType === 'meaning-to-hanzi') {
+                    btn.innerHTML = `<span class="font-chinese font-bold text-slate-800 text-3xl text-center block">${opt.hanzi}</span>`;
+                } else {
+                    btn.innerHTML = `<div class="flex items-baseline justify-between"><span class="font-chinese font-bold text-xl">${opt.hanzi}</span><span class="text-xs font-semibold text-rose-600">${opt.pinyin}</span></div><span class="text-xs text-slate-600 mt-1">${opt.meaning}</span>`;
+                }
+
+                btn.onclick = () => handleQuizAnswer(btn, opt);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function handleQuizAnswer(selectedBtn, selectedWord) {
+            if (isQuizAnswered) return;
+            isQuizAnswered = true;
+            const isCorrect = selectedWord.id === currentQuizWord.id;
+            speakChinese(currentQuizWord.hanzi);
+
+            document.getElementById('quiz-question-sub').innerText = `${currentQuizWord.hanzi} [${currentQuizWord.pinyin}] - ${currentQuizWord.meaning}`;
+
+            if (isCorrect) {
+                selectedBtn.className = "p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left flex flex-col justify-center";
+                quizScore += 10;
+                quizStreak += 1;
+                document.getElementById('quiz-feedback-text').innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1"></i> Chính xác!</span> ${currentQuizWord.tip}`;
+            } else {
+                selectedBtn.className = "p-4 rounded-2xl border-2 border-rose-500 bg-rose-50 text-left flex flex-col justify-center animate-shake";
+                quizStreak = 0;
+                document.getElementById('quiz-feedback-text').innerHTML = `<span class="text-rose-600 font-bold"><i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đúng!</span> Đáp án: <strong>${currentQuizWord.hanzi} (${currentQuizWord.pinyin})</strong>`;
+            }
+
+            document.getElementById('quiz-score').innerText = quizScore;
+            document.getElementById('quiz-streak').innerText = `${quizStreak} 🔥`;
+            document.getElementById('quiz-feedback').classList.remove('hidden');
+        }
+
+        function speakQuizWord() {
+            if (currentQuizWord) speakChinese(currentQuizWord.hanzi);
+        }
+
+        // =========================================================================
+        // CHẾ ĐỘ 4: GHÉP THẺ (MATCH GAME)
+        // =========================================================================
+        function initMatchGame() {
+            clearInterval(matchTimerInterval);
+            matchSeconds = 0;
+            matchedPairsCount = 0;
+            selectedMatchCards = [];
+            document.getElementById('match-timer').innerText = "00:00";
+
+            const pool = [...activeVocabList].sort(() => Math.random() - 0.5).slice(0, 6);
+            matchCards = [];
+            pool.forEach(w => {
+                matchCards.push({ uid: `h-${w.id}`, vocabId: w.id, type: 'hanzi', text: w.hanzi, sub: '', matched: false });
+                matchCards.push({ uid: `m-${w.id}`, vocabId: w.id, type: 'meaning', text: w.meaning, sub: w.pinyin, matched: false });
+            });
+            matchCards.sort(() => Math.random() - 0.5);
+
+            renderMatchGrid();
+
+            matchTimerInterval = setInterval(() => {
+                matchSeconds++;
+                const mins = String(Math.floor(matchSeconds / 60)).padStart(2, '0');
+                const secs = String(matchSeconds % 60).padStart(2, '0');
+                document.getElementById('match-timer').innerText = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function renderMatchGrid() {
+            const grid = document.getElementById('match-grid');
+            grid.innerHTML = '';
+
+            matchCards.forEach((card, index) => {
+                const btn = document.createElement('button');
+                btn.id = `match-card-${index}`;
+                
+                if (card.matched) {
+                    btn.className = "h-24 sm:h-28 rounded-2xl border-2 border-emerald-200 bg-emerald-50/40 opacity-30 pointer-events-none flex flex-col items-center justify-center p-2";
+                } else {
+                    const isSelected = selectedMatchCards.some(s => s.index === index);
+                    btn.className = isSelected
+                        ? "h-24 sm:h-28 rounded-2xl border-2 border-rose-600 bg-rose-50 text-rose-700 shadow-md scale-[1.02] flex flex-col items-center justify-center p-2 transition-all"
+                        : "h-24 sm:h-28 rounded-2xl border-2 border-slate-200/80 bg-slate-50/60 hover:bg-white hover:border-rose-300 text-slate-800 shadow-sm flex flex-col items-center justify-center p-2 transition-all";
+                }
+
+                if (card.type === 'hanzi') {
+                    btn.innerHTML = `<span class="font-chinese text-2xl sm:text-3xl font-bold">${card.text}</span>`;
+                } else {
+                    btn.innerHTML = `<span class="text-xs sm:text-sm font-bold text-center line-clamp-2 leading-snug">${card.text}</span><span class="text-[11px] font-semibold text-rose-500 mt-1">${card.sub}</span>`;
+                }
+
+                btn.onclick = () => handleMatchCardClick(index);
+                grid.appendChild(btn);
+            });
+        }
+
+        function handleMatchCardClick(index) {
+            const card = matchCards[index];
+            if (card.matched || selectedMatchCards.length === 2) return;
+            if (selectedMatchCards.some(s => s.index === index)) {
+                selectedMatchCards = selectedMatchCards.filter(s => s.index !== index);
+                renderMatchGrid();
+                return;
+            }
+
+            if (card.type === 'hanzi') speakChinese(card.text);
+            selectedMatchCards.push({ index, card });
+            renderMatchGrid();
+
+            if (selectedMatchCards.length === 2) {
+                const [first, second] = selectedMatchCards;
+                if (first.card.vocabId === second.card.vocabId && first.card.type !== second.card.type) {
+                    setTimeout(() => {
+                        matchCards[first.index].matched = true;
+                        matchCards[second.index].matched = true;
+                        selectedMatchCards = [];
+                        matchedPairsCount++;
+                        renderMatchGrid();
+
+                        if (matchedPairsCount === matchCards.length / 2) {
+                            clearInterval(matchTimerInterval);
+                            showToast(`Hoàn thành trong ${matchSeconds} giây! 🎉`, "success");
+                        }
+                    }, 250);
+                } else {
+                    const btn1 = document.getElementById(`match-card-${first.index}`);
+                    const btn2 = document.getElementById(`match-card-${second.index}`);
+                    if (btn1) btn1.classList.add('animate-shake', 'border-rose-500');
+                    if (btn2) btn2.classList.add('animate-shake', 'border-rose-500');
+
+                    setTimeout(() => {
+                        selectedMatchCards = [];
+                        renderMatchGrid();
+                    }, 600);
+                }
+            }
+        }
+
+        // =========================================================================
+        // CHẾ ĐỘ 5: LUYỆN GÕ PHẢN XẠ
+        // =========================================================================
+        function initTypingQuestion() {
+            currentTypingWord = activeVocabList[Math.floor(Math.random() * activeVocabList.length)];
+            document.getElementById('typing-lesson').innerText = `Bài ${currentTypingWord.lesson}`;
+            document.getElementById('typing-meaning').innerText = currentTypingWord.meaning;
+            document.getElementById('typing-pos').innerText = `(${currentTypingWord.pos} • ${currentTypingWord.hanviet})`;
+            
+            const input = document.getElementById('typing-input');
+            input.value = '';
+            input.focus();
+
+            document.getElementById('typing-hint-box').classList.add('hidden');
+            document.getElementById('typing-result').classList.add('hidden');
+        }
+
+        function showTypingHint() {
+            if (!currentTypingWord) return;
+            const hintBox = document.getElementById('typing-hint-box');
+            const hintText = document.getElementById('typing-hint-text');
+            hintText.innerHTML = `Pinyin: <strong>${currentTypingWord.pinyin}</strong> | Mẹo: ${currentTypingWord.tip}`;
+            hintBox.classList.remove('hidden');
+            speakChinese(currentTypingWord.hanzi);
+        }
+
+        function speakTypingWord() {
+            if (currentTypingWord) speakChinese(currentTypingWord.hanzi);
+        }
+
+        function checkTypingAnswer(e) {
+            e.preventDefault();
+            if (!currentTypingWord) return;
+
+            const userInput = document.getElementById('typing-input').value.trim().toLowerCase().replace(/\s+/g, '');
+            if (!userInput) return;
+
+            const cleanPinyin = currentTypingWord.pinyinClean.toLowerCase();
+            const targetHanzi = currentTypingWord.hanzi;
+            const isCorrect = (userInput === targetHanzi || userInput === cleanPinyin);
+            const resBox = document.getElementById('typing-result');
+            resBox.classList.remove('hidden');
+
+            speakChinese(currentTypingWord.hanzi);
+
+            if (isCorrect) {
+                resBox.className = "mt-5 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-center";
+                resBox.innerHTML = `
+                    <p class="text-emerald-700 font-bold text-sm mb-1"><i class="fa-solid fa-circle-check mr-1"></i> Chính xác!</p>
+                    <p class="font-chinese text-3xl font-bold text-slate-800 my-1">${currentTypingWord.hanzi}</p>
+                    <p class="text-xs text-rose-600 font-semibold">${currentTypingWord.pinyin} (${currentTypingWord.hanviet})</p>
+                    <button onclick="initTypingQuestion()" class="mt-3 px-4 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition">Từ tiếp theo ➔</button>
+                `;
+            } else {
+                resBox.className = "mt-5 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-center animate-shake";
+                resBox.innerHTML = `
+                    <p class="text-rose-700 font-bold text-sm mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chính xác:</p>
+                    <p class="font-chinese text-3xl font-bold text-slate-800 my-1">${currentTypingWord.hanzi}</p>
+                    <p class="text-xs text-rose-600 font-semibold">${currentTypingWord.pinyin} (Gõ không dấu: <code>${currentTypingWord.pinyinClean}</code>)</p>
+                `;
+            }
+        }
+
+        // =========================================================================
+        // CHẾ ĐỘ 6: TOÀN BỘ DANH SÁCH TỪ VỰNG
+        // =========================================================================
+        function renderWordList() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            const container = document.getElementById('vocab-list-container');
+            container.innerHTML = '';
+
+            const filtered = activeVocabList.filter(w => {
+                if (!query) return true;
+                return w.hanzi.includes(query) ||
+                       w.pinyin.toLowerCase().includes(query) ||
+                       w.pinyinClean.toLowerCase().includes(query) ||
+                       w.meaning.toLowerCase().includes(query) ||
+                       w.hanviet.toLowerCase().includes(query);
+            });
+
+            document.getElementById('list-count').innerText = filtered.length;
+
+            filtered.forEach(w => {
+                const isMastered = masteredIds.includes(w.id);
+                const card = document.createElement('div');
+                card.className = "bg-white p-4 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col justify-between gap-3 hover:border-rose-200 transition";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="flex items-baseline gap-2.5">
+                                <span class="font-chinese text-2xl font-bold text-slate-800">${w.hanzi}</span>
+                                <span class="text-sm font-bold text-rose-600">${w.pinyin}</span>
+                                <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">${w.hanviet}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">Bài ${w.lesson}</span>
+                                <button onclick="speakChinese('${w.hanzi}')" class="w-8 h-8 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white flex items-center justify-center transition">
+                                    <i class="fa-solid fa-volume-high text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="font-bold text-slate-800 text-sm mt-1">${w.meaning} <span class="text-xs font-normal text-slate-400">(${w.pos})</span></p>
+                        <p class="text-xs text-slate-600 mt-2 bg-amber-50/60 p-2 rounded-xl border border-amber-100"><i class="fa-regular fa-lightbulb text-amber-500 mr-1"></i> ${w.tip}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+                        <span class="text-slate-500 font-chinese truncate max-w-[70%]">${w.example}</span>
+                        <button onclick="toggleMasteredFromList(${w.id})" class="px-2.5 py-1 rounded-lg font-semibold transition ${isMastered ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                            ${isMastered ? '<i class="fa-solid fa-check mr-1"></i>Đã thuộc' : 'Đánh dấu thuộc'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleMasteredFromList(id) {
+            if (masteredIds.includes(id)) {
+                masteredIds = masteredIds.filter(item => item !== id);
+                showToast("Đã bỏ đánh dấu thuộc từ", "info");
+            } else {
+                masteredIds.push(id);
+                showToast("Đã lưu từ thuộc lên đám mây!", "success");
+            }
+            updateMasteredProgress();
+            saveProgressToCloud();
+            renderWordList();
+        }
+
+        // =========================================================================
+        // QUẢN LÝ CẬP NHẬT DỮ LIỆU & MODAL
+        // =========================================================================
+        function openUpdateModal() {
+            document.getElementById('update-modal').classList.remove('hidden');
+        }
+
+        function closeUpdateModal() {
+            document.getElementById('update-modal').classList.add('hidden');
+        }
+
+        function reloadDefaultData() {
+            safeRemoveItem('boya_vocab_custom_data');
+            VOCAB_DATA = [...DEFAULT_BOYA_DATA];
+            filterLesson(currentLessonFilter);
+            updateMasteredProgress();
+            closeUpdateModal();
+            showToast("Đã khôi phục toàn bộ dữ liệu Bài 1 - 10 gốc!", "success");
+        }
+
+        function exportDataJSON() {
+            try {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(VOCAB_DATA, null, 2));
+                const dlAnchorElem = document.createElement('a');
+                dlAnchorElem.setAttribute("href", dataStr);
+                dlAnchorElem.setAttribute("download", "boya_vocab_lessons_1_10.json");
+                dlAnchorElem.click();
+                showToast("Đã tải tệp sao lưu từ vựng về máy!", "success");
+            } catch (e) {
+                showToast("Không thể tải về trên trình duyệt hiện tại", "warning");
+            }
+        }
+
+        function importCustomJSON() {
+            const raw = document.getElementById('custom-json-input').value.trim();
+            if (!raw) {
+                showToast("Vui lòng dán chuỗi JSON hợp lệ!", "warning");
+                return;
+            }
+            try {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    VOCAB_DATA = [...VOCAB_DATA, ...parsed];
+                    safeSetItem('boya_vocab_custom_data', JSON.stringify(VOCAB_DATA));
+                    filterLesson(currentLessonFilter);
+                    updateMasteredProgress();
+                    closeUpdateModal();
+                    showToast(`Đã thêm thành công ${parsed.length} từ vựng mới!`, "success");
+                } else {
+                    showToast("Dữ liệu JSON phải là mảng danh sách từ!", "warning");
+                }
+            } catch (err) {
+                showToast("Lỗi định dạng JSON, vui lòng kiểm tra lại!", "warning");
+            }
+        }
+
+        // =========================================================================
+        // THÔNG BÁO (TOAST)
+        // =========================================================================
+        let toastTimeout = null;
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-message');
+
+            if (!toast || !icon || !msg) return;
+
+            msg.innerText = message;
+            if (type === "success") {
+                icon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
+            } else if (type === "warning") {
+                icon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-base";
+            } else {
+                icon.className = "fa-solid fa-circle-info text-sky-400 text-base";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // =========================================================================
+        // GẮN CÁC HÀM XỬ LÝ TOÀN CỤC CHO SỰ KIỆN HTML (ONCLICK, ONINPUT)
+        // =========================================================================
+        Object.assign(window, {
+            switchTab,
+            flipCard,
+            nextCard,
+            prevCard,
+            markWord,
+            shuffleFlashcards,
+            toggleAutoPlayAudio,
+            filterLesson,
+            resetProgress,
+            initGrammarExercise,
+            checkSentence,
+            clearSentence,
+            showSentenceHint,
+            nextGrammarExercise,
+            initQuizQuestion,
+            handleQuizAnswer,
+            speakQuizWord,
+            initMatchGame,
+            handleMatchCardClick,
+            initTypingQuestion,
+            showTypingHint,
+            speakTypingWord,
+            checkTypingAnswer,
+            renderWordList,
+            toggleMasteredFromList,
+            openUpdateModal,
+            closeUpdateModal,
+            reloadDefaultData,
+            exportDataJSON,
+            importCustomJSON,
+            openAccountModal,
+            closeAccountModal,
+            switchAccount,
+            copyCloudUserId,
+            speakChinese,
+            speakCurrentWord,
+            speakExample,
+            openGeminiModal,
+            closeGeminiModal,
+            setQuickGeminiPrompt,
+            generateLessonWithGemini
+        });
+    </script>
+</body>
+</html>
