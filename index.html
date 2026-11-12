@@ -62,24 +62,24 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-lg leading-tight text-slate-900">Boya Sơ Cấp 1 <span class="text-xs font-semibold bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full ml-1">Bài 1 - 10</span></h1>
-                    <p class="text-xs text-slate-500">Từ vựng chuẩn giáo trình & Luyện đặt câu ngữ pháp</p>
+                    <p class="text-xs text-slate-500">Từ vựng chuẩn giáo trình, thứ tự nét viết & Ngữ pháp Bài 1-10</p>
                 </div>
             </div>
 
             <!-- Thao tác & Thống kê tiến độ -->
-            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
-                <!-- Nút Tài Khoản & Đồng Bộ Đám Mây -->
+            <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end flex-wrap">
+                <!-- Nút Tài Khoản & Định Danh Thiết Bị -->
                 <button onclick="openAccountModal()" id="btn-account-pill" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
                     <i class="fa-solid fa-circle-user text-amber-600 text-sm"></i>
-                    <span id="header-account-name">Tài khoản: Đang nạp...</span>
-                    <span id="cloud-status-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Đã kết nối đám mây"></span>
+                    <span id="header-account-name">HocVien_01</span>
+                    <span id="cloud-status-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Hệ thống lưu trữ đang hoạt động"></span>
                 </button>
                 <!-- Nút Trợ lý Gemini AI Tự Động Sinh Bài -->
                 <button onclick="openGeminiModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> Gemini AI Tạo Bài
                 </button>
                 <button onclick="openUpdateModal()" class="px-3 py-1.5 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 text-xs font-semibold flex items-center gap-1.5 transition">
-                    <i class="fa-solid fa-cloud-arrow-down"></i> Cập nhật / Tải thêm bài
+                    <i class="fa-solid fa-cloud-arrow-down"></i> Tải thêm bài
                 </button>
                 <div class="flex items-center gap-3 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200/60">
                     <span class="text-xs font-medium text-slate-600"><strong id="mastered-count" class="text-emerald-600 text-sm">0</strong>/<span id="total-count">0</span> từ</span>
@@ -244,96 +244,49 @@
             </div>
         </section>
 
-        <!-- ==================== CHẾ ĐỘ 2: NGỮ PHÁP & ĐẶT CÂU (GRAMMAR STUDIO) ==================== -->
+        <!-- ==================== CHẾ ĐỘ 2: NGỮ PHÁP & ĐẶT CÂU (TẤT CẢ BÀI 1 - 10) ==================== -->
         <section id="section-grammar" class="mode-section hidden flex-1 flex flex-col w-full space-y-6">
             
-            <!-- Phần giải thích trọng tâm ngữ pháp câu hỏi vị trí & phương vị -->
             <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
-                <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-5">
-                    <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-compass"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-800">Cấu Trúc Ngữ Pháp: Hỏi & Miêu Tả Vị Trí Phương Hướng</h2>
-                        <p class="text-xs text-slate-500">Trọng điểm ngữ pháp Bài 4 & Bài 5 trong Giáo trình Hán ngữ Boya Sơ Cấp</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <!-- Công thức 1: Hỏi ở đâu -->
-                    <div class="bg-rose-50/50 border border-rose-100 p-4 rounded-2xl">
-                        <span class="text-xs font-bold text-rose-700 uppercase tracking-wide block mb-1">1. Hỏi ai/cái gì ở đâu?</span>
-                        <div class="bg-white px-3 py-2 rounded-xl text-rose-600 font-mono text-sm font-semibold mb-2 border border-rose-200">
-                            [Đối tượng] + 在 + 哪儿？
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-shapes"></i>
                         </div>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-2">
-                            Dùng để hỏi vị trí của người hoặc địa điểm, cuối câu <strong>không</strong> dùng 吗.
-                        </p>
-                        <div class="text-xs bg-rose-100/60 p-2 rounded-lg text-slate-700">
-                            <strong>VD:</strong> 图书馆在哪儿？ (Thư viện ở đâu?)
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-800">Hệ Thống Ngữ Pháp Boya Sơ Cấp 1 (Bài 1 - Bài 10)</h2>
+                            <p class="text-xs text-slate-500">Tự động lọc theo bài học đang chọn ở thanh trên cùng hoặc xem toàn bộ 10 bài</p>
                         </div>
                     </div>
-
-                    <!-- Công thức 2: Câu chữ 在 biểu thị phương vị -->
-                    <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl">
-                        <span class="text-xs font-bold text-amber-700 uppercase tracking-wide block mb-1">2. Ở phía nào của cái gì?</span>
-                        <div class="bg-white px-3 py-2 rounded-xl text-amber-700 font-mono text-sm font-semibold mb-2 border border-amber-200">
-                            [Địa điểm A] + 在 + [Địa điểm B] + 的 + [Phương vị]
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-2">
-                            Tiếng Việt: "A ở phía [Bắc] của B" ➔ Tiếng Trung phải đặt B trước Phương vị!
-                        </p>
-                        <div class="text-xs bg-amber-100/60 p-2 rounded-lg text-slate-700">
-                            <strong>VD:</strong> 图书馆在宿舍楼的北边。<br>(Thư viện ở phía bắc ký túc xá.)
-                        </div>
-                    </div>
-
-                    <!-- Công thức 3: Câu chữ 是 chỉ sự tồn tại -->
-                    <div class="bg-indigo-50/50 border border-indigo-100 p-4 rounded-2xl">
-                        <span class="text-xs font-bold text-indigo-700 uppercase tracking-wide block mb-1">3. Phía nào là cái gì?</span>
-                        <div class="bg-white px-3 py-2 rounded-xl text-indigo-700 font-mono text-sm font-semibold mb-2 border border-indigo-200">
-                            [Phương vị / Nơi chốn] + 是 + [Đối tượng]
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-2">
-                            Dùng khi chỉ phương hướng trước mắt để xác định công trình đó là gì.
-                        </p>
-                        <div class="text-xs bg-indigo-100/60 p-2 rounded-lg text-slate-700">
-                            <strong>VD:</strong> 宿舍楼的北边是图书馆。<br>(Phía bắc của ký túc xá là thư viện.)
-                        </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-slate-400 font-medium">Phạm vi:</span>
+                        <span id="grammar-active-badge" class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold">Tất cả Bài 1 - 10</span>
                     </div>
                 </div>
 
-                <!-- Từ vựng phương hướng trọng điểm -->
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 mb-6">
-                    <span class="text-xs font-bold text-slate-600 uppercase tracking-wider block mb-2">4 Hướng & 4 Vị trí cơ bản (Boya 1-5):</span>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">东边 (dōngbian)</strong>: Phía Đông</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">南边 (nánbian)</strong>: Phía Nam</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">西边 (xībian)</strong>: Phía Tây</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">北边 (běibian)</strong>: Phía Bắc</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">左边 (zuǒbian)</strong>: Bên trái</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">右边 (yòubian)</strong>: Bên phải</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">旁边 (pángbiān)</strong>: Bên cạnh</div>
-                        <div class="bg-white p-2 rounded-xl border border-slate-200 text-center"><strong class="text-slate-800">东南边 (dōngnánbian)</strong>: Đông Nam</div>
-                    </div>
+                <!-- Khu vực hiển thị ngữ pháp từng bài -->
+                <div id="grammar-lessons-container" class="space-y-5 mb-8">
+                    <!-- Render tự động bởi JS -->
                 </div>
 
                 <!-- KHU VỰC THỰC HÀNH GHÉP CÂU TƯƠNG TÁC -->
-                <div class="border-t border-slate-100 pt-5">
-                    <div class="flex items-center justify-between mb-3">
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                             <i class="fa-solid fa-puzzle-piece text-rose-500"></i> Phòng Luyện Ghép Câu Chuẩn Ngữ Pháp
                         </h3>
-                        <span class="text-xs text-slate-500">Bấm các mảnh từ để tạo câu hoàn chỉnh</span>
+                        <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">
+                            Câu <strong id="grammar-ex-cur" class="text-rose-600">1</strong> / <span id="grammar-ex-tot">0</span>
+                        </span>
                     </div>
 
                     <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 mb-4">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-semibold text-rose-600 uppercase tracking-wide">Yêu cầu đặt câu:</span>
-                            <button onclick="nextGrammarExercise()" class="text-xs text-slate-500 hover:text-rose-600 font-medium">Đổi câu khác ➔</button>
+                            <span id="grammar-ex-lesson-tag" class="text-xs font-semibold text-rose-600 uppercase tracking-wide">Bài 1 • Yêu cầu đặt câu:</span>
+                            <button onclick="nextGrammarExercise()" class="text-xs text-slate-600 hover:text-rose-600 font-semibold">Đổi câu khác ➔</button>
                         </div>
                         <p id="grammar-prompt" class="text-base sm:text-lg font-bold text-slate-900 mb-4">
-                            "Thư viện ở phía bắc ký túc xá."
+                            "Bạn khỏe không?"
                         </p>
 
                         <!-- Vùng thả câu của người học -->
@@ -351,7 +304,7 @@
                     </div>
 
                     <!-- Nút bấm kiểm tra câu -->
-                    <div class="flex items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-3">
                         <button onclick="checkSentence()" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition">
                             Kiểm tra kết quả
                         </button>
@@ -371,39 +324,75 @@
         </section>
 
         <!-- ==================== CHẾ ĐỘ 3: TRẮC NGHIỆM PHẢN XẠ ==================== -->
-        <section id="section-quiz" class="mode-section hidden flex-1 flex flex-col max-w-xl mx-auto w-full">
+        <section id="section-quiz" class="mode-section hidden flex-1 flex flex-col max-w-2xl mx-auto w-full">
             <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-6 sm:p-8 flex-1 flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                    <!-- Hàng 1: Chế độ hỏi & Điểm số -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3 mb-3">
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Chế độ hỏi:</span>
-                            <select id="quiz-type-select" onchange="initQuizQuestion()" class="text-xs font-semibold bg-slate-100 text-slate-700 rounded-lg px-2.5 py-1.5 border-none focus:ring-2 focus:ring-rose-500 outline-none">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Chế độ:</span>
+                            <select id="quiz-type-select" onchange="resetQuizSession()" class="text-xs font-semibold bg-slate-100 text-slate-700 rounded-lg px-2.5 py-1.5 border-none focus:ring-2 focus:ring-rose-500 outline-none">
                                 <option value="hanzi-to-meaning">Chữ Hán ➔ Chọn Nghĩa</option>
                                 <option value="meaning-to-hanzi">Nghĩa ➔ Chọn Chữ Hán</option>
                                 <option value="audio-to-meaning">Nghe Phát Âm ➔ Chọn Từ</option>
                             </select>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-2.5">
                             <span class="text-xs font-semibold text-slate-500">Chuỗi: <strong id="quiz-streak" class="text-amber-500 text-sm">0 🔥</strong></span>
                             <span class="text-xs font-semibold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg">Điểm: <strong id="quiz-score">0</strong></span>
                         </div>
                     </div>
 
-                    <div class="text-center py-6 bg-slate-50 rounded-2xl border border-slate-100 mb-6 relative">
-                        <button onclick="speakQuizWord()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-rose-600 shadow-sm hover:bg-rose-50 flex items-center justify-center transition" title="Nghe phát âm">
-                            <i class="fa-solid fa-volume-high text-sm"></i>
-                        </button>
-                        <span id="quiz-prompt-label" class="text-xs font-medium text-slate-400 block mb-2"></span>
-                        <div id="quiz-question-display" class="font-chinese text-5xl font-bold text-slate-800 my-2"></div>
-                        <div id="quiz-question-sub" class="text-sm font-medium text-rose-600 h-5"></div>
+                    <!-- Hàng 2: Tùy chọn Không lặp câu & Tắt/Bật Pinyin -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-50 px-3.5 py-2.5 rounded-2xl border border-slate-200/70 mb-5">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="toggleQuizNoRepeat()" id="btn-quiz-norepeat" class="text-xs px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-ban"></i> Không lặp câu: Bật
+                            </button>
+                            <button onclick="toggleQuizPinyin()" id="btn-quiz-pinyin" class="text-xs px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 font-semibold flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-eye-slash"></i> Pinyin: Tắt
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <span>Tiến độ vòng: <strong id="quiz-progress-count" class="text-slate-900">0/0</strong></span>
+                            <button onclick="resetQuizSession()" title="Làm lại vòng mới" class="text-slate-400 hover:text-rose-600 transition px-1">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                    <!-- Màn hình hoàn thành vòng trắc nghiệm không lặp -->
+                    <div id="quiz-completed-box" class="hidden text-center py-10 px-4 bg-emerald-50/60 rounded-2xl border border-emerald-200 my-4 space-y-3">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">Hoàn thành toàn bộ câu hỏi!</h3>
+                        <p id="quiz-completed-desc" class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
+                            Bạn đã trả lời hết toàn bộ các từ vựng trong mục này mà không bị lặp lại câu nào.
+                        </p>
+                        <button onclick="resetQuizSession()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs sm:text-sm hover:bg-emerald-700 transition shadow-sm">
+                            <i class="fa-solid fa-rotate mr-1"></i> Bắt đầu vòng luyện tập mới
+                        </button>
+                    </div>
+
+                    <!-- Khung hiển thị câu hỏi -->
+                    <div id="quiz-active-area">
+                        <div class="text-center py-6 bg-slate-50 rounded-2xl border border-slate-100 mb-6 relative">
+                            <button onclick="speakQuizWord()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-rose-600 shadow-sm hover:bg-rose-50 flex items-center justify-center transition" title="Nghe phát âm">
+                                <i class="fa-solid fa-volume-high text-sm"></i>
+                            </button>
+                            <span id="quiz-prompt-label" class="text-xs font-medium text-slate-400 block mb-2"></span>
+                            <div id="quiz-question-display" class="font-chinese text-5xl font-bold text-slate-800 my-2"></div>
+                            <div id="quiz-question-sub" class="text-sm font-medium text-rose-600 min-h-[20px]"></div>
+                        </div>
+
+                        <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                    </div>
                 </div>
 
                 <div id="quiz-feedback" class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between hidden">
                     <div id="quiz-feedback-text" class="text-sm font-medium"></div>
-                    <button onclick="initQuizQuestion()" class="px-5 py-2.5 rounded-xl bg-rose-600 text-white font-semibold text-sm hover:bg-rose-700 transition shadow-sm flex items-center gap-1.5">
+                    <button onclick="initQuizQuestion()" class="px-5 py-2.5 rounded-xl bg-rose-600 text-white font-semibold text-sm hover:bg-rose-700 transition shadow-sm flex items-center gap-1.5 shrink-0 ml-2">
                         Câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
@@ -479,7 +468,7 @@
             </div>
         </section>
 
-        <!-- ==================== CHẾ ĐỘ 6: TOÀN BỘ DANH SÁCH TỪ VỰNG ==================== -->
+        <!-- ==================== CHẾ ĐỘ 6: TOÀN BỘ DANH SÁCH TỪ VỰNG & CÁCH VIẾT ==================== -->
         <section id="section-list" class="mode-section hidden flex-1 flex flex-col w-full space-y-5">
             <div class="flex flex-col sm:flex-row gap-3 justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-200/80">
                 <div class="relative w-full sm:w-80">
@@ -487,8 +476,10 @@
                     <input type="text" id="search-input" oninput="renderWordList()" placeholder="Tìm chữ Hán, pinyin, nghĩa..." 
                         class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-sm focus:border-rose-500 outline-none">
                 </div>
-                <div class="text-xs text-slate-500 font-medium">
-                    Hiển thị <strong id="list-count" class="text-slate-800">0</strong> từ trong danh sách
+                <div class="flex items-center gap-3 text-xs text-slate-500 font-medium">
+                    <span><i class="fa-solid fa-pen-nib text-rose-500 mr-1"></i>Bấm vào từng chữ Hán để xem cách viết nét trên StrokeOrder</span>
+                    <span>•</span>
+                    <span>Hiển thị <strong id="list-count" class="text-slate-800">0</strong> từ</span>
                 </div>
             </div>
 
@@ -517,7 +508,7 @@
                     <i class="fa-solid fa-circle-check text-emerald-600 text-sm mt-0.5"></i>
                     <div>
                         <strong class="text-emerald-800 block text-xs">Hiện tại đã tích hợp hoàn tất Bài 1 - Bài 10!</strong>
-                        Bao gồm toàn bộ từ vựng, âm Hán Việt, phiên âm, bộ thủ, câu ví dụ và mẫu ngữ pháp từ sách Boya Sơ Cấp 1 chính thức.
+                        Bao gồm toàn bộ từ vựng, âm Hán Việt, phiên âm, bộ thủ, cách viết từng nét từ StrokeOrder.com, câu ví dụ và mẫu ngữ pháp từ sách Boya Sơ Cấp 1.
                     </div>
                 </div>
 
@@ -553,7 +544,7 @@
         </div>
     </div>
 
-    <!-- MODAL QUẢN LÝ TÀI KHOẢN & ĐỒNG BỘ ĐA THIẾT BỊ -->
+    <!-- MODAL QUẢN LÝ TÀI KHOẢN & ĐỒNG BỘ ĐA TÀI KHOẢN -->
     <div id="account-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
@@ -561,7 +552,7 @@
                     <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
                         <i class="fa-solid fa-cloud"></i>
                     </div>
-                    <h3 class="font-bold text-slate-800 text-base">Tài Khoản & Lưu Trữ Đám Mây</h3>
+                    <h3 class="font-bold text-slate-800 text-base">Tài Khoản & Mã Định Danh</h3>
                 </div>
                 <button onclick="closeAccountModal()" class="text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
@@ -569,12 +560,12 @@
             </div>
 
             <div class="py-4 space-y-4 overflow-y-auto flex-1 text-xs text-slate-600">
-                <!-- Trạng thái kết nối đám mây -->
+                <!-- Trạng thái kết nối -->
                 <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl flex items-start gap-2.5">
-                    <i class="fa-solid fa-cloud-arrow-up text-emerald-600 text-base mt-0.5"></i>
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5"></i>
                     <div>
-                        <strong class="text-emerald-800 block text-xs">Cơ sở dữ liệu đang hoạt động trực tuyến</strong>
-                        Tiến độ học (các từ đã thuộc) được tự động lưu lên đám mây ngay khi bạn bấm, không bao giờ mất khi F5 hoặc tắt trình duyệt.
+                        <strong class="text-emerald-800 block text-xs">Hệ thống lưu trữ hoạt động ổn định</strong>
+                        Tiến độ học (các từ đã thuộc) được tự động lưu riêng cho từng tên tài khoản, không bị mất khi nhấn F5 hay tải lại trang.
                     </div>
                 </div>
 
@@ -582,12 +573,12 @@
                 <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-500 font-medium">Mã tài khoản hiện tại:</span>
-                        <span id="modal-active-account" class="font-bold text-rose-600 text-sm">HocVien_Chinh</span>
+                        <span id="modal-active-account" class="font-bold text-rose-600 text-sm">HocVien_01</span>
                     </div>
-                    <div class="flex justify-between items-center text-[11px] text-slate-400 pt-1 border-t border-slate-200/60">
+                    <div class="flex justify-between items-center text-[11px] text-slate-400 pt-1.5 border-t border-slate-200/60">
                         <span>Mã định danh thiết bị:</span>
                         <div class="flex items-center gap-1.5">
-                            <span id="modal-user-id" class="font-mono text-slate-600 truncate max-w-[150px]">Đang kết nối...</span>
+                            <span id="modal-user-id" class="font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">TB-READY</span>
                             <button onclick="copyCloudUserId()" class="text-rose-600 hover:underline font-semibold" title="Sao chép">Copy</button>
                         </div>
                     </div>
@@ -595,12 +586,13 @@
 
                 <!-- Đổi hoặc Đăng nhập tài khoản khác -->
                 <div class="border-t border-slate-100 pt-3 space-y-2">
-                    <label class="font-bold text-slate-800 block">Đăng nhập tài khoản khác hoặc máy khác:</label>
+                    <label class="font-bold text-slate-800 block">Đăng nhập hoặc tạo tài khoản mới:</label>
                     <p class="text-[11px] text-slate-500 leading-relaxed">
-                        Bạn chỉ cần nhập tên tài khoản (ví dụ: <code class="bg-slate-100 px-1 py-0.5 rounded text-rose-600">Minh_Boya</code> hoặc <code class="bg-slate-100 px-1 py-0.5 rounded text-rose-600">HocVien01</code>). Khi mở máy tính khác hoặc điện thoại, nhập đúng tên này để tải lại toàn bộ từ đã thuộc!
+                        Nhập tên tài khoản của bạn (ví dụ: <code class="bg-slate-100 px-1 py-0.5 rounded text-rose-600">Minh_Boya</code> hoặc <code class="bg-slate-100 px-1 py-0.5 rounded text-rose-600">HocVien02</code>). Mỗi tài khoản lưu danh sách từ đã thuộc độc lập với nhau!
                     </p>
                     <div class="flex gap-2 pt-1">
                         <input type="text" id="input-account-name" placeholder="Nhập tên tài khoản..." 
+                            onkeydown="if(event.key==='Enter') switchAccount()"
                             class="flex-1 px-3 py-2 rounded-xl border border-slate-200 font-medium text-xs focus:border-rose-500 outline-none">
                         <button onclick="switchAccount()" class="px-4 py-2 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition shadow-sm">
                             Đăng nhập
@@ -816,7 +808,7 @@
             { id: 716, lesson: 7, hanzi: "当然", pinyin: "dāngrán", pinyinClean: "dangran", hanviet: "Đương nhiên", meaning: "Đương nhiên, tất nhiên", pos: "Phó từ", tip: "Khẳng định điều hiển nhiên.", example: "我当然去！(Tôi đương nhiên sẽ đi rồi!)" },
 
             // --- BÀI 8: 你的电话号码是多少 ---
-            { id: 801, lesson: 8, hanzi: "周末", pinyin: "zhōumò", pinyinClean: "zhoumo", hanviet: "Chu mạt", meaning: "Cuối tuần", pos: "Danh từ", tip: "Chu (tuần) + Mạt (cuối cùng).", example: "周末你有空儿吗？(Cuối tuần cậu có rảnh không?)" },
+            { id: 801, lesson: 8, hanzi: "周末", pinyin: "zhōumò", pinyinClean: "zhoumo", hanviet: "Chu mạt", meaning: "Cuối tuần", pos: "Danh từ", tip: "Chu (tuần) + Mạt (cuối).", example: "周末你有空儿吗？(Cuối tuần cậu có rảnh không?)" },
             { id: 802, lesson: 8, hanzi: "怎么", pinyin: "zěnme", pinyinClean: "zenme", hanviet: "Chẩm ma", meaning: "Như thế nào, bằng cách nào", pos: "Đại từ", tip: "Dùng để hỏi cách thức, phương thức di chuyển.", example: "去你们学校怎么走？(Đi đến trường bạn thì đi thế nào?)" },
             { id: 803, lesson: 8, hanzi: "走", pinyin: "zǒu", pinyinClean: "zou", hanviet: "Tẩu", meaning: "Đi, đi lại", pos: "Động từ", tip: "Hình người đang bước chân tẩu thoát.", example: "走吧！(Đi thôi nào!)" },
             { id: 804, lesson: 8, hanzi: "公共汽车", pinyin: "gōnggòng qìchē", pinyinClean: "gonggong qiche", hanviet: "Công cộng khí xa", meaning: "Xe buýt", pos: "Danh từ", tip: "Phương tiện xe hơi dùng chung công cộng.", example: "坐公共汽车 (Đi xe buýt)" },
@@ -870,52 +862,409 @@
         ];
 
         // =========================================================================
-        // NGÂN HÀNG BÀI TẬP GHÉP CÂU NGỮ PHÁP (GRAMMAR EXERCISES)
+        // HỆ THỐNG NGỮ PHÁP ĐẦY ĐỦ CHO TỪNG BÀI (BÀI 1 - BÀI 10)
+        // =========================================================================
+        const BOYA_GRAMMAR_DATA = [
+            {
+                lesson: 1,
+                title: "Bài 1: 你好 (Xin chào)",
+                points: [
+                    {
+                        title: "1. Câu hỏi Có/Không với trợ từ 吗 (ma)",
+                        formula: "Câu trần thuật + 吗？",
+                        desc: "Thêm trợ từ nghi vấn 吗 vào cuối câu khẳng định để tạo thành câu hỏi Có/Không.",
+                        example: "你好吗？ (Nǐ hǎo ma? - Bạn khỏe không?) | 你是老师吗？ (Nǐ shì lǎoshī ma? - Bạn là giáo viên à?)"
+                    },
+                    {
+                        title: "2. Câu phán đoán chữ 是 (shì) & Phó từ phủ định 不 (bù)",
+                        formula: "Chủ ngữ + 是 / 不是 + Danh từ",
+                        desc: "是 dùng để khẳng định danh tính/nghề nghiệp. Phủ định đặt 不 trước 是 (lưu ý biến điệu đọc là bú shì).",
+                        example: "我是学生。 (Wǒ shì xuésheng. - Tôi là sinh viên.) | 我不是老师。 (Wǒ bú shì lǎoshī. - Tôi không phải giáo viên.)"
+                    },
+                    {
+                        title: "3. Mẫu câu hỏi tên với 什么 (shénme)",
+                        formula: "Chủ ngữ + 叫 + 什么名字？",
+                        desc: "Đại từ nghi vấn 什么 đứng trước danh từ 名字 để hỏi tên gọi; cuối câu KHÔNG dùng 吗.",
+                        example: "你叫什么名字？ (Nǐ jiào shénme míngzi? - Bạn tên là gì?) | 我叫大卫。 (Tôi tên là David.)"
+                    }
+                ]
+            },
+            {
+                lesson: 2,
+                title: "Bài 2: 你是哪国人 (Bạn là người nước nào)",
+                points: [
+                    {
+                        title: "1. Đại từ nghi vấn 哪 (nǎ) hỏi quốc tịch",
+                        formula: "Chủ ngữ + 是 + 哪国人？",
+                        desc: "哪 mang nghĩa 'nào', kết hợp với 国人 để hỏi quốc tịch.",
+                        example: "你是哪国人？ (Nǐ shì nǎ guó rén? - Bạn là người nước nào?) | 我是中国人。 (Tôi là người Trung Quốc.)"
+                    },
+                    {
+                        title: "2. Trợ từ ngữ khí 呢 (ne) tạo câu hỏi tỉnh lược",
+                        formula: "Danh từ / Đại từ + 呢？",
+                        desc: "Dùng để hỏi ngược lại dựa trên ngữ cảnh vế trước ('Thế còn... thì sao?').",
+                        example: "我是美国人，你呢？ (Wǒ shì Měiguó rén, nǐ ne? - Tôi là người Mỹ, còn bạn thì sao?)"
+                    },
+                    {
+                        title: "3. Phó từ 也 (yě) và 很 (hěn)",
+                        formula: "Chủ ngữ + 也 + Động từ / Chủ ngữ + (也) + 很 + Tính từ",
+                        desc: "也 nghĩa là 'cũng' (luôn đứng sau chủ ngữ, trước động từ/phó từ khác). 很 đứng trước tính từ.",
+                        example: "我也很高兴。 (Wǒ yě hěn gāoxìng. - Tôi cũng rất vui.) | 认识你很高兴。 (Rất vui được quen biết bạn.)"
+                    },
+                    {
+                        title: "4. Hậu tố số nhiều 们 (men)",
+                        formula: "Đại từ / Danh từ chỉ người + 们",
+                        desc: "Biểu thị số nhiều cho người (我们, 你们, 他们, 同学们).",
+                        example: "同学们好！ (Tóngxuémen hǎo! - Chào các bạn học sinh!)"
+                    }
+                ]
+            },
+            {
+                lesson: 3,
+                title: "Bài 3: 那是谁的书 (Đó là sách của ai)",
+                points: [
+                    {
+                        title: "1. Đại từ chỉ thị 这 (zhè) và 那 (nà)",
+                        formula: "这 / 那 + 是 + Danh từ",
+                        desc: "这 chỉ người/vật ở khoảng cách gần ('đây, này'), 那 chỉ người/vật ở xa ('đó, kia').",
+                        example: "这是词典，那是杂志。 (Zhè shì cídiǎn, nà shì zázhì. - Đây là từ điển, kia là tạp chí.)"
+                    },
+                    {
+                        title: "2. Đại từ nghi vấn 谁 (shéi) và Trợ từ kết cấu 的 (de)",
+                        formula: "Chủ sở hữu / 谁 + 的 + Danh từ",
+                        desc: "谁 dùng để hỏi người ('ai'); 的 nối giữa chủ sở hữu và vật sở hữu ('của').",
+                        example: "那是谁的书？ (Nà shì shéi de shū? - Kia là sách của ai?) | 这是我的课本。 (Đây là giáo trình của tôi.)"
+                    },
+                    {
+                        title: "3. Liên từ giải thích 就是 (jiù shì)",
+                        formula: "A + 就是 + B",
+                        desc: "Dùng để định nghĩa, giải thích rõ nghĩa hơn cho danh từ A đứng trước ('chính là, tức là').",
+                        example: "《汉日词典》就是汉语、日语词典。 (Từ điển Hán-Nhật chính là từ điển tiếng Hán và tiếng Nhật.)"
+                    }
+                ]
+            },
+            {
+                lesson: 4,
+                title: "Bài 4: 图书馆在哪儿 (Thư viện ở đâu)",
+                points: [
+                    {
+                        title: "1. Động từ 在 (zài) và Đại từ nghi vấn 哪儿 (nǎr)",
+                        formula: "Đối tượng + 在 + 哪儿？ / Đối tượng + 在 + Nơi chốn",
+                        desc: "Dùng để hỏi và trả lời vị trí của người hoặc địa điểm (cuối câu hỏi KHÔNG dùng 吗).",
+                        example: "图书馆在哪儿？ (Túshūguǎn zài nǎr? - Thư viện ở đâu?) | 图书馆在那儿。 (Thư viện ở đằng kia.)"
+                    },
+                    {
+                        title: "2. Phương vị từ định vị (北边, 左边, 右边)",
+                        formula: "Điểm mốc B + 的 + Phương vị từ (北边 / 左边 / 右边)",
+                        desc: "Trật tự tiếng Trung ngược với tiếng Việt: đặt địa điểm làm mốc trước rồi mới đến phương hướng.",
+                        example: "宿舍楼的北边 (Phía bắc của tòa ký túc xá) | 右边的楼是图书馆。 (Tòa nhà bên phải là thư viện.)"
+                    },
+                    {
+                        title: "3. Mẫu câu đáp lại lời cảm ơn & xin lỗi",
+                        formula: "谢谢 ➔ 不用谢 | 对不起 ➔ 没关系",
+                        desc: "Cặp hội thoại giao tiếp lịch sự chuẩn trong tiếng Trung.",
+                        example: "请问，图书馆在哪儿？ - 我不知道。 - 没关系。 (Xin hỏi thư viện ở đâu? - Tôi không biết. - Không sao.)"
+                    }
+                ]
+            },
+            {
+                lesson: 5,
+                title: "Bài 5: 在北京大学的东边 (Ở phía đông Đại học Bắc Kinh)",
+                points: [
+                    {
+                        title: "1. Câu chữ 在 biểu thị vị trí tương đối",
+                        formula: "Địa điểm A + 在 + Địa điểm B + (的) + Phương vị",
+                        desc: "Miêu tả địa điểm A nằm ở hướng nào so với điểm mốc B.",
+                        example: "清华大学在北京大学的东边。 (ĐH Thanh Hoa ở phía đông của ĐH Bắc Kinh.) | 卫生间在教室旁边。"
+                    },
+                    {
+                        title: "2. Câu chữ 是 chỉ sự tồn tại ở phương vị",
+                        formula: "Phương vị / Nơi chốn + 是 + Đối tượng",
+                        desc: "Dùng khi xác định công trình/địa điểm nằm ở vị trí phương hướng đã biết.",
+                        example: "教室的旁边是卫生间。 (Bên cạnh phòng học là nhà vệ sinh.)"
+                    },
+                    {
+                        title: "3. Cụm chỉ thời điểm ……的时候 & Câu mời 欢迎",
+                        formula: "Động từ / Tính từ + 的时候 | 欢迎 + Đối tượng + Hành động",
+                        desc: "……的时候 nghĩa là 'lúc / khi...'; 欢迎 dùng để chào mừng ai đó làm gì.",
+                        example: "有空儿的时候来玩儿！ (Lúc có thời gian rảnh qua chơi nhé!) | 欢迎你去玩儿！ (Hoan nghênh bạn tới chơi!)"
+                    }
+                ]
+            },
+            {
+                lesson: 6,
+                title: "Bài 6: 现在几点 (Bây giờ mấy giờ)",
+                points: [
+                    {
+                        title: "1. Quy tắc nói giờ giấc (点, 分, 半, 刻, 差)",
+                        formula: "Giờ (点) + Phút (分) | 半 = 30p | 刻 = 15p | 差 + Phút + Giờ = Giờ kém",
+                        desc: "Cách diễn đạt thời gian chính xác trên đồng hồ.",
+                        example: "现在八点五十分 (8:50) | 十点半 (10:30) | 差一刻六点 (5:45 - 6 giờ kém 15)"
+                    },
+                    {
+                        title: "2. Vị trí trạng ngữ chỉ thời gian trong câu",
+                        formula: "Chủ ngữ + Thời gian + Động từ (hoặc Thời gian + Chủ ngữ + Động từ)",
+                        desc: "Mốc thời gian hành động PHẢI đứng trước động từ chính.",
+                        example: "讲座六点开始。 (Buổi tọa đàm bắt đầu lúc 6 giờ.) | 十点半下课。 (10 rưỡi tan học.)"
+                    },
+                    {
+                        title: "3. Cấu trúc cảm thán 太……了",
+                        formula: "太 + Tính từ + 了",
+                        desc: "Biểu thị mức độ cao vượt mong đợi ('quá... rồi').",
+                        example: "太早了！ (Tài zǎo le! - Sớm quá rồi!)"
+                    }
+                ]
+            },
+            {
+                lesson: 7,
+                title: "Bài 7: 明天你有课吗 (Ngày mai bạn có tiết học không)",
+                points: [
+                    {
+                        title: "1. Động từ 有 (yǒu) và dạng phủ định 没有 (méiyǒu)",
+                        formula: "Chủ ngữ + 有 / 没有 + Tân ngữ",
+                        desc: "Biểu thị sở hữu hoặc tồn tại. Phủ định của 有 BẮT BUỘC dùng 没有 (tuyệt đối không dùng 不有).",
+                        example: "明天上午我有课。 (Sáng mai tôi có tiết.) | 我没有自行车。 (Tôi không có xe đạp.)"
+                    },
+                    {
+                        title: "2. Trợ từ ngữ khí 吧 (ba) & Liên từ 可是 (kěshì)",
+                        formula: "Mệnh đề + 吧？ | Vế 1，可是 + Vế 2",
+                        desc: "吧 dùng ở cuối câu để suy đoán/xác nhận ('đúng không, nhé'); 可是 biểu thị chuyển ý đối lập ('nhưng').",
+                        example: "你有自行车吧？ (Bạn có xe đạp đúng không?) | 可是我没有时间。 (Nhưng tôi không có thời gian.)"
+                    },
+                    {
+                        title: "3. Câu liên vị chỉ mục đích hành động",
+                        formula: "Chủ ngữ + 去 / 来 + Nơi chốn + Động từ 2",
+                        desc: "Đi hoặc đến một địa điểm nào đó để thực hiện mục đích phía sau.",
+                        example: "我们去学校电影院看电影。 (Chúng tôi đi rạp chiếu phim của trường xem phim.)"
+                    }
+                ]
+            },
+            {
+                lesson: 8,
+                title: "Bài 8: 你的电话号码是多少 (Số điện thoại của bạn là bao nhiêu)",
+                points: [
+                    {
+                        title: "1. Đại từ nghi vấn 怎么 (zěnme) hỏi phương thức",
+                        formula: "Điểm đến + 怎么 + Động từ (走 / 去)？",
+                        desc: "Dùng để hỏi cách thức di chuyển hoặc cách làm việc gì đó ('đi thế nào, làm như thế nào').",
+                        example: "去你们学校怎么走？ (Đi đến trường của bạn thì đi thế nào?)"
+                    },
+                    {
+                        title: "2. Phó từ 都 (dōu) và 就 (jiù)",
+                        formula: "Số nhiều + 都 + V | Thời gian ngắn + 就 + V",
+                        desc: "都 chỉ sự bao gồm toàn bộ ('đều'); 就 nhấn mạnh thời gian diễn ra nhanh chóng ('thì, là đã').",
+                        example: "21路和106路都到。 (Tuyến 21 và 106 đều đến.) | 十五分钟就到。 (Chỉ 15 phút là tới nơi.)"
+                    },
+                    {
+                        title: "3. Hỏi mã số / số điện thoại với 多少 (duōshao)",
+                        formula: "……号码 + 是 + 多少？",
+                        desc: "Dùng 多少 để hỏi chuỗi số; lưu ý trong dãy số điện thoại/số phòng, số 1 đọc là 'yāo'.",
+                        example: "你的电话号码是多少？ (Số điện thoại của bạn là bao nhiêu?)"
+                    }
+                ]
+            },
+            {
+                lesson: 9,
+                title: "Bài 9: 多少钱一瓶 (Bao nhiêu tiền một chai)",
+                points: [
+                    {
+                        title: "1. Cụm Số từ + Lượng từ + Danh từ",
+                        formula: "Số từ + Lượng từ (瓶 / 本 / 个) + Danh từ",
+                        desc: "Giữa số đếm và danh từ bắt buộc phải có lượng từ phù hợp (nước/bia dùng 瓶, sách dùng 本).",
+                        example: "两瓶啤酒 (Hai chai bia) | 一本书 (Một cuốn sách) | 三瓶水 (Ba chai nước)"
+                    },
+                    {
+                        title: "2. Phân biệt 两 (liǎng) và 二 (èr)",
+                        formula: "两 + Lượng từ + Danh từ",
+                        desc: "Khi đứng trực tiếp trước lượng từ để chỉ số lượng 2, BẮT BUỘC dùng 两, không dùng 二.",
+                        example: "两瓶水 (Hai chai nước - KHÔNG nói 二瓶水)"
+                    },
+                    {
+                        title: "3. Hỏi giá tiền và tính tổng với 一共 (yígòng)",
+                        formula: "多少钱 + 一 + Lượng từ？ | 一共 + Số tiền (块 / 毛)",
+                        desc: "1 块 (đồng/tệ) = 10 毛 (hào). 一共 dùng để cộng tổng tất cả các khoản.",
+                        example: "多少钱一瓶？ (Bao nhiêu tiền một chai?) | 一共九块四毛。 (Tổng cộng 9 tệ 4 hào.)"
+                    }
+                ]
+            },
+            {
+                lesson: 10,
+                title: "Bài 10: 你家有几口人 (Gia đình bạn có mấy người)",
+                points: [
+                    {
+                        title: "1. Hỏi số lượng ít (< 10) với 几 (jǐ) & Lượng từ 口 (kǒu)",
+                        formula: "Chủ ngữ + 有 + 几 + Lượng từ + Danh từ？",
+                        desc: "几 dùng hỏi số lượng ước chừng dưới 10 và luôn đi kèm lượng từ. Đếm nhân khẩu gia đình dùng lượng từ 口.",
+                        example: "你家有几口人？ (Gia đình bạn có mấy người?) | 我家有五口人。 (Nhà tôi có 5 người.)"
+                    },
+                    {
+                        title: "2. Lượng từ 条 (tiáo) cho vật dài & thú cưng",
+                        formula: "Số từ + 条 + 狗 / 鱼 / 路",
+                        desc: "条 dùng cho các vật có hình dáng thon dài hoặc động vật như chó, cá.",
+                        example: "我家有一条狗。 (Nhà tôi có một chú chó.)"
+                    },
+                    {
+                        title: "3. Phó từ giới hạn 只 (zhǐ) và bổ sung 还 (hái)",
+                        formula: "Chủ ngữ + 只 + Động từ | Chủ ngữ + 还 + 有 + Tân ngữ",
+                        desc: "只 nghĩa là 'chỉ' (giới hạn phạm vi); 还 nghĩa là 'còn, vẫn còn' (bổ sung thêm đối tượng).",
+                        example: "一般只有一个孩子。 (Thường chỉ có một đứa con.) | 还有一条狗。 (Còn có thêm một chú chó.)"
+                    }
+                ]
+            }
+        ];
+
+        // =========================================================================
+        // NGÂN HÀNG BÀI TẬP GHÉP CÂU NGỮ PHÁP ĐẦY ĐỦ BÀI 1 - 10
         // =========================================================================
         const GRAMMAR_EXERCISES = [
             {
+                lesson: 1,
+                prompt: 'Ghép câu: "Bạn có khỏe không?"',
+                target: "你 好 吗 ？",
+                words: ["你", "好", "吗", "？", "我", "是", "不"],
+                explanation: "Thêm trợ từ nghi vấn 吗 vào cuối câu trần thuật 你好 để hỏi Có/Không."
+            },
+            {
+                lesson: 1,
+                prompt: 'Ghép câu: "Tôi không phải là giáo viên."',
+                target: "我 不 是 老师 。",
+                words: ["我", "不", "是", "老师", "。", "学生", "吗", "你"],
+                explanation: "Phủ định của 是 là 不是 (bú shì)."
+            },
+            {
+                lesson: 2,
+                prompt: 'Ghép câu: "Bạn là người nước nào?"',
+                target: "你 是 哪 国 人 ？",
+                words: ["你", "是", "哪", "国", "人", "？", "那", "什么", "呢"],
+                explanation: "Dùng đại từ nghi vấn 哪 (nào) ghép với 国人 để hỏi quốc tịch."
+            },
+            {
+                lesson: 2,
+                prompt: 'Ghép câu: "Rất vui được quen biết bạn."',
+                target: "认识 你 很 高兴 。",
+                words: ["认识", "你", "很", "高兴", "。", "也", "我", "是"],
+                explanation: "Phó từ 很 đứng trước tính từ 高兴."
+            },
+            {
+                lesson: 3,
+                prompt: 'Ghép câu: "Kia là sách của ai?"',
+                target: "那 是 谁 的 书 ？",
+                words: ["那", "是", "谁", "的", "书", "？", "这", "什么", "词典"],
+                explanation: "Đại từ chỉ thị xa 那 + 是 + 谁的书 (Sách của ai)."
+            },
+            {
+                lesson: 3,
+                prompt: 'Ghép câu: "Đây là tạp chí âm nhạc."',
+                target: "这 是 音乐 杂志 。",
+                words: ["这", "是", "音乐", "杂志", "。", "那", "课本", "的"],
+                explanation: "Đại từ chỉ gần 这 + 是 + 音乐杂志 (Tạp chí âm nhạc)."
+            },
+            {
+                lesson: 4,
                 prompt: 'Ghép câu: "Thư viện ở đâu?"',
                 target: "图书馆 在 哪儿 ？",
                 words: ["图书馆", "在", "哪儿", "？", "是", "那儿", "的"],
-                explanation: "Cấu trúc hỏi địa điểm: [Nơi chốn] + 在 + 哪儿？ (Lưu ý: Không dùng 吗 ở cuối câu nghi vấn với 哪儿)."
+                explanation: "Cấu trúc hỏi địa điểm: [Nơi chốn] + 在 + 哪儿？ (Không dùng 吗)."
             },
             {
-                prompt: 'Ghép câu: "Thư viện ở phía bắc ký túc xá."',
-                target: "图书馆 在 宿舍楼 的 北边 。",
-                words: ["图书馆", "在", "宿舍楼", "的", "北边", "。", "是", "东边", "教学楼"],
-                explanation: "Cấu trúc: Địa điểm A (图书馆) + 在 + Địa điểm B (宿舍楼) + 的 + Phương vị (北边)."
+                lesson: 4,
+                prompt: 'Ghép câu: "Tòa nhà bên phải là thư viện."',
+                target: "右边 的 楼 是 图书馆 。",
+                words: ["右边", "的", "楼", "是", "图书馆", "。", "左边", "在", "北边"],
+                explanation: "Định ngữ phương vị 右边的楼 (Tòa nhà bên phải) làm chủ ngữ."
             },
             {
-                prompt: 'Ghép câu: "Đại học Thanh Hoa ở phía đông của Đại học Bắc Kinh."',
+                lesson: 5,
+                prompt: 'Ghép câu: "Đại học Thanh Hoa ở phía đông ĐH Bắc Kinh."',
                 target: "清华大学 在 北京大学 的 东边 。",
                 words: ["清华大学", "在", "北京大学", "的", "东边", "。", "西边", "北边", "是"],
-                explanation: "Tiếng Hán đặt điểm mốc (Bắc Đại) trước rồi mới đến phương vị (phía đông 東邊)."
+                explanation: "Cấu trúc: Địa điểm A + 在 + Điểm mốc B + 的 + Phương vị."
             },
             {
-                prompt: 'Ghép câu: "Phía bắc của ký túc xá là thư viện."',
-                target: "宿舍楼 的 北边 是 图书馆 。",
-                words: ["宿舍楼", "的", "北边", "是", "图书馆", "。", "在", "教学楼"],
-                explanation: "Cấu trúc câu chữ 是 chỉ sự tồn tại: [Phương vị / Vị trí] + 是 + [Sự vật]."
+                lesson: 5,
+                prompt: 'Ghép câu: "Bên cạnh phòng học là nhà vệ sinh."',
+                target: "教室 的 旁边 是 卫生间 。",
+                words: ["教室", "的", "旁边", "是", "卫生间", "。", "在", "哪儿"],
+                explanation: "Câu chữ 是 chỉ sự tồn tại: [Nơi chốn/Phương vị] + 是 + [Đối tượng]."
             },
             {
-                prompt: 'Ghép câu: "Nhà vệ sinh ở bên cạnh lớp học."',
-                target: "卫生间 在 教室 的 旁边 。",
-                words: ["卫生间", "在", "教室", "的", "旁边", "。", "哪儿", "是"],
-                explanation: "旁边 (pángbiān) là danh từ phương vị chỉ 'bên cạnh'."
+                lesson: 6,
+                prompt: 'Ghép câu: "Bây giờ là mấy giờ?"',
+                target: "现在 几 点 ？",
+                words: ["现在", "几", "点", "？", "多少", "半", "分"],
+                explanation: "Hỏi giờ trên đồng hồ dùng 几点？"
             },
             {
-                prompt: 'Ghép câu: "Nhà bạn có mấy người?"',
-                target: "你家 有 几 口 人 ？",
-                words: ["你家", "有", "几", "口", "人", "？", "多少", "个", "吗"],
-                explanation: "Hỏi số nhân khẩu trong gia đình dùng lượng từ 口 (kǒu), dưới 10 người dùng 几."
+                lesson: 6,
+                prompt: 'Ghép câu: "Buổi tọa đàm bắt đầu lúc 6 giờ."',
+                target: "讲座 六 点 开始 。",
+                words: ["讲座", "六", "点", "开始", "。", "上课", "半", "在"],
+                explanation: "Trạng ngữ chỉ thời gian (六点) đứng trước động từ chính (开始)."
+            },
+            {
+                lesson: 7,
+                prompt: 'Ghép câu: "Ngày mai buổi sáng tôi có tiết học."',
+                target: "明天 上午 我 有 课 。",
+                words: ["明天", "上午", "我", "有", "课", "。", "没有", "下午", "吗"],
+                explanation: "Thời gian 明天上午 đứng đầu câu hoặc sau chủ ngữ, trước động từ 有."
+            },
+            {
+                lesson: 7,
+                prompt: 'Ghép câu: "Nhưng tôi không có xe đạp."',
+                target: "可是 我 没有 自行车 。",
+                words: ["可是", "我", "没有", "自行车", "。", "不", "有", "钥匙"],
+                explanation: "Liên từ 可是 đứng đầu vế chuyển ý; phủ định của 有 dùng 没有."
+            },
+            {
+                lesson: 8,
+                prompt: 'Ghép câu: "Đi đến trường bạn thì đi thế nào?"',
+                target: "去 你们 学校 怎么 走 ？",
+                words: ["去", "你们", "学校", "怎么", "走", "？", "多少", "到", "骑"],
+                explanation: "Đại từ nghi vấn 怎么 đứng trước động từ 走 để hỏi cách thức đi lại."
+            },
+            {
+                lesson: 8,
+                prompt: 'Ghép câu: "Số điện thoại của bạn là bao nhiêu?"',
+                target: "你 的 电话 号码 是 多少 ？",
+                words: ["你", "的", "电话", "号码", "是", "多少", "？", "几", "手机"],
+                explanation: "Hỏi mã số, số điện thoại dùng đại từ nghi vấn 多少."
+            },
+            {
+                lesson: 9,
+                prompt: 'Ghép câu: "Tôi mua hai chai bia."',
+                target: "我 买 两 瓶 啤酒 。",
+                words: ["我", "买", "两", "瓶", "啤酒", "。", "二", "本", "水"],
+                explanation: "Trước lượng từ 瓶 chỉ số lượng 2 bắt buộc dùng 两, không dùng 二."
+            },
+            {
+                lesson: 9,
+                prompt: 'Ghép câu: "Tổng cộng hết bao nhiêu tiền?"',
+                target: "一共 多少 钱 ？",
+                words: ["一共", "多少", "钱", "？", "几", "块", "给"],
+                explanation: "一共 (tổng cộng) + 多少钱 (bao nhiêu tiền)."
+            },
+            {
+                lesson: 10,
+                prompt: 'Ghép câu: "Gia đình bạn có mấy người?"',
+                target: "你 家 有 几 口 人 ？",
+                words: ["你", "家", "有", "几", "口", "人", "？", "多少", "条", "只"],
+                explanation: "Hỏi nhân khẩu gia đình dùng lượng từ 口 (kǒu), dưới 10 người dùng 几."
+            },
+            {
+                lesson: 10,
+                prompt: 'Ghép câu: "Nhà tôi còn có một chú chó."',
+                target: "我 家 还 有 一 条 狗 。",
+                words: ["我", "家", "还", "有", "一", "条", "狗", "。", "只", "口"],
+                explanation: "Phó từ 还 (còn có thêm) + 有 + 一条狗 (lượng từ 条 cho chó)."
             }
         ];
 
         let currentGrammarIndex = 0;
+        let activeGrammarExercises = [...GRAMMAR_EXERCISES];
         let selectedSentenceTokens = [];
 
         // =========================================================================
-        // HỆ THỐNG LƯU TRỮ AN TOÀN (SAFE STORAGE CHO MÔI TRƯỜNG IFRAME / MOBILE)
+        // HỆ THỐNG LƯU TRỮ AN TOÀN & MÃ ĐỊNH DANH THIẾT BỊ TỨC THÌ
         // =========================================================================
         const memoryStorage = {};
         function safeGetItem(key) {
@@ -923,9 +1272,7 @@
                 if (typeof window !== 'undefined' && window.localStorage) {
                     return window.localStorage.getItem(key);
                 }
-            } catch (e) {
-                console.warn('Bộ nhớ cục bộ bị giới hạn, sử dụng bộ nhớ tạm.');
-            }
+            } catch (e) {}
             return memoryStorage[key] || null;
         }
 
@@ -935,9 +1282,7 @@
                     window.localStorage.setItem(key, value);
                     return;
                 }
-            } catch (e) {
-                console.warn('Bộ nhớ cục bộ bị giới hạn, sử dụng bộ nhớ tạm.');
-            }
+            } catch (e) {}
             memoryStorage[key] = value;
         }
 
@@ -950,8 +1295,19 @@
             delete memoryStorage[key];
         }
 
+        // Tạo mã định danh thiết bị độc lập ngay lập tức (không bao giờ treo "Đang kết nối...")
+        function getOrCreateDeviceId() {
+            let devId = safeGetItem('boya_local_device_id');
+            if (!devId) {
+                const randPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+                devId = 'TB-' + randPart;
+                safeSetItem('boya_local_device_id', devId);
+            }
+            return devId;
+        }
+
         // =========================================================================
-        // KHỞI TẠO CƠ SỞ DỮ LIỆU ĐÁM MÂY & ĐỒNG BỘ ĐA TÀI KHOẢN
+        // QUẢN LÝ TÀI KHOẢN & ĐỒNG BỘ (LOCAL-FIRST + OPTIONAL FIREBASE)
         // =========================================================================
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'boya-vocab-app';
         let db = null;
@@ -961,10 +1317,37 @@
 
         let currentAccountId = safeGetItem('boya_active_account_id') || 'HocVien_01';
 
-        // Khởi tạo kết nối đám mây an toàn
-        async function setupCloudDatabase() {
+        function getAccountStorageKey(accId) {
+            return `boya_mastered_acc_${accId}`;
+        }
+
+        function loadMasteredForAccount(accId) {
             try {
-                if (typeof __firebase_config !== 'undefined') {
+                const savedAcc = safeGetItem(getAccountStorageKey(accId));
+                if (savedAcc) {
+                    return JSON.parse(savedAcc);
+                }
+                if (accId === 'HocVien_01') {
+                    const legacy = safeGetItem('boya_mastered_ids_v2');
+                    if (legacy) return JSON.parse(legacy);
+                }
+            } catch (e) {}
+            return [];
+        }
+
+        function saveMasteredForAccount(accId, ids) {
+            safeSetItem(getAccountStorageKey(accId), JSON.stringify(ids));
+            if (accId === 'HocVien_01') {
+                safeSetItem('boya_mastered_ids_v2', JSON.stringify(ids));
+            }
+        }
+
+        async function setupCloudDatabase() {
+            // Luôn hiển thị mã định danh thiết bị ngay lập tức
+            updateAccountDisplayUI();
+
+            try {
+                if (typeof __firebase_config !== 'undefined' && __firebase_config) {
                     const firebaseConfig = JSON.parse(__firebase_config);
                     const app = initializeApp(firebaseConfig);
                     db = getFirestore(app);
@@ -976,54 +1359,35 @@
                         await signInAnonymously(auth);
                     }
                     currentUser = auth.currentUser;
-
-                    const userIdEl = document.getElementById('modal-user-id');
-                    if (userIdEl && currentUser) {
-                        userIdEl.innerText = currentUser.uid;
-                        userIdEl.title = currentUser.uid;
-                    }
-
-                    // Bắt đầu lắng nghe và đồng bộ dữ liệu tài khoản
+                    updateAccountDisplayUI();
                     connectAccountListener(currentAccountId);
-                } else {
-                    console.log("Môi trường không có cấu hình đám mây, sử dụng bộ nhớ tạm.");
-                    setCloudDotStatus(false);
                 }
             } catch (err) {
-                console.error("Lỗi xác thực đám mây:", err);
-                try {
-                    if (auth) {
-                        await signInAnonymously(auth);
-                        currentUser = auth.currentUser;
-                        connectAccountListener(currentAccountId);
-                    }
-                } catch (e) {
-                    setCloudDotStatus(false);
-                }
-            }
-        }
-
-        function setCloudDotStatus(isConnected) {
-            const dot = document.getElementById('cloud-status-dot');
-            if (dot) {
-                dot.className = isConnected 
-                    ? "w-2 h-2 rounded-full bg-emerald-500 animate-pulse" 
-                    : "w-2 h-2 rounded-full bg-slate-300";
+                console.warn("Sử dụng chế độ lưu trữ cục bộ theo tài khoản:", err);
             }
         }
 
         function updateAccountDisplayUI() {
             const headerAccount = document.getElementById('header-account-name');
             const modalAccount = document.getElementById('modal-active-account');
+            const userIdEl = document.getElementById('modal-user-id');
+            
             if (headerAccount) headerAccount.innerText = currentAccountId;
             if (modalAccount) modalAccount.innerText = currentAccountId;
+            if (userIdEl) {
+                const displayId = (currentUser && currentUser.uid) ? currentUser.uid : getOrCreateDeviceId();
+                userIdEl.innerText = displayId;
+                userIdEl.title = displayId;
+            }
         }
 
-        // Lắng nghe dữ liệu thời gian thực cho tài khoản đang chọn
         function connectAccountListener(accountId) {
-            currentAccountId = accountId.trim().replace(/[^a-zA-Z0-9_-]/g, '_') || 'HocVien_01';
+            currentAccountId = accountId.trim().replace(/[^a-zA-Z0-9_À-ɏẠ-ỹ-]/g, '_') || 'HocVien_01';
             safeSetItem('boya_active_account_id', currentAccountId);
+            masteredIds = loadMasteredForAccount(currentAccountId);
             updateAccountDisplayUI();
+            updateMasteredProgress();
+            refreshCurrentActiveTab();
 
             if (!db || !currentUser) return;
 
@@ -1038,33 +1402,31 @@
                     const data = docSnap.data();
                     if (Array.isArray(data.masteredIds)) {
                         masteredIds = data.masteredIds;
+                        saveMasteredForAccount(currentAccountId, masteredIds);
                         updateMasteredProgress();
                         refreshCurrentActiveTab();
                     }
                 } else {
-                    // Nếu tài khoản mới chưa có trên đám mây, khởi tạo với tiến độ hiện tại
                     saveProgressToCloud();
                 }
-                setCloudDotStatus(true);
             }, (error) => {
-                console.error("Lỗi đồng bộ dữ liệu tài khoản:", error);
-                setCloudDotStatus(false);
+                console.warn("Đồng bộ nền tạm gián đoạn, dữ liệu vẫn an toàn trên máy:", error);
             });
         }
 
-        // Lưu tiến độ học vào cơ sở dữ liệu đám mây
         async function saveProgressToCloud() {
+            saveMasteredForAccount(currentAccountId, masteredIds);
             if (!db || !currentUser) return;
             try {
                 const accountDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'user_accounts', currentAccountId);
                 await setDoc(accountDocRef, {
                     accountId: currentAccountId,
                     masteredIds: masteredIds,
-                    lastDeviceId: currentUser.uid,
+                    lastDeviceId: getOrCreateDeviceId(),
                     updatedAt: new Date().toISOString()
                 }, { merge: true });
             } catch (err) {
-                console.error("Lỗi khi ghi dữ liệu lên đám mây:", err);
+                console.warn("Lỗi ghi đám mây:", err);
             }
         }
 
@@ -1079,16 +1441,12 @@
             connectAccountListener(newName);
             input.value = '';
             closeAccountModal();
-            showToast(`Đã chuyển sang tài khoản: "${newName}"`, "success");
+            showToast(`Đã đăng nhập tài khoản: "${currentAccountId}"`, "success");
         }
 
         function openAccountModal() {
             document.getElementById('account-modal').classList.remove('hidden');
             updateAccountDisplayUI();
-            if (currentUser) {
-                const userIdEl = document.getElementById('modal-user-id');
-                if (userIdEl) userIdEl.innerText = currentUser.uid;
-            }
         }
 
         function closeAccountModal() {
@@ -1096,19 +1454,28 @@
         }
 
         function copyCloudUserId() {
-            if (currentUser && currentUser.uid) {
-                const textArea = document.createElement("textarea");
-                textArea.value = currentUser.uid;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    showToast("Đã sao chép mã định danh thiết bị!", "success");
-                } catch (e) {
-                    showToast("Không thể sao chép tự động", "warning");
-                }
-                document.body.removeChild(textArea);
+            const displayId = (currentUser && currentUser.uid) ? currentUser.uid : getOrCreateDeviceId();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(displayId).then(() => {
+                    showToast(`Đã sao chép mã định danh: ${displayId}`, "success");
+                }).catch(() => fallbackCopyText(displayId));
+            } else {
+                fallbackCopyText(displayId);
             }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`Đã sao chép mã định danh: ${text}`, "success");
+            } catch (e) {
+                showToast("Không thể sao chép tự động", "warning");
+            }
+            document.body.removeChild(textArea);
         }
 
         // =========================================================================
@@ -1232,13 +1599,7 @@
             VOCAB_DATA = [...DEFAULT_BOYA_DATA];
         }
 
-        let masteredIds = [];
-        try {
-            const savedMastered = safeGetItem('boya_mastered_ids_v2');
-            masteredIds = savedMastered ? JSON.parse(savedMastered) : [];
-        } catch(e) {
-            masteredIds = [];
-        }
+        let masteredIds = loadMasteredForAccount(currentAccountId);
 
         let currentLessonFilter = 'all';
         let activeVocabList = [...VOCAB_DATA];
@@ -1247,10 +1608,14 @@
         let isCardFlipped = false;
         let autoPlayAudio = true;
 
+        // Trạng thái Trắc nghiệm (Không lặp câu & Tắt/Bật Pinyin)
         let currentQuizWord = null;
         let quizScore = 0;
         let quizStreak = 0;
         let isQuizAnswered = false;
+        let quizNoRepeat = true;
+        let quizShowPinyin = false; // Mặc định tắt Pinyin theo yêu cầu
+        let quizUsedIds = [];
 
         let matchCards = [];
         let selectedMatchCards = [];
@@ -1263,6 +1628,7 @@
         // Khởi động an toàn
         function initializeAppLogic() {
             try {
+                getOrCreateDeviceId();
                 updateAccountDisplayUI();
                 updateMasteredProgress();
                 filterLesson('all');
@@ -1351,17 +1717,25 @@
 
             if (lesson === 'all') {
                 activeVocabList = [...VOCAB_DATA];
+                activeGrammarExercises = [...GRAMMAR_EXERCISES];
             } else if (lesson === 'unmastered') {
                 activeVocabList = VOCAB_DATA.filter(w => !masteredIds.includes(w.id));
                 if (activeVocabList.length === 0) {
                     showToast("Bạn đã thuộc tất cả các từ trong mục này!", "success");
                     activeVocabList = [...VOCAB_DATA];
                 }
+                activeGrammarExercises = [...GRAMMAR_EXERCISES];
             } else {
-                activeVocabList = VOCAB_DATA.filter(w => w.lesson === parseInt(lesson));
+                const lessonNum = parseInt(lesson);
+                activeVocabList = VOCAB_DATA.filter(w => w.lesson === lessonNum);
+                const filteredEx = GRAMMAR_EXERCISES.filter(ex => ex.lesson === lessonNum);
+                activeGrammarExercises = filteredEx.length > 0 ? filteredEx : [...GRAMMAR_EXERCISES];
             }
 
             fcIndex = 0;
+            currentGrammarIndex = 0;
+            selectedSentenceTokens = [];
+            quizUsedIds = [];
             refreshCurrentActiveTab();
         }
 
@@ -1377,7 +1751,7 @@
             const percent = total > 0 ? Math.round((count / total) * 100) : 0;
             if (progressEl) progressEl.style.width = `${percent}%`;
             
-            safeSetItem('boya_mastered_ids_v2', JSON.stringify(masteredIds));
+            saveMasteredForAccount(currentAccountId, masteredIds);
         }
 
         function resetProgress() {
@@ -1386,7 +1760,7 @@
             saveProgressToCloud();
             renderFlashcard();
             renderWordList();
-            showToast("Đã đặt lại tiến độ ghi nhớ trên đám mây!", "info");
+            showToast(`Đã đặt lại tiến độ cho tài khoản ${currentAccountId}!`, "info");
         }
 
         // =========================================================================
@@ -1412,7 +1786,10 @@
                 tabName = visibleSec ? visibleSec.id.replace('section-', '') : 'flashcard';
             }
             if (tabName === 'flashcard') renderFlashcard();
-            if (tabName === 'grammar') renderGrammarExerciseUI();
+            if (tabName === 'grammar') {
+                renderGrammarLessonsUI();
+                renderGrammarExerciseUI();
+            }
             if (tabName === 'quiz') initQuizQuestion();
             if (tabName === 'match') initMatchGame();
             if (tabName === 'typing') initTypingQuestion();
@@ -1481,7 +1858,7 @@
             const word = activeVocabList[fcIndex];
             if (isMastered) {
                 if (!masteredIds.includes(word.id)) masteredIds.push(word.id);
-                showToast(`Đã lưu "${word.hanzi}" vào đám mây!`, "success");
+                showToast(`Đã lưu "${word.hanzi}" vào tài khoản ${currentAccountId}!`, "success");
             } else {
                 masteredIds = masteredIds.filter(id => id !== word.id);
                 showToast(`Đã lưu "${word.hanzi}" vào danh sách ôn lại`, "info");
@@ -1499,17 +1876,68 @@
         }
 
         // =========================================================================
-        // CHẾ ĐỘ 2: NGỮ PHÁP & ĐẶT CÂU TƯƠNG TÁC
+        // CHẾ ĐỘ 2: NGỮ PHÁP TẤT CẢ BÀI 1 - 10 & ĐẶT CÂU TƯƠNG TÁC
         // =========================================================================
+        function renderGrammarLessonsUI() {
+            const container = document.getElementById('grammar-lessons-container');
+            const badge = document.getElementById('grammar-active-badge');
+            if (!container) return;
+
+            let listToRender = BOYA_GRAMMAR_DATA;
+            if (currentLessonFilter !== 'all' && currentLessonFilter !== 'unmastered') {
+                const lNum = parseInt(currentLessonFilter);
+                listToRender = BOYA_GRAMMAR_DATA.filter(g => g.lesson === lNum);
+                if (badge) badge.innerText = `Bài ${lNum}`;
+            } else {
+                if (badge) badge.innerText = "Tất cả Bài 1 - 10";
+            }
+
+            container.innerHTML = listToRender.map(lessonObj => `
+                <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200/70">
+                        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded-lg bg-rose-600 text-white text-xs font-bold">B${lessonObj.lesson}</span>
+                            <span>${lessonObj.title}</span>
+                        </h3>
+                        <span class="text-[11px] font-semibold text-slate-500">${lessonObj.points.length} điểm ngữ pháp</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                        ${lessonObj.points.map(pt => `
+                            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-rose-700 uppercase tracking-wide block mb-1.5">${pt.title}</span>
+                                    <div class="bg-rose-50/70 px-3 py-1.5 rounded-xl text-rose-700 font-mono text-xs font-semibold mb-2 border border-rose-200/80">
+                                        ${pt.formula}
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed mb-2.5">${pt.desc}</p>
+                                </div>
+                                <div class="text-xs bg-amber-50/70 border border-amber-100 p-2.5 rounded-xl text-slate-700 font-chinese">
+                                    <strong class="font-sans text-amber-800">Ví dụ:</strong> ${pt.example}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
         function initGrammarExercise() {
             selectedSentenceTokens = [];
-            document.getElementById('sentence-feedback').classList.add('hidden');
+            const fb = document.getElementById('sentence-feedback');
+            if (fb) fb.classList.add('hidden');
             renderGrammarExerciseUI();
         }
 
         function renderGrammarExerciseUI() {
-            const currentEx = GRAMMAR_EXERCISES[currentGrammarIndex];
+            if (!activeGrammarExercises || activeGrammarExercises.length === 0) return;
+            if (currentGrammarIndex >= activeGrammarExercises.length) currentGrammarIndex = 0;
+
+            const currentEx = activeGrammarExercises[currentGrammarIndex];
             document.getElementById('grammar-prompt').innerText = currentEx.prompt;
+            document.getElementById('grammar-ex-cur').innerText = currentGrammarIndex + 1;
+            document.getElementById('grammar-ex-tot').innerText = activeGrammarExercises.length;
+            const tagEl = document.getElementById('grammar-ex-lesson-tag');
+            if (tagEl) tagEl.innerText = `Bài ${currentEx.lesson} • Yêu cầu đặt câu:`;
 
             const dropzone = document.getElementById('sentence-dropzone');
             dropzone.innerHTML = '';
@@ -1554,7 +1982,7 @@
         }
 
         function checkSentence() {
-            const currentEx = GRAMMAR_EXERCISES[currentGrammarIndex];
+            const currentEx = activeGrammarExercises[currentGrammarIndex];
             const userString = selectedSentenceTokens.join(' ').trim();
             const targetString = currentEx.target.trim();
             const feedback = document.getElementById('sentence-feedback');
@@ -1582,7 +2010,7 @@
         }
 
         function showSentenceHint() {
-            const currentEx = GRAMMAR_EXERCISES[currentGrammarIndex];
+            const currentEx = activeGrammarExercises[currentGrammarIndex];
             const feedback = document.getElementById('sentence-feedback');
             feedback.className = "mt-4 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800";
             feedback.innerHTML = `<strong>Gợi ý ngữ pháp:</strong> ${currentEx.explanation}`;
@@ -1590,18 +2018,94 @@
         }
 
         function nextGrammarExercise() {
-            currentGrammarIndex = (currentGrammarIndex + 1) % GRAMMAR_EXERCISES.length;
+            currentGrammarIndex = (currentGrammarIndex + 1) % activeGrammarExercises.length;
             initGrammarExercise();
         }
 
         // =========================================================================
-        // CHẾ ĐỘ 3: TRẮC NGHIỆM PHẢN XẠ (QUIZ)
+        // CHẾ ĐỘ 3: TRẮC NGHIỆM PHẢN XẠ (KHÔNG LẶP CÂU & TẮT/BẬT PINYIN)
         // =========================================================================
+        function toggleQuizNoRepeat() {
+            quizNoRepeat = !quizNoRepeat;
+            const btn = document.getElementById('btn-quiz-norepeat');
+            if (btn) {
+                if (quizNoRepeat) {
+                    btn.className = "text-xs px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold flex items-center gap-1.5 transition";
+                    btn.innerHTML = '<i class="fa-solid fa-ban"></i> Không lặp câu: Bật';
+                } else {
+                    btn.className = "text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200 font-semibold flex items-center gap-1.5 transition";
+                    btn.innerHTML = '<i class="fa-solid fa-repeat"></i> Không lặp câu: Tắt';
+                }
+            }
+            resetQuizSession();
+        }
+
+        function toggleQuizPinyin() {
+            quizShowPinyin = !quizShowPinyin;
+            const btn = document.getElementById('btn-quiz-pinyin');
+            if (btn) {
+                if (quizShowPinyin) {
+                    btn.className = "text-xs px-2.5 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 font-semibold flex items-center gap-1.5 transition";
+                    btn.innerHTML = '<i class="fa-solid fa-eye"></i> Pinyin: Bật';
+                } else {
+                    btn.className = "text-xs px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 font-semibold flex items-center gap-1.5 transition";
+                    btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Pinyin: Tắt';
+                }
+            }
+            // Cập nhật lại hiển thị câu hỏi hiện tại nếu đang ở màn trắc nghiệm
+            if (currentQuizWord) {
+                renderCurrentQuizQuestionUI();
+            }
+        }
+
+        function resetQuizSession() {
+            quizUsedIds = [];
+            initQuizQuestion();
+        }
+
+        function updateQuizProgressUI() {
+            const progEl = document.getElementById('quiz-progress-count');
+            if (progEl) {
+                progEl.innerText = `${quizUsedIds.length}/${activeVocabList.length}`;
+            }
+        }
+
         function initQuizQuestion() {
             isQuizAnswered = false;
             document.getElementById('quiz-feedback').classList.add('hidden');
+
+            const completedBox = document.getElementById('quiz-completed-box');
+            const activeArea = document.getElementById('quiz-active-area');
+
+            let candidatePool = activeVocabList;
+            if (quizNoRepeat) {
+                candidatePool = activeVocabList.filter(w => !quizUsedIds.includes(w.id));
+                if (candidatePool.length === 0 && activeVocabList.length > 0) {
+                    if (completedBox) completedBox.classList.remove('hidden');
+                    if (activeArea) activeArea.classList.add('hidden');
+                    const descEl = document.getElementById('quiz-completed-desc');
+                    if (descEl) {
+                        descEl.innerText = `Bạn đã hoàn thành toàn bộ ${activeVocabList.length} câu hỏi không lặp lại trong danh sách này!`;
+                    }
+                    updateQuizProgressUI();
+                    return;
+                }
+            }
+
+            if (completedBox) completedBox.classList.add('hidden');
+            if (activeArea) activeArea.classList.remove('hidden');
+
+            currentQuizWord = candidatePool[Math.floor(Math.random() * candidatePool.length)];
+            if (quizNoRepeat && currentQuizWord && !quizUsedIds.includes(currentQuizWord.id)) {
+                quizUsedIds.push(currentQuizWord.id);
+            }
+            updateQuizProgressUI();
+            renderCurrentQuizQuestionUI();
+        }
+
+        function renderCurrentQuizQuestionUI() {
+            if (!currentQuizWord) return;
             const quizType = document.getElementById('quiz-type-select').value;
-            currentQuizWord = activeVocabList[Math.floor(Math.random() * activeVocabList.length)];
 
             const distractors = VOCAB_DATA
                 .filter(w => w.id !== currentQuizWord.id)
@@ -1629,7 +2133,7 @@
                 qDisplay.innerHTML = `<i class="fa-solid fa-circle-play"></i> <span class="text-sm font-sans font-semibold">Nghe lại âm</span>`;
                 qDisplay.onclick = () => speakChinese(currentQuizWord.hanzi);
                 qSub.innerText = "";
-                speakChinese(currentQuizWord.hanzi);
+                if (!isQuizAnswered) speakChinese(currentQuizWord.hanzi);
             }
 
             const optionsContainer = document.getElementById('quiz-options');
@@ -1640,11 +2144,14 @@
                 btn.className = "p-4 rounded-2xl border-2 border-slate-200/80 bg-white hover:border-rose-300 hover:bg-rose-50/30 text-left transition flex flex-col justify-center";
                 
                 if (quizType === 'hanzi-to-meaning') {
-                    btn.innerHTML = `<span class="font-bold text-slate-800 text-sm sm:text-base">${opt.meaning}</span><span class="text-xs text-slate-400 mt-0.5">${opt.pinyin}</span>`;
+                    const pyHtml = quizShowPinyin ? `<span class="text-xs text-slate-400 mt-0.5">${opt.pinyin}</span>` : '';
+                    btn.innerHTML = `<span class="font-bold text-slate-800 text-sm sm:text-base">${opt.meaning}</span>${pyHtml}`;
                 } else if (quizType === 'meaning-to-hanzi') {
-                    btn.innerHTML = `<span class="font-chinese font-bold text-slate-800 text-3xl text-center block">${opt.hanzi}</span>`;
+                    const pyHtml = quizShowPinyin ? `<span class="text-xs text-rose-500 font-semibold text-center block mt-1">${opt.pinyin}</span>` : '';
+                    btn.innerHTML = `<span class="font-chinese font-bold text-slate-800 text-3xl text-center block">${opt.hanzi}</span>${pyHtml}`;
                 } else {
-                    btn.innerHTML = `<div class="flex items-baseline justify-between"><span class="font-chinese font-bold text-xl">${opt.hanzi}</span><span class="text-xs font-semibold text-rose-600">${opt.pinyin}</span></div><span class="text-xs text-slate-600 mt-1">${opt.meaning}</span>`;
+                    const pyHtml = quizShowPinyin ? `<span class="text-xs font-semibold text-rose-600">${opt.pinyin}</span>` : '';
+                    btn.innerHTML = `<div class="flex items-baseline justify-between"><span class="font-chinese font-bold text-xl">${opt.hanzi}</span>${pyHtml}</div><span class="text-xs text-slate-600 mt-1">${opt.meaning}</span>`;
                 }
 
                 btn.onclick = () => handleQuizAnswer(btn, opt);
@@ -1658,7 +2165,14 @@
             const isCorrect = selectedWord.id === currentQuizWord.id;
             speakChinese(currentQuizWord.hanzi);
 
-            document.getElementById('quiz-question-sub').innerText = `${currentQuizWord.hanzi} [${currentQuizWord.pinyin}] - ${currentQuizWord.meaning}`;
+            const subText = quizShowPinyin
+                ? `${currentQuizWord.hanzi} [${currentQuizWord.pinyin}] - ${currentQuizWord.meaning}`
+                : `${currentQuizWord.hanzi} - ${currentQuizWord.meaning}`;
+            document.getElementById('quiz-question-sub').innerText = subText;
+
+            const ansLabel = quizShowPinyin
+                ? `${currentQuizWord.hanzi} (${currentQuizWord.pinyin})`
+                : `${currentQuizWord.hanzi}`;
 
             if (isCorrect) {
                 selectedBtn.className = "p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left flex flex-col justify-center";
@@ -1668,7 +2182,7 @@
             } else {
                 selectedBtn.className = "p-4 rounded-2xl border-2 border-rose-500 bg-rose-50 text-left flex flex-col justify-center animate-shake";
                 quizStreak = 0;
-                document.getElementById('quiz-feedback-text').innerHTML = `<span class="text-rose-600 font-bold"><i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đúng!</span> Đáp án: <strong>${currentQuizWord.hanzi} (${currentQuizWord.pinyin})</strong>`;
+                document.getElementById('quiz-feedback-text').innerHTML = `<span class="text-rose-600 font-bold"><i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đúng!</span> Đáp án: <strong>${ansLabel}</strong>`;
             }
 
             document.getElementById('quiz-score').innerText = quizScore;
@@ -1842,8 +2356,38 @@
         }
 
         // =========================================================================
-        // CHẾ ĐỘ 6: TOÀN BỘ DANH SÁCH TỪ VỰNG
+        // CHẾ ĐỘ 6: TOÀN BỘ DANH SÁCH TỪ VỰNG & CÁCH VIẾT (STROKEORDER.COM)
         // =========================================================================
+        function buildStrokeOrderLinks(hanziText) {
+            // Lọc lấy các ký tự chữ Hán (bỏ dấu câu nếu có)
+            const chars = Array.from(hanziText).filter(ch => /[一-鿿]/.test(ch));
+            const uniqueChars = [...new Set(chars)];
+            const fullWordUrl = `https://www.strokeorder.com/chinese/${encodeURIComponent(hanziText)}`;
+
+            const charLinksHtml = uniqueChars.map(ch => {
+                const url = `https://www.strokeorder.com/chinese/${encodeURIComponent(ch)}`;
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="Xem thứ tự nét viết chữ ${ch} trên StrokeOrder.com" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white border border-indigo-200 font-chinese font-bold text-xs transition">
+                    <span>${ch}</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-75"></i>
+                </a>`;
+            }).join('');
+
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-50 px-2.5 py-2 rounded-xl border border-slate-200/70 mt-2">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+                            <i class="fa-solid fa-pen-nib text-indigo-500"></i> Cách viết từng chữ:
+                        </span>
+                        ${charLinksHtml}
+                    </div>
+                    <a href="${fullWordUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-indigo-600 hover:text-indigo-800 hover:underline flex items-center gap-1 shrink-0">
+                        <span>StrokeOrder.com</span>
+                        <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+            `;
+        }
+
         function renderWordList() {
             const query = document.getElementById('search-input').value.trim().toLowerCase();
             const container = document.getElementById('vocab-list-container');
@@ -1863,7 +2407,7 @@
             filtered.forEach(w => {
                 const isMastered = masteredIds.includes(w.id);
                 const card = document.createElement('div');
-                card.className = "bg-white p-4 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col justify-between gap-3 hover:border-rose-200 transition";
+                card.className = "bg-white p-4 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col justify-between gap-2.5 hover:border-rose-200 transition";
                 card.innerHTML = `
                     <div>
                         <div class="flex items-start justify-between gap-2">
@@ -1874,12 +2418,13 @@
                             </div>
                             <div class="flex items-center gap-1.5">
                                 <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">Bài ${w.lesson}</span>
-                                <button onclick="speakChinese('${w.hanzi}')" class="w-8 h-8 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white flex items-center justify-center transition">
+                                <button onclick="speakChinese('${w.hanzi}')" class="w-8 h-8 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white flex items-center justify-center transition" title="Nghe phát âm">
                                     <i class="fa-solid fa-volume-high text-xs"></i>
                                 </button>
                             </div>
                         </div>
                         <p class="font-bold text-slate-800 text-sm mt-1">${w.meaning} <span class="text-xs font-normal text-slate-400">(${w.pos})</span></p>
+                        ${buildStrokeOrderLinks(w.hanzi)}
                         <p class="text-xs text-slate-600 mt-2 bg-amber-50/60 p-2 rounded-xl border border-amber-100"><i class="fa-regular fa-lightbulb text-amber-500 mr-1"></i> ${w.tip}</p>
                     </div>
                     <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
@@ -1899,7 +2444,7 @@
                 showToast("Đã bỏ đánh dấu thuộc từ", "info");
             } else {
                 masteredIds.push(id);
-                showToast("Đã lưu từ thuộc lên đám mây!", "success");
+                showToast(`Đã lưu từ thuộc cho tài khoản ${currentAccountId}!`, "success");
             }
             updateMasteredProgress();
             saveProgressToCloud();
@@ -2007,6 +2552,9 @@
             clearSentence,
             showSentenceHint,
             nextGrammarExercise,
+            toggleQuizNoRepeat,
+            toggleQuizPinyin,
+            resetQuizSession,
             initQuizQuestion,
             handleQuizAnswer,
             speakQuizWord,
